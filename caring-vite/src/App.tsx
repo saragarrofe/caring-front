@@ -4,7 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import PlantDetail from './pages/PlantDetail';
+import PlantDetail from './components/MyPlants/PlantDetail/PlantDetail';
 import NavbarComponent from './components/Navbar/Navbar';
 
 
