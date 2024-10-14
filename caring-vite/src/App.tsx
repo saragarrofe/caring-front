@@ -1,4 +1,6 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
@@ -16,7 +18,7 @@ const App: React.FC = () => {
       
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/plant" element={<PlantDetail />} />
+          <Route path="/plants" element={<PlantDetail />} />
         </Routes>
       </div>
     </Router>

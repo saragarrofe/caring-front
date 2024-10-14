@@ -16,22 +16,35 @@ const NavbarComponent: React.FC = () => {
   };
 
   return (
-    <nav className="navbar">
-      {/* añadir imagen */}
-      <div className="navbar-brand">
-        {/* añadir logo */}
-        <img src="logo.png" alt="Caring logo" className="logo" />
-      </div>
-      <ul className="nav-links">
-        <li>
-          <Link to="/discover" className="nav-link">Discover</Link>
-        </li>
-        <li>
-          <Link to="/plants" className="nav-link">My plants</Link>
-        </li>
-      </ul>
-    </nav>
+    <Navbar expand="lg" className="navbar">
+      <Container>
+        <Navbar.Brand href="/">
+          <img src="logo.png" alt="Logo" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link as={Link} className="nav-link" to="/discovrt">Discover</Nav.Link>
+            <Nav.Link as={Link} className="nav-link" to="/plants">My plants</Nav.Link>
+            <Form className="d-flex" onSubmit={handleSearch}>
+              <FormControl
+                type="search"
+                placeholder="Search plants..."
+                className="me-2"
+                aria-label="Search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </Form>
+            <Nav.Link as={Link} to="/login" className="nav-link">
+              <i className="bi bi-person" style={{ fontSize: '1.5rem', color: 'white'}}></i>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
+
 
 export default NavbarComponent;
