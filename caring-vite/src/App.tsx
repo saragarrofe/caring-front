@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import PlantDetail from './pages/PlantDetail';
-import Navbar from './components/Navbar/Navbar';
+import NavbarComponent from './components/Navbar/Navbar';
 
 
 
@@ -11,8 +11,8 @@ const App: React.FC = () => {
 
   return (
     <Router>
+        <NavbarComponent />
       <div>
-        <Navbar />
       
         <Routes>
           <Route path="/" element={<Home />} />

@@ -1,4 +1,3 @@
-// src/components/Hero.tsx
 import React from 'react';
 import './Hero.css';
 
@@ -6,18 +5,14 @@ const Hero: React.FC = () => {
   return (
     <section className="hero">
       <div className="hero-content">
-        <h1>Keep your plants alive</h1>
+        <h1>Take care of your plants alive</h1>
         <p className="subtitle">
           Individual care schedule and reminders for your plants, recommendations, step by step guides, and more.
         </p>
-        <button className="cta-button">Download now</button>
         <div className="badges">
-          <span className="badge">App of The Day</span>
-          <span className="badge">Editor's Choice</span>
+          <span className="badge">Tricks and advices</span>
+          <span className="special-badge">Plant of the day</span>
         </div>
-      </div>
-      <div className="hero-image">
-        <img src="/path-to-your-phone-image.png" alt="App preview on phone" />
       </div>
     </section>
   );

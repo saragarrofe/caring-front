@@ -1,10 +1,20 @@
-// src/components/Navbar/Navbar.tsx
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Navbar.css';  
+import { Link, useNavigate } from 'react-router-dom';
+import { Navbar, Nav, Container, Form, FormControl } from 'react-bootstrap';
 
 
-const Navbar: React.FC = () => {
+const NavbarComponent: React.FC = () => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if(searchTerm) {
+      navigate(`/plant?search=${searchTerm}`);
+    }
+  };
+
   return (
     <nav className="navbar">
       {/* añadir imagen */}
@@ -24,4 +34,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default NavbarComponent;
