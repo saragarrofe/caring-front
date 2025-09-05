@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": "./", 
+    "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
-      "@assets/*": ["src/assets/*"],
+      "@assets/*": ["src/assets/*"]
     },
     "target": "esnext",
     "module": "esnext",
