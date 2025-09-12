@@ -7,6 +7,7 @@ import Login from '@pages/Login';
 import MyPlants from '@pages/MyPlants';
 import MyPlantDetail from '@pages/MyPlantDetail';
 import NavbarComponent from '@components/Navbar/Navbar';
+import Register from '@pages/Register';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
           {/* Lista y detalle */}
           <Route path="/my-plants" element={<MyPlants />} />
