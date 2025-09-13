@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Navbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link, useNavigate } from 'react-router-dom';
+import './Navbar.css';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container, Form, FormControl } from 'react-bootstrap';
 
 export default function NavbarComponent () {
@@ -10,26 +10,33 @@ export default function NavbarComponent () {
 
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (searchTerm) {
-      navigate(`/plant?search=${searchTerm}`);
+    const term = searchTerm.trim();
+    if (term) {
+      navigate({ pathname: '/plant', search: `?search=${encodeURIComponent(term)}` });
     }
   };
 
   return (
     <Navbar expand="lg" className="navbar">
       <Container>
-        <Navbar.Brand href="/">
+        {/* Usa NavLink para evitar recarga completa y controlar 'active' en la home */}
+
+        <Navbar.Brand as={NavLink} to="/" end>
           <img src="logo.png" alt="Logo" />
         </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} className="nav-link" to="/discover">
+              {/* Nav.Link + as={NavLink}: aplica automáticamente la clase 'active' */}
+            <Nav.Link as={NavLink} className="nav-link" to="/discover">
               Discover
             </Nav.Link>
-            <Nav.Link as={Link} className="nav-link" to="/my-plants">
+
+            <Nav.Link as={NavLink} className="nav-link" to="/my-plants">
               My plants
             </Nav.Link>
+
             <Form className="d-flex" onSubmit={handleSearch}>
               <FormControl
                 type="search"
