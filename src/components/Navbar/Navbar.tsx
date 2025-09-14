@@ -17,7 +17,7 @@ export default function NavbarComponent () {
   };
 
   return (
-    <Navbar expand="lg" className="navbar">
+    <Navbar expand="lg" className="navbar d-none d-md-flex">
       <Container>
         {/* Usa NavLink para evitar recarga completa y controlar 'active' en la home */}
 

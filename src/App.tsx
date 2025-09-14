@@ -8,6 +8,7 @@ import MyPlants from '@pages/MyPlants';
 import MyPlantDetail from '@pages/MyPlantDetail';
 import NavbarComponent from '@components/Navbar/Navbar';
 import Register from '@pages/Register';
+import BottomNav from '@components/BottomNav/BottomNav';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </div>
+      <BottomNav />
     </Router>
   );
 };
