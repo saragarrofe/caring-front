@@ -9,6 +9,7 @@ import MyPlantDetail from '@pages/MyPlantDetail';
 import NavbarComponent from '@components/Navbar/Navbar';
 import Register from '@pages/Register';
 import BottomNav from '@components/BottomNav/BottomNav';
+import Profile from '@pages/Profile';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
 
           {/* Lista y detalle */}
           <Route path="/my-plants" element={<MyPlants />} />
