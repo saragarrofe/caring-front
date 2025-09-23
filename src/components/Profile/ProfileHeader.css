@@ -26,7 +26,7 @@
 }
 
 .ph-info {
-  min-width: 0; /* que el texto pueda truncar */
+  min-width: 0; 
 }
 
 .ph-name {
@@ -36,7 +36,7 @@
 
 .ph-email, .ph-meta {
   margin: 0;
-  color: #64748b; /* gris suave */
+  color: #64748b; 
   font-size: 13px;
 }
 

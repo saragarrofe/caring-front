@@ -1,10 +1,10 @@
 import ProfileHeader from "@components/Profile/ProfileHeader";
-
+import ProfileActions from "@components/Profile/ProfileActions";
 
 export default function Profile() {
 
     const user = { 
-        name: "Sara Garrofé",
+        name: "Sara",
         email: "example@example",
         avatarUrl: "https://placehold.co/80x80",
         joinedDate: "Septiembre 2025"
@@ -16,7 +16,8 @@ export default function Profile() {
     }
     return (
         <main className="container py-3">
-            <ProfileHeader name={user.name} email={user.email} avatarUrl={user.avatarUrl} joinedDate={user.joinedDate} onEdit={handleEdit} />
+            <ProfileHeader name={user.name} avatarUrl={user.avatarUrl} />
+            <ProfileActions />
         </main>
     )
 }

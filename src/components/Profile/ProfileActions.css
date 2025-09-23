@@ -1,0 +1,39 @@
+.pic-card {
+  margin-top: 10px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: 0 6px 16px rgba(16,24,40,.06);
+}
+
+.pic-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  gap: 8px;
+}
+
+.pic-label {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.pic-value {
+  color: #1f2937;
+  font-weight: 600;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 60%;
+  text-align: right;
+}
+
+.pic-divider {
+  height: 1px;
+  background: rgba(0,0,0,.06);
+  margin: 4px 0;
+  border-radius: 1px;
+}
