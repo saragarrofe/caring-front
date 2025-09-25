@@ -2,6 +2,8 @@ import ProfileHeader from "@components/Profile/ProfileHeader";
 import ProfileActions from "@components/Profile/ProfileActions";
 import { useState } from "react";
 
+type ThemeMode = 'light' | 'dark';
+
 export default function Profile() {
 
     const user = { 
@@ -9,8 +11,8 @@ export default function Profile() {
         avatarUrl: "https://placehold.co/80x80",
     }
 
-    const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-    const [theme, setTheme] = useState<'light' | 'dark'>('light');
+    const [notificationsEnabled, setNotificationsEnabled] = useState<boolean>(true);
+    const [theme, setTheme] = useState<ThemeMode>('light');
 
     const handleToggleNotifications = () => {
         setNotificationsEnabled(!notificationsEnabled);
@@ -24,7 +26,7 @@ export default function Profile() {
         // TODO: limpiar auth y navegar a /login
         alert('Cerrar sesión y navegar a /login');
     }
-    
+
     return (
         <main className="container py-3">
             <ProfileHeader name={user.name} avatarUrl={user.avatarUrl} />

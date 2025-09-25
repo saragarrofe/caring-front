@@ -11,7 +11,7 @@ export default function Login() {
   };
   
   const [errors, setErrors] = useState<LoginErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   
   const navigate = useNavigate();
 
