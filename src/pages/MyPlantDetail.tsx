@@ -5,8 +5,7 @@ import { useState, useEffect } from 'react';
 import { mockPlants } from '../mocks/plants';
 import type { Plant } from '../types/plant';
 
-export default function PlantDetail () {
-   // useParams nos da los parámetros de la URL (declarados en App.tsx)
+export default function MyPlantDetail () {
   const { id } = useParams<{ id: string }>();
   if (!id) { return <div className="container py-4">ID de planta no proporcionado</div>; }
   const plantId = parseInt(id, 10);

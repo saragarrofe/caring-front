@@ -12,11 +12,7 @@ export default function MyPlants() {
               <PlantCard plant={plant} />
             </div>
           ))}
-
         </div>
-
-        
-
     </main>
 
   );

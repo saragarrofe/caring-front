@@ -32,7 +32,7 @@ export default function PlantCard({ plant }: PlantCardProps) {
                 <p className="card-subtitle mb-2 text-muted">Especie: {plant.species}</p>
                 <p className="card-text">Riego cada {plant.wateringFrequency} días</p>
                 <p className="card-text">Último riego: {plant.lastWatered}</p>
-                <Link to={`my-plants/${plant.id}`} className="btn btn-primary">
+                <Link to={`${plant.id}`} className="btn btn-primary">
                     Ver detalles
                 </Link>
             </div>            
