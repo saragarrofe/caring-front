@@ -10,6 +10,7 @@ import NavbarComponent from '@components/Navbar/Navbar';
 import Register from '@pages/Register';
 import BottomNav from '@components/BottomNav/BottomNav';
 import Profile from '@pages/Profile';
+import TricksAndAdvices from '@pages/TricksAndAdvices';
 
 const App = () => {
   return (
@@ -28,6 +29,9 @@ const App = () => {
 
           {/* Ruta comodín para 404 - Not Found */}
           <Route path="*" element={<div>404 Not Found</div>} />
+
+          {/* Rutas cuidados plantas */}
+          <Route path="/tricks-and-advices" element={<TricksAndAdvices />} />
         </Routes>
       </div>
       <BottomNav />
