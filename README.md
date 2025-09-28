@@ -1,50 +1,57 @@
-# React + TypeScript + Vite
+# 🌱Caring – Frontend (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta app es el cliente web del proyecto, construido con React, TypeScript y Vite. Se comunica con el [backend](https://github.com/saragarrofe/caring-back) de Caring vía API REST (_en construcción_) y forma parte de un setup multi‐repo con submódulos.
 
-Currently, two official plugins are available:
+## 🧱 Stack y requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Runtime: Node.js ≥ 18.x
+- Build: Vite 7 + @vitejs/plugin-react-swc
+- UI: React 18 + TypeScript 5
+- Routing: react-router-dom v6
+- Estilos: Bootstrap 5 + React Bootstrap + Bootstrap Icons y styled-components para estilos en componentes cuando sea necesario
+- Lint/Formato: ESLint 9 + typescript-eslint 8 (Flat config) + Prettier 3
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Gestión de plantas**: listado de plantas con imagen, especie, frecuencia y fecha de último riego
+- **Detalle de planta**: ruta paramétrica /my-plants/:id con información detallada
+- **Persistencia local**: último riego guardado en localStorage
+- **Cálculo automático de próximo riego**: con mensajes dinámicos (“hoy”, “mañana”, “en 3 días”) - _en construcción_
+- **Mobile-first UI**: bottom navigation + grid adaptable (2 columnas en móvil, 3 en desktop)
+- **Perfil de usuario**: saludo personalizado, acciones (editar, logout, notificaciones, tema)
+- **Login & Register**: formularios con validación simple en frontend
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+## 🏗️ Arquitectura y estructura
+```
+caring-vite/
+├── public/               # estáticos (ej: logo)
+├── src/
+│   ├── components/       # componentes reutilizables (Navbar, PlantCard, Profile...)
+│   ├── mocks/            # datos de prueba (mockPlants.ts)
+│   ├── pages/            # páginas principales (Home, Login, MyPlants, Profile, ...)
+│   ├── types/            # tipos TS (Plant, User, ...)
+│   ├── utils/            # helpers (ej. fechas, cálculos)
+│   ├── App.tsx           # shell principal con Router
+│   └── main.tsx          # entrypoint
+├── package.json
+└── README.md
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 📦 Scripts disponibles
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
 ```
+npm run dev → levanta el servidor en modo desarrollo 
+npm run build → build de producción optimizado
+npm run preview → previsualiza el build localmente
+npm run lint → ejecuta ESLint sobre todo el código
+npm run format → formatea con Prettier
+npm run format:check → verifica formato sin modificar archivos
+```
+
+## 🏃 Próximos pasos
+
+- Conectar con [backend](https://github.com/saragarrofe/caring-back) (Node.js + Express + MySQL)
+- Notificaciones de riego reales
+- Modo oscuro/light configurable desde el perfil
+- Validación de formularios con Zod
+- Rutas protegidas (según login)
