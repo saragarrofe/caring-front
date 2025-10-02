@@ -1,6 +1,8 @@
 import ProfileHeader from "@components/Profile/ProfileHeader";
 import ProfileActions from "@components/Profile/ProfileActions";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 type ThemeMode = 'light' | 'dark';
 
@@ -13,6 +15,7 @@ export default function Profile() {
 
     const [notificationsEnabled, setNotificationsEnabled] = useState<boolean>(true);
     const [theme, setTheme] = useState<ThemeMode>('light');
+    const { logout } = useAuth();
 
     const handleToggleNotifications = () => {
         setNotificationsEnabled(!notificationsEnabled);
@@ -23,8 +26,9 @@ export default function Profile() {
     }
 
     const handleLogout = () => {
-        // TODO: limpiar auth y navegar a /login
-        alert('Cerrar sesión y navegar a /login');
+        // TO DO: limpiar auth 
+        logout();
+        return <Navigate to="/login" replace />;
     }
 
     return (

@@ -2,7 +2,7 @@
 
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 
 import Home from '@pages/Home';
 import Login from '@pages/LogIn';
@@ -13,15 +13,23 @@ import Register from '@pages/Register';
 import BottomNav from '@components/BottomNav/BottomNav';
 import Profile from '@pages/Profile';
 import TricksAndAdvices from '@pages/TricksAndAdvices';
+import Welcome from '@pages/Welcome';
 
 const App = () => {
+
+  const Index = () => {
+    const { user } = useAuth();
+    return user ? <Home /> : <Welcome />;
+  }
+
   return (
     <AuthProvider>
       <Router>
         <NavbarComponent />
         <div>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Index />} /> 
+            <Route path="/welcome" element={<Welcome />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
@@ -37,7 +45,7 @@ const App = () => {
             <Route path="/tricks-and-advices" element={<TricksAndAdvices />} />
           </Routes>
         </div>
-        <BottomNav />
+          { !['/welcome', '/login', '/register'].includes(window.location.pathname) && <BottomNav /> }
       </Router>
     </AuthProvider>
   );
