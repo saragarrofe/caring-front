@@ -1,7 +1,7 @@
 // Esta pagina suele ser el “shell” de la app: layout general y <Router/> con rutas.
 
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 import Home from '@pages/Home';
@@ -19,7 +19,7 @@ const App = () => {
 
   const Index = () => {
     const { user } = useAuth();
-    return user ? <Home /> : <Welcome />;
+    return <Navigate to={user ? '/my-plants' : '/welcome'} replace />     
   }
 
   return (
@@ -45,7 +45,7 @@ const App = () => {
             <Route path="/tricks-and-advices" element={<TricksAndAdvices />} />
           </Routes>
         </div>
-          { !['/welcome', '/login', '/register'].includes(window.location.pathname) && <BottomNav /> }
+          { !['/', '/welcome', '/login', '/register'].includes(window.location.pathname) && <BottomNav /> }
       </Router>
     </AuthProvider>
   );
