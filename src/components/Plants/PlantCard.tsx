@@ -14,7 +14,7 @@ type PlantCardProps = {
     plant: Plant;
 };
 
-export default function PlantCard({ plant }: PlantCardProps) {
+export function PlantCard({ plant }: PlantCardProps) {
     return (
         <div className="card h-100">
             {plant.imageUrl && (

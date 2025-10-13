@@ -4,7 +4,7 @@ import './Navbar.css';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container, Form, FormControl } from 'react-bootstrap';
 
-export default function NavbarComponent () {
+export function NavbarComponent () {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 

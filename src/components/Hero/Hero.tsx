@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import './Hero.css';
 
-const Hero = () => {
+
+export function Hero () {
   return (
     <section className="hero">
       <div className="hero-content">
@@ -18,5 +19,3 @@ const Hero = () => {
     </section>
   );
 };
-
-export default Hero;

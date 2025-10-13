@@ -1,5 +1,4 @@
-import ProfileHeader from "@components/Profile/ProfileHeader";
-import ProfileActions from "@components/Profile/ProfileActions";
+import {ProfileHeader, ProfileActions } from '../components';
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";

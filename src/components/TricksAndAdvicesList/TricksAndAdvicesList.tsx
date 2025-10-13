@@ -23,7 +23,7 @@ const tips = [
   }
 ]
 
-export default function TricksAndAdvicesList() {
+export function TricksAndAdvicesList() {
     return (
         <section className="my-4 container tricks-wrapper">
             <h2>Consejos para el cuidado de tus plantas</h2>

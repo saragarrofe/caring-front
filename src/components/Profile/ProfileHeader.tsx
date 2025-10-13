@@ -6,7 +6,7 @@ type ProfileHeaderProps = {
     avatarUrl?: string;
 }
 
-export default function ProfileHeader({ name, avatarUrl }: ProfileHeaderProps) {
+export function ProfileHeader({ name, avatarUrl }: ProfileHeaderProps) {
     return (
         <section className="profile-header container">
             <div className="ph-card">

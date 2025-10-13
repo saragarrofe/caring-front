@@ -3,7 +3,7 @@ import '@components/BottomNav/BottomNav.css'
 import { NavLink } from "react-router-dom";
 
 
-export default function BottomNav() {
+export function BottomNav() {
     return (
         <nav className="bottom-nav d-md-none" role="navigation" aria-label="Bottom navigation">
             <div className="bottom-nav__rail">

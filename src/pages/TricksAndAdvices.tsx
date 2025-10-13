@@ -1,4 +1,4 @@
-import TricksAndAdvicesList from "@components/TricksAndAdvicesList/TricksAndAdvicesList";
+import {TricksAndAdvicesList} from '../components';
 
 export default function TricksAndAdvices() {
   return (

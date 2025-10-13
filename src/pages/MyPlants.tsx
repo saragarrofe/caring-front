@@ -1,6 +1,6 @@
 
 import { mockPlants } from '../mocks/plants';
-import PlantCard from '../components/Plants/PlantCard';
+import {PlantCard} from '../components';
 
 export default function MyPlants() {
   return (

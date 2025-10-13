@@ -10,7 +10,7 @@ type ProfileActionsProps = {
     onLogout: () => void;
 }
 
-export default function ProfileActions({ notificationsEnabled, theme, onToggleNotifications, onToggleTheme, onLogout }: ProfileActionsProps) {
+export function ProfileActions({ notificationsEnabled, theme, onToggleNotifications, onToggleTheme, onLogout }: ProfileActionsProps) {
     return (
         <section className="container">
             <div className="pa-card" role="menu" aria-label='Menú de acciones de perfil'>
