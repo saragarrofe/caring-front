@@ -4,17 +4,18 @@ import {PlantCard} from '../components';
 
 export default function MyPlants() {
   return (
-    <main className="container py-4">
-      <h1>Mis Plantas</h1>
-        <div className="row">
-          {mockPlants.map((plant) => (
-            <div key={plant.id} className='col-6 col-md-4 mb-4'>
-              <PlantCard plant={plant} />
-            </div>
-          ))}
-        </div>
-    </main>
+    <div className="container py-3">
+      <h1 className="display-6 fw-bold mb-3">Mis Plantas</h1>
+
+      <div className="row row-cols-2 row-cols-md-3 g-3"> 
+        {mockPlants.map(p => (
+          <div key={p.id} className="col">
+            <PlantCard plant={p} />
+          </div>
+        ))}
+      </div>
+    </div>
+
 
   );
 };
-
