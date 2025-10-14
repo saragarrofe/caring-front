@@ -22,9 +22,10 @@ export function addDays(date: Date, days: number): string {
 }
 
 // calcular los dias que faltan para una fecha dada (YYYY-MM-DD)
-export function daysUntil(date: string): number {
-    const targetDate = new Date(date);
-    const today = new Date();
-    const diffTime = targetDate.getTime() - today.getTime();
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+export function daysUntil(dateISO: string): number {
+  const target = new Date(dateISO + 'T00:00:00'); // Asegura que es el inicio del dia
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const diff = target.getTime() - today.getTime();
+  return Math.round(diff / (1000 * 60 * 60 * 24));
 }
