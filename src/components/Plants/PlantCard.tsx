@@ -21,7 +21,7 @@ export function PlantCard({ plant }: PlantCardProps) {
             <div key={plant.id} className="img-wrap">
                 <img 
                  src={plant.imageUrl} 
-                className="card-img-top" 
+                className="card-img-top " 
                 alt={`Imagen de ${plant.name}${plant.species ? ` de la especie ${plant.species}` : ""}`} 
                 loading="lazy"  
                 />

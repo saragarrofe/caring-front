@@ -1,6 +1,7 @@
 
 import { Plant } from '../types/plant';
 
+
 export const mockPlants: Plant[] = [ 
     {
         id: 1,
@@ -8,7 +9,7 @@ export const mockPlants: Plant[] = [
         species: 'Ficus elastica',
         wateringFrequency: 7,
         lastWatered: '2024-06-01',
-        imageUrl: 'https://placehold.co/200x200/png?text=Ficus',
+        imageUrl: '../src/assets/plants/ficus.png',
     },
     {
         id: 2,
@@ -16,7 +17,7 @@ export const mockPlants: Plant[] = [
         species: 'Monstera deliciosa',
         wateringFrequency: 5,
         lastWatered: '2024-06-03',
-        imageUrl: 'https://placehold.co/200x200/png?text=Monstera',
+        imageUrl: '../src/assets/plants/monstera.jpg',
     },
     {
         id: 3,
@@ -24,7 +25,7 @@ export const mockPlants: Plant[] = [
         species: 'Echeveria elegans',
         wateringFrequency: 14,
         lastWatered: '2024-05-28',
-        imageUrl: 'https://placehold.co/200x200/png?text=Succulent',
+        imageUrl: '../src/assets/plants/succulent.png',
     },
     {
         id: 4,
@@ -32,7 +33,7 @@ export const mockPlants: Plant[] = [
         species: 'Sansevieria trifasciata',
         wateringFrequency: 10,
         lastWatered: '2024-06-02',
-        imageUrl: 'https://placehold.co/200x200/png?text=Snake+Plant',
+        imageUrl: '../src/assets/plants/snake-plant.png',
     },
     {
         id: 5,
@@ -40,7 +41,7 @@ export const mockPlants: Plant[] = [
         species: 'Chlorophytum comosum',
         wateringFrequency: 7,
         lastWatered: '2024-06-01',
-        imageUrl: 'https://placehold.co/200x200/png?text=Spider+Plant',
+        imageUrl: '../src/assets/plants/spider-plant.png',
     },
     {
         id: 6,
@@ -48,7 +49,7 @@ export const mockPlants: Plant[] = [
         species: 'Spathiphyllum wallisii',
         wateringFrequency: 6,
         lastWatered: '2024-06-04',
-        imageUrl: 'https://placehold.co/200x200/png?text=Peace+Lily',
+        imageUrl: '../src/assets/plants/peace-lily.png',
     },
     {
         id: 7,
