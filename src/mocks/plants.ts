@@ -57,7 +57,7 @@ export const mockPlants: Plant[] = [
         species: 'Aloe barbadensis',
         wateringFrequency: 21,
         lastWatered: '2024-05-25',
-        imageUrl: 'https://placehold.co/200x200/png?text=Aloe+Vera',
+        imageUrl: '../src/assets/plants/aloe-vera.png',
     },
     {
         id: 8,
@@ -65,6 +65,6 @@ export const mockPlants: Plant[] = [
         species: 'Epipremnum aureum',
         wateringFrequency: 7,
         lastWatered: '2024-06-02',
-        imageUrl: 'https://placehold.co/200x200/png?text=Pothos',
+        imageUrl: '../src/assets/plants/pothos.png',
     }
 ];
