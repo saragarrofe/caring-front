@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import { mockPlants } from '../mocks/plants';
 import type { Plant } from '../types/plant';
 
+import BackButton from '@components/BackButton/BackButton';
+
 export default function MyPlantDetail () {
   const { id } = useParams<{ id: string }>();
   if (!id) { return <div className="container py-4">ID de planta no proporcionado</div>; }
@@ -21,7 +23,7 @@ export default function MyPlantDetail () {
     if(plantData) {
       localStorage.setItem(`plant-${plantId}`, JSON.stringify(plantData));
     }
-  }, [plantData]); //
+  }, [plantData]);
 
 
   if (!plantFound) {
@@ -44,6 +46,7 @@ export default function MyPlantDetail () {
   }
 
   return <> 
+    <BackButton fallback="/my-plants" className="m-3" />
     <main className='container py-4'>
       <Link to="/my-plants" className="btn btn-sm btn-primary mb-3">
         Volver a Mis Plantas

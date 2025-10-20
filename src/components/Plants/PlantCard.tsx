@@ -2,6 +2,7 @@
 import "./PlantCard.css";
 
 import Reminder from "@components/Reminder/Reminder";
+
 import { Plant } from "src/types/plant";
 import { getWateringReminder } from "../../utils/reminders";
 
@@ -15,6 +16,7 @@ export function PlantCard({ plant }: PlantCardProps) {
     const wateringReminder = getWateringReminder(plant);
 
     return (
+        <>
         <a href={`/my-plants/${plant.id}`} className="card-plant text-decoration-none text-dark">
         <div className="card-plant">
             {plant.imageUrl && (
@@ -35,5 +37,6 @@ export function PlantCard({ plant }: PlantCardProps) {
             </div>            
         </div>
         </a>
+        </>
     )
 }

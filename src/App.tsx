@@ -6,7 +6,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 
 import Home from '@pages/Home';
 import Login from '@pages/LogIn';
-import MyPlants from '@pages/MyPlants';
+import MyPlants from '@pages/MyPlants/MyPlants';
 import MyPlantDetail from '@pages/MyPlantDetail';
 import Register from '@pages/Register';
 import { BottomNav, NavbarComponent } from './components';
