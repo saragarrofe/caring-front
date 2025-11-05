@@ -4,10 +4,10 @@
 
 .ph-card {
   background: linear-gradient(180deg, #ffffff, #f7fafc);
-  border: 1px solid rgba(0,0,0,.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 18px;
   padding: 16px;
-  box-shadow: 0 8px 20px rgba(16,24,40,.08);
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
 }
 
 .ph-top {
@@ -22,11 +22,11 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #fff;
-  box-shadow: 0 2px 8px rgba(16,24,40,.12);
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.12);
 }
 
 .ph-info {
-  min-width: 0; 
+  min-width: 0;
 }
 
 .ph-name {
@@ -34,9 +34,10 @@
   margin: 0 0 2px;
 }
 
-.ph-email, .ph-meta {
+.ph-email,
+.ph-meta {
   margin: 0;
-  color: #64748b; 
+  color: #64748b;
   font-size: 13px;
 }
 
@@ -45,5 +46,3 @@
   display: flex;
   gap: 8px;
 }
-
-

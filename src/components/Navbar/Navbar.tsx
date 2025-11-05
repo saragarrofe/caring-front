@@ -4,7 +4,7 @@ import './Navbar.css';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container, Form, FormControl } from 'react-bootstrap';
 
-export function NavbarComponent () {
+export function NavbarComponent() {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ export function NavbarComponent () {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-              {/* Nav.Link + as={NavLink}: aplica automáticamente la clase 'active' */}
+            {/* Nav.Link + as={NavLink}: aplica automáticamente la clase 'active' */}
             <Nav.Link as={NavLink} className="nav-link" to="/discover">
               Discover
             </Nav.Link>
@@ -55,4 +55,4 @@ export function NavbarComponent () {
       </Container>
     </Navbar>
   );
-};
+}

@@ -1,4 +1,6 @@
-.d-grid > * { min-width: 0; }
+.d-grid > * {
+  min-width: 0;
+}
 
 .rem-badge {
   display: inline-flex;
@@ -9,24 +11,33 @@
   font-size: 13px;
   line-height: 1;
   white-space: nowrap;
-  overflow: hidden;       
+  overflow: hidden;
   white-space: nowrap;
 }
 .rem-badge i {
   font-size: 14px;
-  flex: 0 0 auto;        
+  flex: 0 0 auto;
 }
 
-.rem-label{
-  flex: 1 1 auto;         
-  min-width: 0;           
-  overflow: hidden;       
+.rem-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
-
-.rem-info    { color: #0d6efd; }
-.rem-success { color: #2e7d32; }
-.rem-warning { color: #b26a00; }
-.rem-danger  { color: #DE3231; }
-.rem-muted   { color: #4b5563; }
+.rem-info {
+  color: #0d6efd;
+}
+.rem-success {
+  color: #2e7d32;
+}
+.rem-warning {
+  color: #b26a00;
+}
+.rem-danger {
+  color: #de3231;
+}
+.rem-muted {
+  color: #4b5563;
+}

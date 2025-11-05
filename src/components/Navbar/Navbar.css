@@ -1,5 +1,3 @@
-
-
 .navbar {
   background-color: #3a5438;
   /* Colores de links del navbar */
@@ -12,7 +10,7 @@
 
 .navbar .navbar-nav .nav-link.active,
 .navbar .navbar-nav .nav-link.show {
-  font-weight: 600;                        
+  font-weight: 600;
 }
 
 .nav-links {
@@ -21,7 +19,6 @@
   gap: 1rem;
   margin: 0;
 }
-
 
 .nav-link {
   color: white;
