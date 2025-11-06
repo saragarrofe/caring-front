@@ -1,8 +1,11 @@
+export * from './BackButton/BackButton';
 export * from './BottomNav/BottomNav';
+export * from './Discover/Discover';
+export * from './Footer/Footer';
 export * from './Hero/Hero';
 export * from './Navbar/Navbar';
 export * from './Plants/PlantCard';
 export * from './Profile/ProfileActions';
 export * from './Profile/ProfileHeader';
+export * from './Reminder/Reminder';
 export * from './TricksAndAdvicesList/TricksAndAdvicesList';
-

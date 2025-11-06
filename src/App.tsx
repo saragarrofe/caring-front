@@ -7,11 +7,12 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from '@pages/LogIn/LogIn';
 import MyPlants from '@pages/MyPlants/MyPlants';
 import MyPlantDetail from '@pages/MyPlantDetail';
-import Register from '@pages/Register';
+import Register from '@pages/Register/Register';
 import { BottomNav } from './components';
 import Profile from '@pages/Profile';
 import TricksAndAdvices from '@pages/TricksAndAdvices';
 import Welcome from '@pages/Welcome/Welcome';
+import ForgotPassword from '@pages/ForgotPassword';
 
 function AppShell() {
   const { pathname } = useLocation();
@@ -31,6 +32,7 @@ function AppShell() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {/* Lista y detalle */}
           <Route path="/my-plants" element={<MyPlants />} />

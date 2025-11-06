@@ -6,15 +6,12 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
- 
-  background-color: #eef7eb;
-
+  --accent: #76b74b;
+  --text: #111827;
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
 }
 
 a {
@@ -51,7 +48,6 @@ button:focus-visible {
 }
 
 @media (prefers-color-scheme: light) {
- 
   a:hover {
     color: #747bff;
   }
