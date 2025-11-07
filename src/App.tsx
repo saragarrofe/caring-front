@@ -4,10 +4,10 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
-import Login from '@pages/LogIn/LogIn';
+import Login from '@pages/Auth/LogIn/LogIn';
 import MyPlants from '@pages/MyPlants/MyPlants';
 import MyPlantDetail from '@pages/MyPlantDetail';
-import Register from '@pages/Register/Register';
+import Register from '@pages/Auth/Register/Register';
 import { BottomNav } from './components';
 import Profile from '@pages/Profile';
 import TricksAndAdvices from '@pages/TricksAndAdvices';
