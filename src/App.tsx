@@ -13,6 +13,7 @@ import Profile from '@pages/Profile';
 import TricksAndAdvices from '@pages/TricksAndAdvices';
 import Welcome from '@pages/Welcome/Welcome';
 import ForgotPassword from '@pages/ForgotPassword';
+import NotFound from '@pages/NotFound';
 
 function AppShell() {
   const { pathname } = useLocation();
@@ -34,14 +35,14 @@ function AppShell() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
-          {/* Lista y detalle */}
+          {/* list and details */}
           <Route path="/my-plants" element={<MyPlants />} />
           <Route path="/my-plants/:id" element={<MyPlantDetail />} />
 
-          {/* Ruta comodín para 404 - Not Found */}
-          <Route path="*" element={<div>404 Not Found</div>} />
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
 
-          {/* Rutas cuidados plantas */}
+          {/* care plant */}
           <Route path="/tricks-and-advices" element={<TricksAndAdvices />} />
         </Routes>
         {!hideBottomNav && <div className="bottom-nav-spacer d-md-none" aria-hidden="true" />}

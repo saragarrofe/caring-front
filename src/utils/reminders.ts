@@ -1,4 +1,4 @@
-import { Plant } from 'src/types/Plant';
+import { Plant } from 'src/types/plant';
 import { addDays, daysUntil } from './dates';
 
 export type ReminderTone = 'info' | 'warning' | 'muted' | 'success' | 'danger';

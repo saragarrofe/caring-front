@@ -1,9 +1,10 @@
 import './PlantCard.css';
 
+import { Link } from 'react-router-dom';
 import Reminder from '@components/Reminder/Reminder';
 
+import { getWateringReminder } from '@utils/reminders';
 import { Plant } from 'src/types/plant';
-import { getWateringReminder } from '../../utils/reminders';
 
 type PlantCardProps = {
   plant: Plant;
@@ -14,7 +15,7 @@ export function PlantCard({ plant }: PlantCardProps) {
 
   return (
     <>
-      <a href={`/my-plants/${plant.id}`} className="card-plant text-decoration-none text-dark">
+      <Link to={`/my-plants/${plant.id}`} className="card-plant text-decoration-none text-dark">
         <div className="card-plant">
           {plant.imageUrl && (
             <div key={plant.id} className="img-wrap">
@@ -37,7 +38,7 @@ export function PlantCard({ plant }: PlantCardProps) {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
     </>
   );
 }

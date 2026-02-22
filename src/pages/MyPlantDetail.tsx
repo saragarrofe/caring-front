@@ -2,34 +2,36 @@ import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { mockPlants } from '../mocks/plants';
-import type { Plant } from '../types/Plant';
-
+import type { Plant } from '../types/plant';
 import BackButton from '../components/BackButton/BackButton';
 
 export default function MyPlantDetail() {
   const { id } = useParams<{ id: string }>();
-  if (!id) {
-    return <div className="container py-4">ID de planta no proporcionado</div>;
-  }
-  const plantId = parseInt(id, 10);
+  const plantId = id ? parseInt(id, 10) : null;
 
-  const storedPlant = localStorage.getItem(`plant-${plantId}`);
-  const plantFound = storedPlant
-    ? (JSON.parse(storedPlant) as Plant)
-    : mockPlants.find((p) => p.id === plantId);
-  const [plantData, setPlantData] = useState<Plant | undefined>(plantFound || undefined);
+  // All hooks at the top — before any conditional return
+  const [plantData, setPlantData] = useState<Plant | undefined>(() => {
+    if (!plantId) return undefined;
+    const stored = localStorage.getItem(`plant-${plantId}`);
+    if (stored) return JSON.parse(stored) as Plant;
+    return mockPlants.find((p) => p.id === plantId);
+  });
 
-  // useEffect: cada vez que cambie plantData, lo guardamos en localStorage
   useEffect(() => {
-    if (plantData) {
+    if (plantData && plantId) {
       localStorage.setItem(`plant-${plantId}`, JSON.stringify(plantData));
     }
   }, [plantData, plantId]);
 
-  if (!plantFound) {
+  // Early returns are safe now — all hooks have already been called
+  if (!plantId) {
+    return <div className="container py-4">ID de planta no proporcionado</div>;
+  }
+
+  if (!plantData) {
     return (
       <>
-        <div className="container py-4">Planta no encontrada</div>;
+        <div className="container py-4">Planta no encontrada</div>
         <Link to="/my-plants" className="btn btn-sm btn-primary">
           Volver a Mis Plantas
         </Link>
@@ -38,13 +40,8 @@ export default function MyPlantDetail() {
   }
 
   const handleWater = () => {
-    if (!plantData) return;
-
-    const today = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
-    setPlantData({
-      ...plantData,
-      lastWatered: today,
-    });
+    const today = new Date().toISOString().split('T')[0];
+    setPlantData({ ...plantData, lastWatered: today });
   };
 
   return (
@@ -54,23 +51,22 @@ export default function MyPlantDetail() {
         <Link to="/my-plants" className="btn btn-sm btn-primary mb-3">
           Volver a Mis Plantas
         </Link>
-        {plantFound?.imageUrl && (
-          <img src={plantFound.imageUrl} alt={plantFound.name} className="img-fluid mb-3" />
+        {plantData.imageUrl && (
+          <img src={plantData.imageUrl} alt={plantData.name} className="img-fluid mb-3" />
         )}
-        <h1>{plantFound.name}</h1>
+        <h1>{plantData.name}</h1>
         <p>
-          <strong>Especie {plantFound.species ?? ''}</strong>
+          <strong>Especie:</strong> {plantData.species ?? ''}
         </p>
         <p>
-          <strong>Último riego:</strong> {plantFound.lastWatered ?? '—'}
+          <strong>Último riego:</strong> {plantData.lastWatered ?? '—'}
         </p>
         <p>
-          <strong>Frecuencia de riego:</strong> cada {plantFound.wateringFrequency} días
+          <strong>Frecuencia de riego:</strong> cada {plantData.wateringFrequency} días
         </p>
         <button className="btn btn-success mt-3" onClick={handleWater}>
           Regar ahora
         </button>
-
         <p>(Más adelante: riegos, recordatorios y tips…)</p>
       </main>
     </>

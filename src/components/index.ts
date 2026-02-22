@@ -1,4 +1,5 @@
 export * from './BackButton/BackButton';
+export * from './PageTitle/PageTitle';
 export * from './BottomNav/BottomNav';
 export * from './Discover/Discover';
 export * from './Footer/Footer';
