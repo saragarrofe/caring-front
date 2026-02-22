@@ -1,4 +1,4 @@
-import './TricksAndAdvicesList.css'
+import './DiscoverList.css'
 
 const tips = [
   {
@@ -23,7 +23,7 @@ const tips = [
   }
 ]
 
-export function TricksAndAdvicesList() {
+export function DiscoverList() {
     return (
         <section className="my-4 container tricks-wrapper">
             <h2>Consejos para el cuidado de tus plantas</h2>

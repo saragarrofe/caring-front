@@ -1,7 +1,7 @@
-import {ProfileHeader, ProfileActions } from '../components';
+import { ProfileActions, ProfileHeader } from "@components/index";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from 'src/context/AuthContext';
 
 type ThemeMode = 'light' | 'dark';
 

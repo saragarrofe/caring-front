@@ -1,10 +1,10 @@
-import './MyPlants.css';
+import './PlantList.css';
 
 import { mockPlants } from '../../mocks/plants';
 import {PlantCard} from '../../components';
 import BackButton from '@components/BackButton/BackButton';
 
-export default function MyPlants() {
+export default function PlantList() {
   return <>
     <header className="page-header">
         <div className="page-toolbar">

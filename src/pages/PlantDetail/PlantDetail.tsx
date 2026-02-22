@@ -1,11 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Plant } from 'src/types/plant';
+import { mockPlants } from '../../mocks/plants';
+import BackButton from '@components/BackButton/BackButton';
 
-import { mockPlants } from '../mocks/plants';
-import type { Plant } from '../types/plant';
-import BackButton from '../components/BackButton/BackButton';
 
-export default function MyPlantDetail() {
+export default function PlantDetail() {
   const { id } = useParams<{ id: string }>();
   const plantId = id ? parseInt(id, 10) : null;
 
