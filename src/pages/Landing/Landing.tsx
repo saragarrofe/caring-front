@@ -1,10 +1,20 @@
-import { DashboardPreview } from '@components/index';
 import './Landing.css';
+import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from 'src/context/AuthContext';
+import { DashboardPreview } from '@components/index';
+
+type NavLink = '' | 'features' | 'how-it-works' | 'preview';
+
+const NAV_LINKS: { id: NavLink; label: string; href: string }[] = [
+  { id: 'features',     label: 'Features',    href: '#features'    },
+  { id: 'how-it-works', label: 'How it Works',href: '#how-it-works'},
+  { id: 'preview',      label: 'App Preview', href: '#preview'     },
+];
 
 export default function Landing() {
   const { user } = useAuth();
+  const [activeNav, setActiveNav] = useState<NavLink>('');
 
   if (user) {
     return <Navigate to="/my-plants" replace />;
@@ -19,9 +29,17 @@ export default function Landing() {
         </Link>
 
         <ul className="landing-nav-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#how-it-works">How it Works</a></li>
-          <li><a href="#preview">App Preview</a></li>
+          {NAV_LINKS.map((link) => (
+            <li key={link.id}>
+              <a
+                href={link.href}
+                className={activeNav === link.id ? 'active' : ''}
+                onClick={() => setActiveNav(link.id)}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
 
         <div className="landing-nav-actions">
