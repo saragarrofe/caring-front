@@ -1,5 +1,5 @@
 export * from './BackButton/BackButton';
-export * from './Dashboard/Dashboard';
+export * from './DashboardPreview/DashboardPreview';
 export * from './PageTitle/PageTitle';
 export * from './BottomNav/BottomNav';
 export * from './Footer/Footer';

@@ -1,4 +1,4 @@
-import './Dashboard.css';
+import './DashboardPreview.css';
 
 const DEMO_PLANTS = [
   {
@@ -36,7 +36,7 @@ function hydrationFillClass(pct: number, overdue: boolean): string {
   return 'dash-hydration-fill--ok';
 }
 
-export function Dashboard() {
+export function DashboardPreview() {
   return (
     <div className="dash">
       <aside className="dash-sidebar">
