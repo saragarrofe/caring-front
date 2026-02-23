@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from 'src/context/AuthContext';
 import { DashboardPreview } from '@components/index';
+import Features from '@components/Features/Features';
+import HowItWorks from '@components/HowItWorks/HowItWorks';
 
 type NavLink = '' | 'features' | 'how-it-works' | 'preview';
 
@@ -79,6 +81,9 @@ export default function Landing() {
           <span className="landing-social-text">Joined the plant lover community</span>
         </div>
       </section>
+
+      <Features />
+      <HowItWorks />
 
       <section id="preview" className="landing-preview">
         <div className="landing-preview-label">App Preview</div>
