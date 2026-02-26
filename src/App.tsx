@@ -16,7 +16,7 @@ import MyPlantDetail from '@pages/PlantDetail/PlantDetail';
 import Profile from '@pages/Profile/Profile';
 import Discover from '@pages/Discover/Discover';
 import NotFound from '@pages/NotFound/NotFound';
-import { Sidebar } from '@components/Sidebar/sidebar';
+import { Sidebar } from '@components/Sidebar/Sidebar';
 
 const NO_BOTTOM_NAV = ['/', '/welcome', '/login', '/register', '/forgot-password'];
 const NO_SIDEBAR_NAV =  ['/', '/welcome', '/login', '/register', '/forgot-password'];
