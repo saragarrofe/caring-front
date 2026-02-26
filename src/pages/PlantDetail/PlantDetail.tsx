@@ -1,15 +1,19 @@
+import './PlantDetail.css';
+
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Plant } from 'src/types/plant';
+import { Plant, WateringEntry } from 'src/types/plant';
 import { mockPlants } from '../../mocks/plants';
 import BackButton from '@components/BackButton/BackButton';
+import { WateringForm } from '@components/WateringForm/WateringForm';
+import { WateringHistory } from '@components/WateringHistory/WateringHistory';
+import { getWateringReminder } from '@utils/reminders';
 
 
 export default function PlantDetail() {
   const { id } = useParams<{ id: string }>();
   const plantId = id ? parseInt(id, 10) : null;
 
-  // All hooks at the top — before any conditional return
   const [plantData, setPlantData] = useState<Plant | undefined>(() => {
     if (!plantId) return undefined;
     const stored = localStorage.getItem(`plant-${plantId}`);
@@ -23,51 +27,85 @@ export default function PlantDetail() {
     }
   }, [plantData, plantId]);
 
-  // Early returns are safe now — all hooks have already been called
   if (!plantId) {
-    return <div className="container py-4">ID de planta no proporcionado</div>;
+    return <div className="container py-4">Plant ID not provided</div>;
   }
 
   if (!plantData) {
     return (
       <>
-        <div className="container py-4">Planta no encontrada</div>
+        <div className="container py-4">Plant not found</div>
         <Link to="/my-plants" className="btn btn-sm btn-primary">
-          Volver a Mis Plantas
+          Back to My Plants
         </Link>
       </>
     );
   }
 
-  const handleWater = () => {
+  const history = plantData.wateringHistory ?? [];
+  const totalWaterings = history.length;
+  const reminder = getWateringReminder(plantData);
+
+  const handleWater = (note?: string) => {
     const today = new Date().toISOString().split('T')[0];
-    setPlantData({ ...plantData, lastWatered: today });
+
+    const newEntry: WateringEntry = {
+      date: today,
+      ...(note && { note }),
+    };
+
+    setPlantData((prev) => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        lastWatered: today,
+        wateringHistory: [...(prev.wateringHistory ?? []), newEntry],
+      };
+    });
   };
 
   return (
     <>
       <BackButton fallback="/my-plants" className="m-3" />
       <main className="container py-4">
-        <Link to="/my-plants" className="btn btn-sm btn-primary mb-3">
-          Volver a Mis Plantas
-        </Link>
-        {plantData.imageUrl && (
-          <img src={plantData.imageUrl} alt={plantData.name} className="img-fluid mb-3" />
-        )}
-        <h1>{plantData.name}</h1>
-        <p>
-          <strong>Especie:</strong> {plantData.species ?? ''}
-        </p>
-        <p>
-          <strong>Último riego:</strong> {plantData.lastWatered ?? '—'}
-        </p>
-        <p>
-          <strong>Frecuencia de riego:</strong> cada {plantData.wateringFrequency} días
-        </p>
-        <button className="btn btn-success mt-3" onClick={handleWater}>
-          Regar ahora
-        </button>
-        <p>(Más adelante: riegos, recordatorios y tips…)</p>
+        <div className="plant-detail-header">
+          {plantData.imageUrl && (
+            <img
+              src={plantData.imageUrl}
+              alt={plantData.name}
+              className="plant-detail-img"
+            />
+          )}
+          <div className="plant-detail-info">
+            <h1 className="plant-detail-name">{plantData.name}</h1>
+            <p className="text-muted mb-1">{plantData.species}</p>
+            <span className={`badge bg-${reminder.tone === 'danger' ? 'danger' : reminder.tone === 'info' ? 'primary' : 'success'}`}>
+              {reminder.label}
+            </span>
+          </div>
+        </div>
+
+        <div className="plant-stats">
+          <div className="plant-stat">
+            <span className="plant-stat-value">
+              {plantData.wateringFrequency}
+            </span>
+            <span className="plant-stat-label">days between waterings</span>
+          </div>
+          <div className="plant-stat">
+            <span className="plant-stat-value">{totalWaterings}</span>
+            <span className="plant-stat-label">waterings logged</span>
+          </div>
+          <div className="plant-stat">
+            <span className="plant-stat-value">
+              {plantData.lastWatered ?? '—'}
+            </span>
+            <span className="plant-stat-label">last watered</span>
+          </div>
+        </div>
+
+        <WateringForm onWater={handleWater} />
+        <WateringHistory entries={history} />
       </main>
     </>
   );

@@ -1,12 +1,10 @@
 
-// obtener el inicio del dia de una fecha (00:00:00)
 export function startOfDate(date: Date): Date {
     const dateCopy = new Date(date);
     dateCopy.setHours(0, 0, 0, 0);
     return dateCopy;
 }
 
-// formatear fecha a formato ISO (YYYY-MM-DD)
 export function toISODate(date: Date): string {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -14,16 +12,14 @@ export function toISODate(date: Date): string {
     return `${year}-${month}-${day}`;
 }
 
-// sumar dias a una fecha y devolver en formato ISO (YYYY-MM-DD)
 export function addDays(date: Date, days: number): string {
   const base = startOfDate(date);
   base.setDate(base.getDate() + days);
   return base.toISOString().split('T')[0];
 }
 
-// calcular los dias que faltan para una fecha dada (YYYY-MM-DD)
 export function daysUntil(dateISO: string): number {
-  const target = new Date(dateISO + 'T00:00:00'); // Asegura que es el inicio del dia
+  const target = new Date(dateISO + 'T00:00:00');
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const diff = target.getTime() - today.getTime();

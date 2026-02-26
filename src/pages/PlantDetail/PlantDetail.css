@@ -1,0 +1,114 @@
+.plant-detail-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.plant-detail-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+.plant-detail-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.plant-detail-name {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.plant-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.plant-stat {
+  background: var(--color-bg-card-light);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.plant-stat-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.plant-stat-label {
+  font-size: 11px;
+  color: #888;
+}
+
+.water-form {
+  background: var(--color-bg-card-green);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.watering-history {
+  margin-top: 8px;
+}
+
+.watering-history-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.watering-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.watering-history-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-left: 2px solid #e0e0e0;
+  margin-left: 6px;
+  padding-left: 16px;
+  position: relative;
+}
+
+.watering-history-dot {
+  position: absolute;
+  left: -6px;
+  top: 14px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: 2px solid #fff;
+}
+
+.watering-history-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.watering-history-date {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.watering-history-note {
+  font-size: 13px;
+  color: #888;
+}
