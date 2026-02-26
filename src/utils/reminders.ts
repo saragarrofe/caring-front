@@ -2,6 +2,7 @@ import { Plant } from 'src/types/plant';
 import { addDays, daysUntil } from './dates';
 
 export type ReminderTone = 'info' | 'warning' | 'muted' | 'success' | 'danger';
+
 export type ReminderIcon =
   | 'droplet'
   | 'leaf'
@@ -16,6 +17,7 @@ export type ReminderKind =
   | 'pruning'
   | 'light'
   | 'temperature';
+
 export type ReminderStatus = 'upcoming' | 'due' | 'overdue' | 'completed';
 
 export type Reminder = {
@@ -24,7 +26,7 @@ export type Reminder = {
   tone: ReminderTone;
   status: ReminderStatus;
   icon: ReminderIcon;
-  date: string; // ISO date string
+  date: string; 
 };
 
 export function getWateringReminder(plant: Plant): Reminder {
