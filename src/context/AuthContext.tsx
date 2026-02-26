@@ -20,7 +20,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
 
-    // mantener en sesión con useeffect y localStorage
     useEffect(() => {
         try {
             const rawUser = localStorage.getItem('auth:user');

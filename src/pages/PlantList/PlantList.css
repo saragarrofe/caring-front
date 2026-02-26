@@ -1,5 +1,5 @@
 .plant-list-page {
-  background: #0f1e0a;
+  background: var(--color-bg-darker);
   min-height: 100vh;
   padding-bottom: 80px; 
 }
@@ -41,7 +41,7 @@
 }
 
 .plant-search .form-control:focus {
-  border-color: #4caf50;
+  border-color: var(--color-primary);
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
   color: #fff;
@@ -67,14 +67,14 @@
 }
 
 .plant-filter-pill.active {
-  background: #4caf50;
+  background: var(--color-primary);
   color: #fff;
-  border-color: #4caf50;
+  border-color: var(--color-primary);
 }
 
 .plant-filter-pill:hover:not(.active) {
-  border-color: #4caf50;
-  color: #4caf50;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .plant-grid {

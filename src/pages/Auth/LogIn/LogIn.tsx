@@ -42,7 +42,7 @@ export default function Login() {
     <main className="auth">
       <div
         className="auth-hero"
-        style={{ backgroundImage: "url('/assets/hero-plants.jpg')" }} // cambiar
+        style={{ backgroundImage: "url('/assets/hero-plants.jpg')" }} // TODO: change
         aria-hidden
       />
 
@@ -133,7 +133,7 @@ export default function Login() {
           </div>
 
           <button type="submit" className="btn-primary" disabled={isDisabled}>
-            {isSubmitting ? 'Entrando…' : 'Log In'}
+            {isSubmitting ? 'Logging in…' : 'Log In'}
           </button>
         </form>
 

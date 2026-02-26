@@ -61,7 +61,7 @@
 }
 
 .dash-nav-item.active {
-  background: #1a2e14;
+  background: var(--color-bg-dark);
   color: #6cd044;
 }
 

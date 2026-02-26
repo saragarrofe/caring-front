@@ -27,10 +27,10 @@
 }
 
 .rem-info {
-  color: #0d6efd;
+  color: var(--color-info);
 }
 .rem-success {
-  color: #2e7d32;
+  color: var(--color-primary);
 }
 .rem-warning {
   color: #b26a00;

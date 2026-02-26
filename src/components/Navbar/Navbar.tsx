@@ -19,7 +19,6 @@ export function NavbarComponent() {
   return (
     <Navbar expand="lg" className="navbar d-none d-md-flex">
       <Container>
-        {/* Usa NavLink para evitar recarga completa y controlar 'active' en la home */}
 
         <Navbar.Brand as={NavLink} to="/" end>
           <img src="logo.png" alt="Logo" />
@@ -28,7 +27,6 @@ export function NavbarComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            {/* Nav.Link + as={NavLink}: aplica automáticamente la clase 'active' */}
             <Nav.Link as={NavLink} className="nav-link" to="/discover">
               Discover
             </Nav.Link>

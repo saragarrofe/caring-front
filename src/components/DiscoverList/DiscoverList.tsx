@@ -3,30 +3,30 @@ import './DiscoverList.css'
 const tips = [
   {
     id: 1,
-    title: 'Riega tus plantas por la mañana',
-    description: 'El mejor momento para regar tus plantas es temprano en la mañana, cuando las temperaturas son más frescas y la evaporación es menor.',
+    title: 'Water your plants in the morning',
+    description: 'The best time to water your plants is early in the morning, when temperatures are cooler and evaporation is lower.',
   },
   {
     id: 2,
-    title: 'Usa agua a temperatura ambiente',
-    description: 'El agua fría puede sorprender a las raíces de tus plantas. Usa agua a temperatura ambiente para evitar el choque térmico.',
+    title: 'Use room-temperature water',
+    description: 'Cold water can shock your plant roots. Use room-temperature water to avoid thermal stress.',
   },
   {
     id: 3,
-    title: 'No riegues en exceso',
-    description: 'Demasiada agua puede ser perjudicial para tus plantas. Asegúrate de que el suelo esté seco al tacto antes de volver a regar.',
+    title: "Don't overwater",
+    description: 'Too much water can harm your plants. Make sure the soil is dry to the touch before watering again.',
   },
   {
     id: 4,
-    title: 'Revisa las hojas',
-    description: 'Las hojas caídas o amarillentas pueden ser una señal de que tu planta está recibiendo demasiada o muy poca agua.',
-  }
+    title: 'Check the leaves',
+    description: 'Drooping or yellowing leaves can be a sign that your plant is getting too much or too little water.',
+  },
 ]
 
 export function DiscoverList() {
     return (
         <section className="my-4 container tricks-wrapper">
-            <h2>Consejos para el cuidado de tus plantas</h2>
+            <h2>Plant care tips</h2>
             <div className="row">
                 {tips.map((tip) => {
                 return (

@@ -10,3 +10,5 @@ export * from './Profile/ProfileActions';
 export * from './Profile/ProfileHeader';
 export * from './Reminder/Reminder';
 export * from './DiscoverList/DiscoverList';
+export * from './WateringForm/WateringForm';
+export * from './WateringHistory/WateringHistory';

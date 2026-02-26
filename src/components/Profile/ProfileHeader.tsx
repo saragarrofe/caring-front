@@ -13,11 +13,11 @@ export function ProfileHeader({ name, avatarUrl }: ProfileHeaderProps) {
           <img
             className="ph-avatar"
             src={avatarUrl || 'https://via.placeholder.com/96'}
-            alt={`Avatar de ${name}`}
+            alt={`${name}'s avatar`}
           />
           <div className="ph-info">
             <h1 className="ph-name">
-              Hola, {name || 'Usuario'}!<span className="ph-emoji">🌱</span>
+              Hello, {name || 'User'}!<span className="ph-emoji">🌱</span>
             </h1>
           </div>
         </div>

@@ -6,7 +6,7 @@
   width: 220px;
   flex-direction: column;
   z-index: 1000;
-  background: #1a2e1a;
+  background: var(--color-bg-dark);
   border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -87,7 +87,7 @@
 }
 
 .sidebar-item.active {
-  background: #4caf50;
+  background: var(--color-primary);
   color: #fff;
   font-weight: 600;
 }

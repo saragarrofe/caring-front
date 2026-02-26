@@ -44,7 +44,7 @@ export default function Register() {
     if (!validate()) return;
     try {
       setIsSubmitting(true);
-      // aquí irá la llamada real (api)
+      // TODO: replace with real API call
       await new Promise((res) => setTimeout(res, 700));
       navigate('/my-plants');
     } finally {
@@ -61,7 +61,7 @@ export default function Register() {
         className="auth-hero"
         style={{
           backgroundImage: "url('/assets/hero-plants.jpg')",
-        }} // cambiar
+        }} // TODO: change
         aria-hidden
       />
 

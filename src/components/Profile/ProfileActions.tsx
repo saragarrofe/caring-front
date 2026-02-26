@@ -18,18 +18,18 @@ export function ProfileActions({
 }: ProfileActionsProps) {
   return (
     <section className="container">
-      <div className="pa-card" role="menu" aria-label="Menú de acciones de perfil">
+      <div className="pa-card" role="menu" aria-label="Profile actions menu">
         <Link to="/profile/info" className="pa-item" role="menuitem">
           <div className="pa-left">
             <i className="bi bi-person-vcard" aria-hidden="true" />
-            <span>Ver mi información</span>
+            <span>View my info</span>
           </div>
         </Link>
 
         <Link to="/profile/edit" className="pa-item" role="menuitem">
           <div className="pa-left">
             <i className="bi bi-pencil-square" aria-hidden="true" />
-            <span>Editar perfil</span>
+            <span>Edit profile</span>
           </div>
         </Link>
 
@@ -43,7 +43,7 @@ export function ProfileActions({
         >
           <div className="pa-left">
             <i className="bi bi-bell" aria-hidden="true" />
-            <span>Notificaciones</span>
+            <span>Notifications</span>
           </div>
           <span className={`pa-switch ${notificationsEnabled ? 'on' : ''}`} aria-hidden="true">
             <span className="knob" />
@@ -58,7 +58,7 @@ export function ProfileActions({
         >
           <div className="pa-left">
             <i className="bi bi-moon-stars" aria-hidden="true" />
-            <span>Tema: {theme === 'dark' ? 'Oscuro' : 'Claro'}</span>
+            <span>Theme: {theme === 'dark' ? 'Dark' : 'Light'}</span>
           </div>
           <span className={`pa-switch ${theme === 'dark' ? 'on' : ''}`} aria-hidden="true">
             <span className="knob" />
@@ -70,7 +70,7 @@ export function ProfileActions({
         <button type="button" className="pa-item pa-danger" onClick={onLogout}>
           <div className="pa-left">
             <i className="bi bi-box-arrow-right" aria-hidden="true" />
-            <span>Cerrar sesión</span>
+            <span>Log out</span>
           </div>
         </button>
       </div>
