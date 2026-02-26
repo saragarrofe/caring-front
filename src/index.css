@@ -2,45 +2,87 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  color-scheme: light;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-
+  /* ── Primary — main brand green ─────────────── */
   --color-primary: #5B8C5A;
-  --color-primary-dark: #3d8426;
+  --color-primary-dark: #1d460e;
+  --color-primary-darker: #2e4030;
   --color-primary-light: #6ea36d;
+  --color-primary-bg: #eef7eb;
 
+  /* ── Secondary — supporting light green ─────── */
   --color-secondary: #E8F5E1;
   --color-secondary-dark: #d4e8cc;
 
+  /* ── Accent — highlight sage green ──────────── */
   --color-accent: #95B89C;
   --color-accent-light: #b5d89a;
+  --color-accent-bright: #6cd044;
 
+  /* ── Muted — subtle backgrounds & borders ───── */
   --color-muted: #E8EBE6;
   --color-muted-dark: #d1d5db;
 
+  /* ── Surfaces ───────────────────────────────── */
   --color-bg: #ffffff;
+  --color-bg-subtle: #f7fafc;
   --color-bg-dark: #1a2e14;
   --color-bg-darker: #0f1e0a;
   --color-bg-card-light: #f8fdf5;
   --color-bg-card-green: #f0faf0;
+  --color-bg-image: #f3f5f7;
+  --color-bg-hero: #dfe7df;
 
+  /* ── Text ───────────────────────────────────── */
   --color-text: #111827;
+  --color-text-secondary: #1f2937;
   --color-text-muted: #6b7280;
+  --color-text-subtle: #64748b;
+  --color-text-faint: #9ca3af;
 
+  /* ── Borders ────────────────────────────────── */
+  --color-border: #e5e7eb;
+  --color-border-light: #e4f0d9;
+
+  /* ── Feedback ───────────────────────────────── */
   --color-danger: #ef5350;
+  --color-danger-dark: #b42318;
+  --color-warning: #b26a00;
   --color-info: #0d6efd;
 
+  /* ── Dark-theme surfaces (dashboard, cards) ── */
+  --color-bg-dashboard: #0d1117;
+  --color-bg-dashboard-sidebar: #0a0f1a;
+  --color-bg-card-dark: #131c13;
+  --color-bg-green-light: #e8f0e0;
+  --color-bg-gradient-start: #e6f4d7;
+  --color-bg-gradient-mid: #f4fbee;
+  --color-nav-pill-bg: rgba(38, 69, 30, 0.75);
+
+  /* ── Dark-theme text ──────────────────────────── */
+  --color-text-on-dark: #ffffff;
+  --color-text-dark-muted: #8b9197;
+
+  /* ── Additional accents & feedback ────────────── */
+  --color-accent-hover: #7de050;
+  --color-accent-soft: #a8e07a;
+  --color-danger-light: #f87171;
+  --color-warning-light: #fbbf24;
+
+  /* ── Shadows ────────────────────────────────── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
   --shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+  --shadow-lg: 0 10px 28px rgba(16, 24, 40, 0.08);
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--color-primary);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--color-primary-dark);
 }
 
 h1 {
@@ -55,23 +97,15 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--color-primary);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

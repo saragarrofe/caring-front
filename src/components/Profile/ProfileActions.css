@@ -1,9 +1,9 @@
 .pa-card {
   margin-top: 12px;
-  background: #fff;
+  background: var(--color-bg);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(16, 24, 40, 0.06);
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
@@ -15,7 +15,7 @@
   align-items: center;
   padding: 12px 14px;
   text-decoration: none;
-  color: #1f2937;
+  color: var(--color-text-secondary);
   background: transparent;
   border: 0;
 }
@@ -36,7 +36,7 @@
 
 .pa-item i {
   font-size: 18px;
-  color: #64748b;
+  color: var(--color-text-subtle);
 }
 
 .pa-item span {
@@ -51,17 +51,17 @@
 }
 
 .pa-danger {
-  color: #b42318;
+  color: var(--color-danger-dark);
 }
 
 .pa-danger i {
-  color: #b42318;
+  color: var(--color-danger-dark);
 }
 
 .pa-switch {
   width: 42px;
   height: 24px;
-  background: #e5e7eb;
+  background: var(--color-border);
   border-radius: 999px;
   position: relative;
   transition: background 160ms ease;
@@ -74,13 +74,13 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-sm);
   transition: transform 160ms ease;
 }
 
 .pa-switch.on {
-  background: #0d6efd33;
+  background: rgba(91, 140, 90, 0.25);
 }
 
 .pa-switch.on .knob {

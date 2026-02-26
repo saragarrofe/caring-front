@@ -7,12 +7,11 @@
   align-items: center;
   gap: 6px;
   border-radius: 999px;
-  color: #374151;
+  color: var(--color-text-secondary);
   font-size: 13px;
   line-height: 1;
   white-space: nowrap;
   overflow: hidden;
-  white-space: nowrap;
 }
 .rem-badge i {
   font-size: 14px;
@@ -33,11 +32,11 @@
   color: var(--color-primary);
 }
 .rem-warning {
-  color: #b26a00;
+  color: var(--color-warning);
 }
 .rem-danger {
-  color: #de3231;
+  color: var(--color-danger);
 }
 .rem-muted {
-  color: #4b5563;
+  color: var(--color-text-muted);
 }

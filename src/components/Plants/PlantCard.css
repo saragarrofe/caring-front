@@ -5,20 +5,22 @@
   border-radius: 16px;
   overflow: hidden;
   background: var(--color-bg-dark);
-  color: #fff;
+  color: var(--color-text-on-dark);
   transition: transform 0.2s, box-shadow 0.2s;
   height: 100%;
+  border: 0.2px solid var(--color-primary-dark);
 }
 
 .plant-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.069);
 }
 
 .plant-card__image {
   position: relative;
   aspect-ratio: 4 / 3;
-  background: #f3f5f7;
+  background: var(--color-bg-image);
   margin: 10px;
   border-radius: 12px;
   overflow: hidden;
@@ -34,8 +36,8 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  background: rgba(26, 46, 20, 0.85);
-  color: #fff;
+  background: var(--color-bg-dark);
+  color: var(--color-text-on-dark);
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
@@ -56,7 +58,7 @@
   font-size: 15px;
   font-weight: 700;
   margin: 0;
-  color: #fff;
+  color: var(--color-text-on-dark);
 }
 
 .plant-card__species {
@@ -146,7 +148,7 @@
 }
 
 .plant-card__water-btn {
-  background: rgba(76, 175, 80, 0.15);
+  background: rgba(91, 140, 90, 0.15);
 }
 
 .plant-card__water-btn i {

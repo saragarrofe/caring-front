@@ -7,6 +7,6 @@
   align-items: center;
   justify-content: center;
   background: transparent;
-  color: #111827;
+  color: var(--color-text);
   font-size: 20px;
 }

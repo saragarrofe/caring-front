@@ -1,6 +1,6 @@
 .footer {
-  background-color: #3a5438;
-  color: white;
+  background-color: var(--color-bg-dark);
+  color: var(--color-bg);
   position: fixed;
   bottom: 0;
   width: 100%;

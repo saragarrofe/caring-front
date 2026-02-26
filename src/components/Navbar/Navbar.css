@@ -1,11 +1,10 @@
 .navbar {
-  background-color: #3a5438;
-  /* Colores de links del navbar */
-  --bs-navbar-color: #fff;
-  --bs-navbar-hover-color: #fff;
-  --bs-navbar-active-color: #fff;
-  --bs-navbar-brand-color: #fff;
-  --bs-navbar-brand-hover-color: #fff;
+  background-color: var(--color-bg-dark);
+  --bs-navbar-color: var(--color-bg);
+  --bs-navbar-hover-color: var(--color-bg);
+  --bs-navbar-active-color: var(--color-bg);
+  --bs-navbar-brand-color: var(--color-bg);
+  --bs-navbar-brand-hover-color: var(--color-bg);
 }
 
 .navbar .navbar-nav .nav-link.active,
@@ -21,7 +20,7 @@
 }
 
 .nav-link {
-  color: white;
+  color: var(--color-bg);
   text-decoration: none;
   font-size: 22px;
   margin-right: 1rem;
@@ -33,7 +32,7 @@
 
 @media (min-width: 768px) {
   .nav-link {
-    color: white;
+    color: var(--color-bg);
     font-size: 22px;
   }
 }

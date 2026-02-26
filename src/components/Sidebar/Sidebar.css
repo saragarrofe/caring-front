@@ -27,8 +27,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(110, 199, 110, 0.2);
-  color: #6ec76e;
+  background: rgba(91, 140, 90, 0.2);
+  color: var(--color-primary-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +39,7 @@
 .sidebar__username {
   font-size: 14px;
   font-weight: 600;
-  color: #e8f5e8;
+  color: var(--color-secondary);
   line-height: 1.2;
 }
 
@@ -88,7 +88,7 @@
 
 .sidebar-item.active {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-bg);
   font-weight: 600;
 }
 
