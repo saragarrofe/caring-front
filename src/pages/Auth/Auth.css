@@ -180,3 +180,55 @@
     height: 190px;
   }
 }
+
+[data-theme='dark'] .auth {
+  background: var(--color-bg-darker);
+}
+
+[data-theme='dark'] .auth-hero {
+  background-color: var(--color-bg-dark);
+}
+
+[data-theme='dark'] .auth-title {
+  color: var(--color-primary-light);
+}
+
+[data-theme='dark'] .auth-sub {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme='dark'] .input {
+  background: var(--color-bg-card-dark);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+[data-theme='dark'] .input input {
+  color: var(--color-text-on-dark);
+  background: transparent;
+}
+
+[data-theme='dark'] .input-icon {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .remember {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .link-muted {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .link-accent {
+  color: var(--color-primary-light);
+}
+
+[data-theme='dark'] .auth .btn-primary {
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .auth-footer {
+  color: var(--color-text-dark-muted);
+}

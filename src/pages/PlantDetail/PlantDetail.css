@@ -6,8 +6,8 @@
 }
 
 .plant-detail-img {
-  width: 120px;
-  height: 120px;
+  width: 400px;
+  height: 400px;
   object-fit: cover;
   border-radius: 16px;
   flex-shrink: 0;
@@ -111,4 +111,46 @@
 .watering-history-note {
   font-size: 13px;
   color: var(--color-text-subtle);
+}
+
+[data-theme='dark'] .plant-detail-name {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .plant-stat {
+  background: var(--color-bg-card-dark);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .plant-stat-value {
+  color: var(--color-accent-bright);
+}
+
+[data-theme='dark'] .plant-stat-label {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .water-form {
+  background: rgba(91, 140, 90, 0.12);
+  border: 1px solid rgba(91, 140, 90, 0.2);
+}
+
+[data-theme='dark'] .watering-history-title {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .watering-history-entry {
+  border-left-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .watering-history-dot {
+  border-color: var(--color-bg-darker);
+}
+
+[data-theme='dark'] .watering-history-date {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .watering-history-note {
+  color: var(--color-text-dark-muted);
 }

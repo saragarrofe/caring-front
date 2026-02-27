@@ -102,3 +102,39 @@
     font-size: 34px;
   }
 }
+
+[data-theme='dark'] .welcome {
+  background: var(--color-bg-darker);
+}
+
+[data-theme='dark'] .welcome-title {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .welcome-sub {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .btn-primary {
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .btn-outline {
+  background: transparent;
+  color: var(--color-text-on-dark);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme='dark'] .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .welcome-legal {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .welcome-skip {
+  color: var(--color-text-dark-muted);
+}

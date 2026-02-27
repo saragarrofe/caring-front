@@ -40,3 +40,27 @@
 .rem-muted {
   color: var(--color-text-muted);
 }
+
+[data-theme='dark'] .rem-badge {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme='dark'] .rem-info {
+  color: var(--color-info);
+}
+
+[data-theme='dark'] .rem-success {
+  color: var(--color-accent-bright);
+}
+
+[data-theme='dark'] .rem-warning {
+  color: var(--color-warning-light);
+}
+
+[data-theme='dark'] .rem-danger {
+  color: var(--color-danger-light);
+}
+
+[data-theme='dark'] .rem-muted {
+  color: var(--color-text-dark-muted);
+}

@@ -86,3 +86,48 @@
 .pa-switch.on .knob {
   transform: translateX(18px);
 }
+
+[data-theme='dark'] .pa-card {
+  background: var(--color-bg-card-dark);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .pa-item {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme='dark'] .pa-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme='dark'] .pa-item:active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .pa-item i {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .pa-divider {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .pa-danger {
+  color: var(--color-danger-light);
+}
+
+[data-theme='dark'] .pa-danger i {
+  color: var(--color-danger-light);
+}
+
+[data-theme='dark'] .pa-switch {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme='dark'] .pa-switch .knob {
+  background: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .pa-switch.on {
+  background: rgba(91, 140, 90, 0.4);
+}

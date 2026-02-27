@@ -11,3 +11,8 @@
   padding: 1rem;
   text-align: center;
 }
+
+[data-theme='dark'] .footer {
+  background-color: var(--color-bg-darker);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}

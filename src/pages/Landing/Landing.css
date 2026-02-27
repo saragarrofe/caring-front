@@ -477,3 +477,94 @@
   .landing-features-grid { grid-template-columns: 1fr; }
   .landing-steps { grid-template-columns: 1fr; }
 }
+
+[data-theme='dark'] .landing {
+  background: linear-gradient(160deg, var(--color-bg-darker) 0%, var(--color-bg-dark) 100%);
+}
+
+[data-theme='dark'] .landing-nav-logo {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .landing-btn-login {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme='dark'] .landing-btn-login:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .landing-headline {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .landing-subtitle {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .landing-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-text-on-dark);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='dark'] .landing-btn-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .landing-avatar {
+  border-color: var(--color-bg-dark);
+}
+
+[data-theme='dark'] .landing-social-text {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .landing-section--light {
+  background: var(--color-bg-darker);
+}
+
+[data-theme='dark'] .landing-section-title {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .landing-section-sub {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .landing-feature-card {
+  background: var(--color-bg-card-dark);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .landing-feature-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .landing-feature-title {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .landing-feature-desc {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .landing-preview {
+  background: var(--color-bg-card-dark);
+}
+
+[data-theme='dark'] .landing-preview-title {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .landing-preview-sub {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .landing-preview-frame {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 24px 64px rgba(0, 0, 0, 0.4);
+}

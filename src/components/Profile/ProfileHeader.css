@@ -46,3 +46,21 @@
   display: flex;
   gap: 8px;
 }
+
+[data-theme='dark'] .ph-card {
+  background: linear-gradient(180deg, var(--color-bg-card-dark), var(--color-bg-darker));
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .ph-avatar {
+  border-color: var(--color-bg-card-dark);
+}
+
+[data-theme='dark'] .ph-name {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .ph-email,
+[data-theme='dark'] .ph-meta {
+  color: var(--color-text-dark-muted);
+}

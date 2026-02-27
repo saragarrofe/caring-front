@@ -10,3 +10,7 @@
   color: var(--color-text);
   font-size: 20px;
 }
+
+[data-theme='dark'] .btn-icon {
+  color: var(--color-text-on-dark);
+}
