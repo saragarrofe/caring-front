@@ -2,6 +2,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 import { BottomNav } from './components';
 
@@ -52,10 +53,12 @@ function AppShell() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <AppShell />
-      </Router>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <AppShell />
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
