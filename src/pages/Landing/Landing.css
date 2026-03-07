@@ -30,7 +30,8 @@
 .landing-nav-logo-icon {
   width: 36px;
   height: 36px;
-  background: var(--color-primary);
+  background: var(--color-bg-card-dark);
+  border: 1px solid #a8e07a;
   border-radius: 10px;
   display: flex;
   align-items: center;
