@@ -16,6 +16,27 @@
   margin-bottom: 8px;
 }
 
+.plant-list-add-btn {
+  margin-left: auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.plant-list-add-btn:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+  color: #fff;
+}
+
 .page-title {
   margin: 4px 0 8px;
   font-weight: 800;

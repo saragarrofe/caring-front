@@ -1,7 +1,8 @@
 import './PlantList.css';
 
 import { useState } from 'react';
-import { mockPlants } from '../../mocks/plants';
+import { Link } from 'react-router-dom';
+import { getUserPlants } from '../../mocks/userPlants';
 import { PlantCard } from '@components/Plants/PlantCard';
 import BackButton from '@components/BackButton/BackButton';
 import { getWateringReminder } from '@utils/reminders';
@@ -11,8 +12,9 @@ type WaterFilter = 'all' | 'needs-water' | 'on-track';
 export default function PlantList() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<WaterFilter>('all');
+  const allPlants = getUserPlants();
 
-  const filteredPlants = mockPlants.filter((plant) => {
+  const filteredPlants = allPlants.filter((plant) => {
     const matchesSearch = plant.name
       .toLowerCase()
       .includes(search.toLowerCase());
@@ -32,6 +34,9 @@ export default function PlantList() {
       <header className="page-header">
         <div className="page-toolbar">
           <BackButton fallback="/my-plants" />
+          <Link to="/my-plants/add" className="plant-list-add-btn" aria-label="Add plant">
+            <i className="bi bi-plus-lg" />
+          </Link>
         </div>
         <h1 className="page-title">My plant collection</h1>
       </header>
