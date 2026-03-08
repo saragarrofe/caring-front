@@ -12,3 +12,5 @@ export * from './Reminder/Reminder';
 export * from './DiscoverList/DiscoverList';
 export * from './WateringForm/WateringForm';
 export * from './WateringHistory/WateringHistory';
+export * from './PlantUrgentCard/PlantUrgentCard';
+export * from './UpcomingList/UpcomingList';

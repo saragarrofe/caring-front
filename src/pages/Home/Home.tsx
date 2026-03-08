@@ -3,7 +3,7 @@ import './Home.css';
 import { useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from 'src/context/AuthContext';
-import { mockPlants } from '../../mocks/plants';
+import { getUserPlants, saveUserPlants } from '../../mocks/userPlants';
 import { Plant, WateringEntry } from 'src/types/plant';
 import { getWateringReminder } from '@utils/reminders';
 import { addDays, daysUntil } from '@utils/dates';
@@ -12,7 +12,7 @@ import { UpcomingList } from '@components/UpcomingList/UpcomingList';
 
 export default function Home() {
   const { user } = useAuth();
-  const [plants, setPlants] = useState<Plant[]>(mockPlants);
+  const [plants, setPlants] = useState<Plant[]>(getUserPlants);
 
   const { urgent, upcoming } = useMemo(() => {
     const urgentList: Plant[] = [];
@@ -44,18 +44,18 @@ export default function Home() {
     const today = new Date().toISOString().split('T')[0];
     const newEntry: WateringEntry = { date: today };
 
-    setPlants((prev) =>
-      prev.map((p) => {
+    setPlants((prev) => {
+      const next = prev.map((p) => {
         if (p.id !== plantId) return p;
-        const updated = {
+        return {
           ...p,
           lastWatered: today,
           wateringHistory: [...(p.wateringHistory ?? []), newEntry],
         };
-        localStorage.setItem(`plant-${plantId}`, JSON.stringify(updated));
-        return updated;
-      }),
-    );
+      });
+      saveUserPlants(next);
+      return next;
+    });
   }, []);
 
   const totalPlants = plants.length;

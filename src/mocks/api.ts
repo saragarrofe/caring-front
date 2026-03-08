@@ -1,11 +1,11 @@
 import { Plant } from 'src/types/plant';
-import { mockPlants } from './plants';
+import { getUserPlants } from './userPlants';
 
-// no backend 
+// no backend
 export function fetchPlantById(id: number): Promise<Plant | undefined> {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(mockPlants.find((p) => p.id === id));
+      resolve(getUserPlants().find((p) => p.id === id));
     }, 600);
   });
 }
@@ -13,7 +13,7 @@ export function fetchPlantById(id: number): Promise<Plant | undefined> {
 export function fetchAllPlants(): Promise<Plant[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(mockPlants);
+      resolve(getUserPlants());
     }, 400);
   });
 }
