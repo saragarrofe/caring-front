@@ -2,7 +2,7 @@ import './../Auth.css';
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { LoginErrors } from 'src/types/LogIn';
+import { LoginErrors, validateData } from 'src/types/LogIn';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -13,20 +13,12 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const validateForm = () => {
-    const next: LoginErrors = {};
-    const regex = /^\S+@\S+\.\S+$/;
-    if (!email) next.email = 'Email is required';
-    else if (!regex.test(email)) next.email = 'Invalid email format';
-    if (!password) next.password = 'Password is required';
-    else if (password.length < 6) next.password = 'Password must be at least 6 characters';
-    setErrors(next);
-    return Object.keys(next).length === 0;
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    const errs = validateData(email, password);
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
     try {
       setIsSubmitting(true);
       await new Promise((res) => setTimeout(res, 700));
@@ -36,15 +28,25 @@ export default function Login() {
     }
   };
 
+  const handleOnChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    if (errors.email) {
+      setErrors((prev) => ({ ...prev, email: undefined }));
+    }
+  };
+
+  const handleOnChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    if (errors.password) {
+      setErrors((prev) => ({ ...prev, password: undefined }));
+    }
+  };
+
   const isDisabled = !email || !password || isSubmitting;
 
   return (
     <main className="auth">
-      <div
-        className="auth-hero"
-        style={{ backgroundImage: "url('/assets/hero-plants.jpg')" }} // TODO: change
-        aria-hidden
-      />
+      <div className="auth-hero" aria-hidden />
 
       <section className="auth-card">
         <h1 className="auth-title">Welcome back!</h1>
@@ -67,7 +69,7 @@ export default function Login() {
                 type="email"
                 placeholder="example@caring.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleOnChangeEmail}
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? 'email-error' : undefined}
               />
@@ -103,7 +105,7 @@ export default function Login() {
                 type="password"
                 placeholder="write your password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleOnChangePassword}
                 minLength={6}
                 aria-invalid={!!errors.password}
                 aria-describedby={errors.password ? 'password-error' : undefined}

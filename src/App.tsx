@@ -1,4 +1,3 @@
-
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
@@ -17,20 +16,19 @@ import MyPlantDetail from '@pages/PlantDetail/PlantDetail';
 import Profile from '@pages/Profile/Profile';
 import Discover from '@pages/Discover/Discover';
 import AddPlant from '@pages/AddPlant/AddPlant';
+import Schedule from '@pages/Schedule/Schedule';
 import NotFound from '@pages/NotFound/NotFound';
 import { Sidebar } from '@components/Sidebar/Sidebar';
 
-const NO_BOTTOM_NAV = ['/', '/welcome', '/login', '/register', '/forgot-password'];
-const NO_SIDEBAR_NAV =  ['/', '/welcome', '/login', '/register', '/forgot-password'];
+const NO_NAV = ['/', '/welcome', '/login', '/register', '/forgot-password'];
 
 function AppShell() {
   const { pathname } = useLocation();
-  const hideBottomNav = NO_BOTTOM_NAV.includes(pathname);
-  const hideSidebarNav = NO_SIDEBAR_NAV.includes(pathname)
+  const hideNav = NO_NAV.includes(pathname);
 
   return (
     <>
-      <main className={`app-main${!hideSidebarNav ? ' app-main--with-sidebar' : ''}`}>
+      <main className={`app-main${!hideNav ? ' app-main--with-sidebar' : ''}`}>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/welcome" element={<Welcome />} />
@@ -41,14 +39,14 @@ function AppShell() {
           <Route path="/my-plants" element={<MyPlants />} />
           <Route path="/my-plants/add" element={<AddPlant />} />
           <Route path="/my-plants/:id" element={<MyPlantDetail />} />
+          <Route path="/schedule" element={<Schedule />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/discover" element={<Discover />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {!hideBottomNav && <div className="bottom-nav-spacer d-md-none" aria-hidden="true" />}
       </main>
-      {!hideBottomNav && <BottomNav />}
-      {!hideSidebarNav && <Sidebar />}
+      {!hideNav && <BottomNav />}
+      {!hideNav && <Sidebar />}
     </>
   );
 }
