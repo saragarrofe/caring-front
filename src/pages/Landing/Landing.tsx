@@ -83,18 +83,9 @@ export default function Landing() {
       </section>
 
       <Features />
-      <HowItWorks />
+      <HowItWorks />    
+      <DashboardPreview />
 
-      <section id="preview" className="landing-preview">
-        <div className="landing-preview-label">App Preview</div>
-        <h2 className="landing-preview-title">Everything you need, in one place</h2>
-        <p className="landing-preview-sub">
-          Track hydration, feeding schedules, and sunlight needs for every plant in your home.
-        </p>
-        <div className="landing-preview-frame">
-          <DashboardPreview />
-        </div>
-      </section>
-    </div>
+  </div>
   );
 }
