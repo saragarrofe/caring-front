@@ -28,15 +28,9 @@ export default function Welcome() {
           </a>
         </div>
       </div>
-      {/* TO DO: Añadir handleSkipRegistration */}
-      <button
-        className="welcome-skip"
-        onClick={() => {
-          window.location.href = '/discover';
-        }}
-      >
+      <Link to="/discover" className="welcome-skip">
         Skip registration
-      </button>
+      </Link>
     </main>
   );
 }

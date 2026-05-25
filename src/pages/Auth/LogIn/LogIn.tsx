@@ -2,6 +2,7 @@ import './../Auth.css';
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from 'src/context/AuthContext';
 import { LoginErrors, validateData } from 'src/types/LogIn';
 
 export default function Login() {
@@ -12,6 +13,7 @@ export default function Login() {
   const [remember, setRemember] = useState<boolean>(true);
 
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,8 +23,11 @@ export default function Login() {
 
     try {
       setIsSubmitting(true);
-      await new Promise((res) => setTimeout(res, 700));
+      setErrors({});
+      await login(email, password);
       navigate('/my-plants');
+    } catch {
+      setErrors({ form: 'Email or password incorrect' });
     } finally {
       setIsSubmitting(false);
     }
@@ -133,6 +138,8 @@ export default function Login() {
               Forget Password?
             </Link>
           </div>
+
+          {errors.form && <div className="invalid mb-8">{errors.form}</div>}
 
           <button type="submit" className="btn-primary" disabled={isDisabled}>
             {isSubmitting ? 'Logging in…' : 'Log In'}

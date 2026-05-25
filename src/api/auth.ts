@@ -1,6 +1,6 @@
 const API = import.meta.env.VITE_API_URL;
 
-export const login = async (email: string, password: string) => {
+export const apiLogin = async (email: string, password: string) => {
   const res = await fetch(`${API}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -10,7 +10,7 @@ export const login = async (email: string, password: string) => {
   return res.json();
 };
 
-export const register = async (email: string, password: string) => {
+export const apiRegister = async (email: string, password: string) => {
   const res = await fetch(`${API}/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -21,7 +21,7 @@ export const register = async (email: string, password: string) => {
 };
 
 export const getProfile = async (token: string) => {
-  const res = await fetch(`${API}/auth/profile`, {
+  const res = await fetch(`${API}/user/profile`, {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
   });

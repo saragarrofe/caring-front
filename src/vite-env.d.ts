@@ -1,2 +1,2 @@
-/// Tipos que Vite inyecta (por ejemplo importación de assets) y referencia a /// <reference types="vite/client" />. No borrar.
+/// Vite client types (e.g. asset imports). Do not delete.
 /// <reference types="vite/client" />

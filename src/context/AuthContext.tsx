@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { apiLogin, getProfile } from 'src/api/auth';
 
 export type User = {
-  id: string;
+  id: number;
   name: string;
   email: string;
 };
@@ -9,7 +10,7 @@ export type User = {
 type AuthContextValue = {
   user: User | null;
   token: string | null;
-  login: (user: User, token: string) => void;
+  login: (email: string, password: string) => void;
   logout: () => void;
 };
 
@@ -35,16 +36,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const login = (user: User, token: string) => {
-    if (user) {
-      setUser(user);
-      localStorage.setItem('auth:user', JSON.stringify(user));
-    }
-
-    if (token) {
-      setToken(token);
-      localStorage.setItem('auth:token', token);
-    }
+  const login = async (email: string, password: string): Promise<void> => {
+    const { token } = await apiLogin(email, password);
+    const user = await getProfile(token);
+    localStorage.setItem('auth:token', token);
+    setUser(user);
+    setToken(token);
   };
 
   const logout = () => {
