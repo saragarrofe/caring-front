@@ -1,4 +1,3 @@
-
 export type WateringEntry = {
   date: string;
   note?: string;
@@ -41,4 +40,5 @@ export type Plant = {
   wateringHistory?: WateringEntry[];
   location?: PlantLocation;
   light?: LightLevel;
+  careLevel?: CareLevel;
 };

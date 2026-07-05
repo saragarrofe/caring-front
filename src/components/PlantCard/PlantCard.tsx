@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getWateringReminder, getHydrationPercent } from '@utils/reminders';
 import { daysUntil } from '@utils/dates';
 import { Plant } from 'src/types/plant';
+import { CareLevelBadge } from '@components/CareLevelBadge/CareLevelBadge';
 
 type PlantCardProps = {
   plant: Plant;
@@ -33,6 +34,8 @@ export function PlantCard({ plant }: PlantCardProps) {
   const hydration = getHydrationPercent(plant);
   const status = STATUS_CONFIG[reminder.status];
 
+  console.log('careLevel', plant.careLevel);
+
   const daysSinceWatered = -daysUntil(plant.lastWatered);
   const lastWateredLabel =
     daysSinceWatered === 0
@@ -60,12 +63,15 @@ export function PlantCard({ plant }: PlantCardProps) {
             <i className="bi bi-flower2" />
           </div>
         )}
-        <span
-          className={`plant-card__status plant-card__status--${status.class}`}
-        >
+        <span className={`plant-card__status plant-card__status--${status.class}`}>
           <i className={`bi ${status.icon}`} />
           {status.label}
         </span>
+        {plant.careLevel && (
+          <span className="plant-card__care-level">
+            <CareLevelBadge level={plant.careLevel} />
+          </span>
+        )}
       </div>
 
       <div className="plant-card__body">

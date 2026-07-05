@@ -4,20 +4,20 @@
   font-weight: 400;
   color-scheme: light;
 
-  --color-primary: #5B8C5A;
+  --color-primary: #5b8c5a;
   --color-primary-dark: #1d460e;
   --color-primary-darker: #2e4030;
   --color-primary-light: #6ea36d;
   --color-primary-bg: #eef7eb;
 
-  --color-secondary: #E8F5E1;
+  --color-secondary: #e8f5e1;
   --color-secondary-dark: #d4e8cc;
 
-  --color-accent: #95B89C;
+  --color-accent: #95b89c;
   --color-accent-light: #b5d89a;
   --color-accent-bright: #6cd044;
 
-  --color-muted: #E8EBE6;
+  --color-muted: #e8ebe6;
   --color-muted-dark: #d1d5db;
 
   --color-bg: #ffffff;

@@ -3,8 +3,7 @@ import './PlantList.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUserPlants } from '../../mocks/userPlants';
-import { PlantCard } from '@components/Plants/PlantCard';
-import BackButton from '@components/BackButton/BackButton';
+import { PlantCard } from '@components/PlantCard/PlantCard';
 import { getWateringReminder } from '@utils/reminders';
 
 type WaterFilter = 'all' | 'needs-water' | 'on-track';
@@ -15,43 +14,40 @@ export default function PlantList() {
   const allPlants = getUserPlants();
 
   const filteredPlants = allPlants.filter((plant) => {
-    const matchesSearch = plant.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
+    const matchesSearch = plant.name.toLowerCase().includes(search.toLowerCase());
 
     if (filter === 'all') return matchesSearch;
 
     const reminder = getWateringReminder(plant);
-    const needsWater =
-      reminder.status === 'overdue' || reminder.status === 'due';
+    const needsWater = reminder.status === 'overdue' || reminder.status === 'due';
 
     if (filter === 'needs-water') return matchesSearch && needsWater;
-    return matchesSearch && !needsWater; 
+    return matchesSearch && !needsWater;
   });
 
   return (
     <div className="plant-list-page">
       <header className="page-header">
         <div className="page-toolbar">
-          <BackButton fallback="/my-plants" />
+          <h1 className="page-title">My plant collection</h1>
+          <div className="plant-search">
+            <i className="bi bi-search plant-search__icon" />
+            <input
+              type="text"
+              className="plant-search__input"
+              placeholder="Search plants..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
           <Link to="/my-plants/add" className="plant-list-add-btn" aria-label="Add plant">
             <i className="bi bi-plus-lg" />
+            Add Plant
           </Link>
         </div>
-        <h1 className="page-title">My plant collection</h1>
       </header>
 
       <div className="container py-3">
-        <div className="plant-search mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search by name…"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-
         <div className="plant-filters mb-3">
           {(['all', 'needs-water', 'on-track'] as const).map((f) => (
             <button
