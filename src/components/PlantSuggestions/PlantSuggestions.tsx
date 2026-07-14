@@ -1,6 +1,6 @@
 import './PlantSuggestions.css';
 import { plantCatalog } from '../../mocks/plants';
-import { CatalogPlant } from 'src/types/plant';
+import { CatalogPlant } from 'src/types/Plant';
 import { CareLevelBadge } from '@components/CareLevelBadge/CareLevelBadge';
 
 const POPULAR_IDS = [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];

@@ -1,7 +1,7 @@
 import './PlantUrgentCard.css';
 
 import { Link } from 'react-router-dom';
-import { Plant } from 'src/types/plant';
+import { Plant } from 'src/types/Plant';
 import { getWateringReminder } from '@utils/reminders';
 import { daysUntil } from '@utils/dates';
 
@@ -48,7 +48,9 @@ export function PlantUrgentCard({ plant, onWater }: PlantUrgentCardProps) {
         <div className="urgent-card__info">
           <h3 className="urgent-card__name">{plant.name}</h3>
           <p className="urgent-card__species">{plant.species}</p>
-          <span className={`urgent-card__badge urgent-card__badge--${isDanger ? 'danger' : 'warning'}`}>
+          <span
+            className={`urgent-card__badge urgent-card__badge--${isDanger ? 'danger' : 'warning'}`}
+          >
             <i className={`bi ${isDanger ? 'bi-exclamation-circle-fill' : 'bi-droplet-fill'}`} />
             {reminder.label}
           </span>

@@ -1,4 +1,4 @@
-import { PlantLocation } from 'src/types/plant';
+import { PlantLocation } from 'src/types/Plant';
 
 export const LOCATIONS: PlantLocation[] = [
   'Living Room',

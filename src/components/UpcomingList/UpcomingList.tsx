@@ -1,7 +1,7 @@
 import './UpcomingList.css';
 
 import { Link } from 'react-router-dom';
-import { Plant } from 'src/types/plant';
+import { Plant } from 'src/types/Plant';
 import { getHydrationPercent } from '@utils/reminders';
 import { addDays, daysUntil } from '@utils/dates';
 
@@ -11,9 +11,7 @@ type UpcomingListProps = {
 
 export function UpcomingList({ plants }: UpcomingListProps) {
   if (plants.length === 0) {
-    return (
-      <p className="upcoming-empty">No upcoming waterings this week.</p>
-    );
+    return <p className="upcoming-empty">No upcoming waterings this week.</p>;
   }
 
   return (
@@ -44,10 +42,7 @@ export function UpcomingList({ plants }: UpcomingListProps) {
 
               <div className="upcoming-row__hydration">
                 <div className="upcoming-row__bar">
-                  <div
-                    className="upcoming-row__fill"
-                    style={{ width: `${hydration}%` }}
-                  />
+                  <div className="upcoming-row__fill" style={{ width: `${hydration}%` }} />
                 </div>
                 <span className="upcoming-row__percent">{hydration}%</span>
               </div>

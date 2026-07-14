@@ -3,7 +3,7 @@ import './PlantCard.css';
 import { Link } from 'react-router-dom';
 import { getWateringReminder, getHydrationPercent } from '@utils/reminders';
 import { daysUntil } from '@utils/dates';
-import { Plant } from 'src/types/plant';
+import { Plant } from 'src/types/Plant';
 import { CareLevelBadge } from '@components/CareLevelBadge/CareLevelBadge';
 
 type PlantCardProps = {
