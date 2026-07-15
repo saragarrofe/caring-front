@@ -4,13 +4,169 @@
   padding-bottom: 100px;
 }
 
-.add-plant-form {
+.add-plant-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
   padding: 16px 20px;
+}
+
+.add-plant-form {
+  flex: 0 0 420px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 600px;
-  margin: 0 auto;
+}
+
+.add-plant-preview {
+  flex: 1;
+}
+
+.plant-preview-card {
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.plant-preview-card__image {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: var(--color-bg-card-green);
+}
+
+.plant-preview-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.plant-preview-card__image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  color: var(--color-accent);
+}
+
+.plant-preview-card__body {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.plant-preview-card__name {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.plant-preview-card__species {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin: -8px 0 0;
+}
+
+.plant-preview-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.plant-preview-badge--toxic {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.plant-preview-card__stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plant-preview-card__stats li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.plant-preview-card__stats li i {
+  font-size: 15px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .add-plant-layout {
+    flex-direction: column;
+  }
+
+  .add-plant-form {
+    flex: unset;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .add-plant-preview {
+    width: 100%;
+  }
+}
+
+[data-theme='dark'] .plant-preview-card {
+  background: var(--color-bg-card-dark);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .plant-preview-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .plant-preview-card__image {
+  background: var(--color-bg-dark);
+}
+
+[data-theme='dark'] .plant-preview-card__name {
+  color: var(--color-text-on-dark);
+}
+
+[data-theme='dark'] .plant-preview-card__species {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .plant-preview-card__stats li {
+  color: var(--color-text-dark-muted);
+}
+
+[data-theme='dark'] .plant-preview-card__stats li i {
+  color: var(--color-primary-light);
+}
+
+[data-theme='dark'] .plant-preview-badge--toxic {
+  background: rgba(248, 113, 113, 0.18);
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.28);
 }
 
 .add-plant-field {
@@ -35,7 +191,9 @@
   color: var(--color-text);
   font-size: 15px;
   outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
 }
 
 .add-plant-input::placeholder {
@@ -47,7 +205,6 @@
   box-shadow: 0 0 0 3px rgba(91, 140, 90, 0.15);
 }
 
-/* ── Search results ─────────────────────────── */
 .add-plant-results {
   list-style: none;
   margin: 0;
@@ -68,7 +225,9 @@
   background: var(--color-bg);
   cursor: pointer;
   text-align: left;
-  transition: background 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
 }
 
 .add-plant-result:hover:not(:disabled) {
@@ -284,7 +443,9 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: background 0.15s, transform 0.1s;
+  transition:
+    background 0.15s,
+    transform 0.1s;
 }
 
 .add-plant-submit:hover:not(:disabled) {

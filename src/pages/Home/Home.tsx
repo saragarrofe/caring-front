@@ -1,18 +1,25 @@
 import './Home.css';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from 'src/context/AuthContext';
-import { getUserPlants, saveUserPlants } from '../../mocks/userPlants';
-import { Plant, WateringEntry } from 'src/types/plant';
+import { saveUserPlants } from '../../mocks/userPlants';
+import { Plant, WateringEntry } from 'src/types/Plant';
 import { getWateringReminder } from '@utils/reminders';
 import { addDays, daysUntil } from '@utils/dates';
 import { PlantUrgentCard } from '@components/PlantUrgentCard/PlantUrgentCard';
 import { UpcomingList } from '@components/UpcomingList/UpcomingList';
+import { getUserPlants } from 'src/api/plants';
 
 export default function Home() {
-  const { user } = useAuth();
-  const [plants, setPlants] = useState<Plant[]>(getUserPlants);
+  const { user, token } = useAuth();
+  const [plants, setPlants] = useState<Plant[]>([]);
+
+  useEffect(() => {
+    getUserPlants(token).then((plants) => {
+      if (plants) setPlants(plants);
+    });
+  }, [token]);
 
   const { urgent, upcoming } = useMemo(() => {
     const urgentList: Plant[] = [];
@@ -59,12 +66,8 @@ export default function Home() {
   }, []);
 
   const totalPlants = plants.length;
-  const overdueCount = urgent.filter(
-    (p) => getWateringReminder(p).status === 'overdue',
-  ).length;
-  const dueCount = urgent.filter(
-    (p) => getWateringReminder(p).status === 'due',
-  ).length;
+  const overdueCount = urgent.filter((p) => getWateringReminder(p).status === 'overdue').length;
+  const dueCount = urgent.filter((p) => getWateringReminder(p).status === 'due').length;
 
   const today = new Date();
   const dateLabel = today.toLocaleDateString('en-US', {
@@ -88,13 +91,17 @@ export default function Home() {
           <span className="dashboard__stat-label">Total plants</span>
         </div>
         <div className="dashboard__stat">
-          <span className={`dashboard__stat-value${overdueCount > 0 ? ' dashboard__stat-value--danger' : ''}`}>
+          <span
+            className={`dashboard__stat-value${overdueCount > 0 ? ' dashboard__stat-value--danger' : ''}`}
+          >
             {overdueCount}
           </span>
           <span className="dashboard__stat-label">Overdue</span>
         </div>
         <div className="dashboard__stat">
-          <span className={`dashboard__stat-value${dueCount > 0 ? ' dashboard__stat-value--warning' : ''}`}>
+          <span
+            className={`dashboard__stat-value${dueCount > 0 ? ' dashboard__stat-value--warning' : ''}`}
+          >
             {dueCount}
           </span>
           <span className="dashboard__stat-label">Water today</span>
@@ -115,11 +122,7 @@ export default function Home() {
         {urgent.length > 0 ? (
           <div className="dashboard__urgent-scroll">
             {urgent.map((plant) => (
-              <PlantUrgentCard
-                key={plant.id}
-                plant={plant}
-                onWater={handleWater}
-              />
+              <PlantUrgentCard key={plant.id} plant={plant} onWater={handleWater} />
             ))}
           </div>
         ) : (

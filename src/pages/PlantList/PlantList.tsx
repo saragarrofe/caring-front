@@ -1,17 +1,26 @@
 import './PlantList.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getUserPlants } from '../../mocks/userPlants';
 import { PlantCard } from '@components/PlantCard/PlantCard';
 import { getWateringReminder } from '@utils/reminders';
+import { getUserPlants } from 'src/api/plants';
+import { useAuth } from 'src/context/AuthContext';
+import { Plant } from 'src/types/Plant';
 
 type WaterFilter = 'all' | 'needs-water' | 'on-track';
 
 export default function PlantList() {
+  const { token } = useAuth();
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<WaterFilter>('all');
-  const allPlants = getUserPlants();
+  const [allPlants, setAllPlants] = useState<Plant[]>([]);
+
+  useEffect(() => {
+    getUserPlants(token).then((plants) => {
+      if (plants) setAllPlants(plants);
+    });
+  }, [token]);
 
   const filteredPlants = allPlants.filter((plant) => {
     const matchesSearch = plant.name.toLowerCase().includes(search.toLowerCase());
