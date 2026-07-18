@@ -13,19 +13,22 @@ export async function getUserPlants(token: string | null): Promise<Plant[] | nul
   return plants;
 }
 
-// export function saveUserPlants(plants: Plant[]): void {
-//   localStorage.setItem(STORAGE_KEY, JSON.stringify(plants));
-// }
+export async function addUserPlant(
+  token: string | null,
+  plant: Omit<Plant, 'id'>,
+): Promise<Plant | null> {
+  if (!plant || !token) return null;
 
-// export function addUserPlant(plant: Plant): Plant[] {
-//   const plants = getUserPlants();
-//   plants.push(plant);
-//   saveUserPlants(plants);
-//   return plants;
-// }
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/plant`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    body: JSON.stringify(plant),
+  });
 
-// export function removeUserPlant(plantId: number): Plant[] {
-//   const plants = getUserPlants().filter((p) => p.id !== plantId);
-//   saveUserPlants(plants);
-//   return plants;
-// }
+  if (!response.ok) return null;
+
+  return response.json();
+}

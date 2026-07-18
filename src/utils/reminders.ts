@@ -1,4 +1,4 @@
-import { Plant } from 'src/types/plant';
+import { Plant } from 'src/types/Plant';
 import { addDays, daysUntil } from './dates';
 
 export type ReminderTone = 'info' | 'warning' | 'muted' | 'success' | 'danger';
@@ -26,7 +26,7 @@ export type Reminder = {
   tone: ReminderTone;
   status: ReminderStatus;
   icon: ReminderIcon;
-  date: string; 
+  date: string;
 };
 
 export function getHydrationPercent(plant: Plant): number {

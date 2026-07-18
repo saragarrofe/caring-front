@@ -27,7 +27,6 @@ export type CatalogPlant = {
   imageUrl?: string;
 };
 
-/** A plant the user actually owns */
 export type Plant = {
   id: number;
   catalogId: number;

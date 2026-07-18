@@ -8,14 +8,14 @@ import { CatalogPlant, Plant, PlantLocation } from 'src/types/Plant';
 import { LOCATIONS } from 'src/config/locations';
 import PlantSuggestions from '@components/PlantSuggestions/PlantSuggestions';
 import { useAuth } from 'src/context/AuthContext';
-import { getUserPlants } from 'src/api/plants';
+import { addUserPlant, getUserPlants } from 'src/api/plants';
 
 export default function AddPlant() {
   const navigate = useNavigate();
   const { token } = useAuth();
 
   const [search, setSearch] = useState('');
-  const [selected, setSelected] = useState<CatalogPlant | null>(null);
+  const [selectedPlant, setSelectedPlant] = useState<CatalogPlant | null>(null);
   const [nickname, setNickname] = useState('');
   const [location, setLocation] = useState<PlantLocation>('Living Room');
   const [plants, setPlants] = useState<Plant[]>([]);
@@ -38,32 +38,33 @@ export default function AddPlant() {
       : [];
 
   const handleSelect = (plant: CatalogPlant) => {
-    setSelected(plant);
+    setSelectedPlant(plant);
     setNickname(plant.name);
     setSearch('');
   };
 
-  const handleAdd = () => {
-    if (!selected) return;
+  const handleAdd = async () => {
+    if (!selectedPlant || !token) return;
 
-    // const today = new Date().toISOString().split('T')[0];
+    const today = new Date().toISOString().split('T')[0];
 
-    // TODO: Post plant
-    // addUserPlant({
-    //   id: Date.now(), // temporary id until there's a real backend
-    //   catalogId: selected.id,
-    //   name: selected.name,
-    //   nickname: nickname.trim() || undefined,
-    //   species: selected.species,
-    //   wateringFrequency: selected.wateringFrequency,
-    //   lastWatered: today,
-    //   imageUrl: selected.imageUrl,
-    //   location,
-    //   light: selected.light,
-    //   careLevel: selected.careLevel,
-    // });
-
-    navigate('/my-plants');
+    try {
+      await addUserPlant(token, {
+        catalogId: selectedPlant.id,
+        name: selectedPlant.name,
+        nickname: nickname.trim() || undefined,
+        species: selectedPlant.species,
+        wateringFrequency: selectedPlant.wateringFrequency,
+        lastWatered: today,
+        imageUrl: selectedPlant.imageUrl,
+        location,
+        light: selectedPlant.light,
+        careLevel: selectedPlant.careLevel,
+      });
+      navigate('/my-plants');
+    } catch (error) {
+      console.error('Failed to add plant', error);
+    }
   };
 
   return (
@@ -77,7 +78,7 @@ export default function AddPlant() {
 
       <div className="add-plant-layout">
         <div className="add-plant-form">
-          {!selected ? (
+          {!selectedPlant ? (
             <>
               <div className="add-plant-field">
                 <label htmlFor="plant-search" className="add-plant-label">
@@ -141,20 +142,20 @@ export default function AddPlant() {
             <>
               <div className="add-plant-selected">
                 <div className="add-plant-selected__avatar">
-                  {selected.imageUrl ? (
-                    <img src={selected.imageUrl} alt={selected.name} />
+                  {selectedPlant.imageUrl ? (
+                    <img src={selectedPlant.imageUrl} alt={selectedPlant.name} />
                   ) : (
                     <i className="bi bi-flower2" />
                   )}
                 </div>
                 <div className="add-plant-selected__info">
-                  <span className="add-plant-selected__name">{selected.name}</span>
-                  <span className="add-plant-selected__species">{selected.species}</span>
+                  <span className="add-plant-selected__name">{selectedPlant.name}</span>
+                  <span className="add-plant-selected__species">{selectedPlant.species}</span>
                 </div>
                 <button
                   type="button"
                   className="add-plant-selected__change"
-                  onClick={() => setSelected(null)}
+                  onClick={() => setSelectedPlant(null)}
                 >
                   Change
                 </button>
@@ -168,7 +169,7 @@ export default function AddPlant() {
                   id="plant-nickname"
                   type="text"
                   className="add-plant-input"
-                  placeholder={selected.name}
+                  placeholder={selectedPlant.name}
                   value={nickname}
                   onChange={(e) => setNickname(e.target.value)}
                 />
@@ -197,17 +198,17 @@ export default function AddPlant() {
           )}
         </div>
 
-        {!selected && (
+        {!selectedPlant && (
           <aside className="add-plant-preview">
             <PlantSuggestions onSelect={handleSelect} excludeIds={ownedCatalogIds} />
           </aside>
         )}
-        {selected && (
+        {selectedPlant && (
           <aside className="add-plant-preview">
             <div className="plant-preview-card">
               <div className="plant-preview-card__image">
-                {selected.imageUrl ? (
-                  <img src={selected.imageUrl} alt={selected.name} />
+                {selectedPlant.imageUrl ? (
+                  <img src={selectedPlant.imageUrl} alt={selectedPlant.name} />
                 ) : (
                   <div className="plant-preview-card__image-placeholder">
                     <i className="bi bi-flower2" />
@@ -215,16 +216,16 @@ export default function AddPlant() {
                 )}
               </div>
               <div className="plant-preview-card__body">
-                <h2 className="plant-preview-card__name">{selected.name}</h2>
-                <p className="plant-preview-card__species">{selected.species}</p>
+                <h2 className="plant-preview-card__name">{selectedPlant.name}</h2>
+                <p className="plant-preview-card__species">{selectedPlant.species}</p>
 
                 <div className="plant-preview-card__badges">
                   <span
-                    className={`plant-preview-badge plant-preview-badge--${selected.careLevel.toLowerCase()}`}
+                    className={`plant-preview-badge plant-preview-badge--${selectedPlant.careLevel.toLowerCase()}`}
                   >
-                    {selected.careLevel}
+                    {selectedPlant.careLevel}
                   </span>
-                  {selected.toxicToPets && (
+                  {selectedPlant.toxicToPets && (
                     <span className="plant-preview-badge plant-preview-badge--toxic">
                       <i className="bi bi-exclamation-triangle" /> Toxic to pets
                     </span>
@@ -235,19 +236,19 @@ export default function AddPlant() {
                   <li>
                     <i className="bi bi-droplet-fill" />
                     <span>
-                      Water every <strong>{selected.wateringFrequency} days</strong>
+                      Water every <strong>{selectedPlant.wateringFrequency} days</strong>
                     </span>
                   </li>
                   <li>
                     <i className="bi bi-sun-fill" />
                     <span>
-                      Light: <strong>{selected.light}</strong>
+                      Light: <strong>{selectedPlant.light}</strong>
                     </span>
                   </li>
                   <li>
                     <i className="bi bi-bar-chart-fill" />
                     <span>
-                      Care level: <strong>{selected.careLevel}</strong>
+                      Care level: <strong>{selectedPlant.careLevel}</strong>
                     </span>
                   </li>
                 </ul>

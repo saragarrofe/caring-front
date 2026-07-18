@@ -1,4 +1,4 @@
-import { CatalogPlant } from '../types/plant';
+import { CatalogPlant } from '../types/Plant';
 
 export const plantCatalog: CatalogPlant[] = [
   {
