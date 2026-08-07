@@ -8,75 +8,41 @@ import BackButton from '@components/BackButton/BackButton';
 import { WateringForm } from '@components/WateringForm/WateringForm';
 import { WateringHistory } from '@components/WateringHistory/WateringHistory';
 import { getWateringReminder } from '@utils/reminders';
+import { getPlantById } from 'src/api/plants';
+import { useAuth } from 'src/context/AuthContext';
 
 export default function PlantDetail() {
+  const { token } = useAuth();
   const { id } = useParams<{ id: string }>();
   const plantId = id ? parseInt(id, 10) : null;
 
-  const [plantData, setPlantData] = useState<Plant | undefined>(undefined);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [plantData, setPlantData] = useState<Plant | null>(null);
   const [loading, setLoading] = useState(true);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string | null>(null);
 
-  // Effect 1: Fetch plant data (simulated API call)
-  // useEffect(() => {
-  //   if (!plantId) {
-  //     setLoading(false);
-  //     return;
-  //   }
-
-  //   // Check localStorage for saved data first
-  //   const stored = localStorage.getItem(`plant-${plantId}`);
-  //   if (stored) {
-  //     setPlantData(JSON.parse(stored) as Plant);
-  //     setLoading(false);
-  //     return;
-  //   }
-
-  //   // Flag to prevent setting state on unmounted component
-  //   let cancelled = false;
-
-  //   setLoading(true);
-  //   setError(null);
-
-  //   fetchPlantById(plantId)
-  //     .then((plant) => {
-  //       if (cancelled) return;
-  //       setPlantData(plant);
-  //       setLoading(false);
-  //     })
-  //     .catch(() => {
-  //       if (cancelled) return;
-  //       setError('Failed to load plant data');
-  //       setLoading(false);
-  //     });
-
-  //   // Cleanup: if the component unmounts before the fetch finishes,
-  //   // don't try to update state on an unmounted component
-  //   return () => {
-  //     cancelled = true;
-  //   };
-  // }, [plantId]);
-
-  // Effect 2: Sync plant data to localStorage
   useEffect(() => {
-    if (plantData && plantId) {
-      localStorage.setItem(`plant-${plantId}`, JSON.stringify(plantData));
+    if (!plantId) {
+      setLoading(false);
+      return;
     }
-  }, [plantData, plantId]);
 
-  // Effect 3: Update document title while on this page
-  useEffect(() => {
-    if (!plantData) return;
+    setLoading(true);
+    setError(null);
 
-    const previousTitle = document.title;
-    document.title = `${plantData.name} — Caring`;
-
-    return () => {
-      document.title = previousTitle;
-    };
-  }, [plantData?.name]);
+    getPlantById(token, plantId)
+      .then((plant) => {
+        if (!plant) {
+          setError('Plant not found');
+        } else {
+          setPlantData(plant);
+        }
+        setLoading(false);
+      })
+      .catch(() => {
+        setError('Failed to load plant data');
+        setLoading(false);
+      });
+  }, [plantId, token]);
 
   if (!plantId) {
     return <div className="container py-4">Plant ID not provided</div>;

@@ -13,6 +13,20 @@ export async function getUserPlants(token: string | null): Promise<Plant[] | nul
   return plants;
 }
 
+export async function getPlantById(token: string | null, plantId: number): Promise<Plant | null> {
+  if (!token || !plantId) return null;
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/plant/${plantId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) return null;
+
+  const plant = await response.json();
+  return plant;
+}
+
 export async function addUserPlant(
   token: string | null,
   plant: Omit<Plant, 'id'>,
@@ -31,4 +45,18 @@ export async function addUserPlant(
   if (!response.ok) return null;
 
   return response.json();
+}
+
+export async function deleteUserPlant(token: string, plantId: number): Promise<void> {
+  if (!token || !plantId) return;
+
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/plant/${plantId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    method: 'DELETE',
+  });
+
+  if (!response.ok) throw new Error('Failed to delete plant');
 }
