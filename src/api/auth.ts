@@ -10,6 +10,15 @@ export const apiLogin = async (email: string, password: string) => {
   return res.json();
 };
 
+export const apiLogout = async () => {
+  const res = await fetch(`${API}/auth/logout`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (!res.ok) throw new Error('Logout failed');
+  return res.json();
+};
+
 export const apiRegister = async (email: string, password: string) => {
   const res = await fetch(`${API}/auth/register`, {
     method: 'POST',

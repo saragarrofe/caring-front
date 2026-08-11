@@ -16,7 +16,6 @@ import MyPlantDetail from '@pages/PlantDetail/PlantDetail';
 import Profile from '@pages/Profile/Profile';
 import Discover from '@pages/Discover/Discover';
 import AddPlant from '@pages/AddPlant/AddPlant';
-import Schedule from '@pages/Schedule/Schedule';
 import NotFound from '@pages/NotFound/NotFound';
 import { Sidebar } from '@components/Sidebar/Sidebar';
 
@@ -39,7 +38,6 @@ function AppShell() {
           <Route path="/my-plants" element={<MyPlants />} />
           <Route path="/my-plants/add" element={<AddPlant />} />
           <Route path="/my-plants/:id" element={<MyPlantDetail />} />
-          <Route path="/schedule" element={<Schedule />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/discover" element={<Discover />} />
           <Route path="*" element={<NotFound />} />
