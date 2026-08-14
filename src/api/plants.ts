@@ -1,24 +1,18 @@
 import { Plant } from '../types/Plant';
 
-export async function getUserPlants(token: string | null): Promise<Plant[] | null> {
-  if (!token) return null;
-
+export async function getUserPlants(): Promise<Plant[] | null> {
   const response = await fetch(`${import.meta.env.VITE_API_URL}/plant`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    credentials: 'include',
   });
 
   const plants = await response.json();
   return plants;
 }
 
-export async function getPlantById(token: string | null, plantId: number): Promise<Plant | null> {
-  if (!token || !plantId) return null;
+export async function getPlantById(plantId: number): Promise<Plant | null> {
+  if (!plantId) return null;
   const response = await fetch(`${import.meta.env.VITE_API_URL}/plant/${plantId}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    credentials: 'include',
   });
 
   if (!response.ok) return null;
@@ -27,17 +21,12 @@ export async function getPlantById(token: string | null, plantId: number): Promi
   return plant;
 }
 
-export async function addUserPlant(
-  token: string | null,
-  plant: Omit<Plant, 'id'>,
-): Promise<Plant | null> {
-  if (!plant || !token) return null;
+export async function addUserPlant(plant: Omit<Plant, 'id'>): Promise<Plant | null> {
+  if (!plant) return null;
 
   const response = await fetch(`${import.meta.env.VITE_API_URL}/plant`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     method: 'POST',
     body: JSON.stringify(plant),
   });
@@ -47,14 +36,11 @@ export async function addUserPlant(
   return response.json();
 }
 
-export async function deleteUserPlant(token: string, plantId: number): Promise<void> {
-  if (!token || !plantId) return;
+export async function deleteUserPlant(plantId: number): Promise<void> {
+  if (!plantId) return;
 
   const response = await fetch(`${import.meta.env.VITE_API_URL}/plant/${plantId}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
+    credentials: 'include',
     method: 'DELETE',
   });
 
