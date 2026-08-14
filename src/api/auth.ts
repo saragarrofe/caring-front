@@ -4,6 +4,7 @@ export const apiLogin = async (email: string, password: string) => {
   const res = await fetch(`${API}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify({ email, password }),
   });
   if (!res.ok) throw new Error('Login failed');
@@ -13,9 +14,16 @@ export const apiLogin = async (email: string, password: string) => {
 export const apiLogout = async () => {
   const res = await fetch(`${API}/auth/logout`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
   });
   if (!res.ok) throw new Error('Logout failed');
+};
+
+export const getMe = async () => {
+  const res = await fetch(`${API}/auth/me`, {
+    credentials: 'include',
+  });
+  if (!res.ok) throw new Error('Not authenticated');
   return res.json();
 };
 
@@ -23,17 +31,9 @@ export const apiRegister = async (email: string, password: string) => {
   const res = await fetch(`${API}/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify({ email, password }),
   });
   if (!res.ok) throw new Error('Registration failed');
-  return res.json();
-};
-
-export const getProfile = async (token: string) => {
-  const res = await fetch(`${API}/user/profile`, {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  if (!res.ok) throw new Error('Failed to fetch profile');
   return res.json();
 };

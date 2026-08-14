@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from 'react';
-import { apiLogin, apiLogout } from 'src/api/auth';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { apiLogin, apiLogout, getMe } from 'src/api/auth';
 
 export type User = {
   id: number;
@@ -16,6 +16,12 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    getMe()
+      .then(setUser)
+      .catch(() => setUser(null));
+  }, []);
 
   const login = async (email: string, password: string): Promise<void> => {
     const data = await apiLogin(email, password);
