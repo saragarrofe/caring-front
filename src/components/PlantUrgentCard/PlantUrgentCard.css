@@ -126,7 +126,7 @@
   border: none;
   border-radius: 10px;
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-bg);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
