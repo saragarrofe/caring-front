@@ -2,8 +2,6 @@ import './Home.css';
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from 'src/context/AuthContext';
-import { saveUserPlants } from '../../mocks/userPlants';
 import { Plant, WateringEntry } from 'src/types/Plant';
 import { getWateringReminder } from '@utils/reminders';
 import { addDays, daysUntil } from '@utils/dates';
@@ -12,14 +10,13 @@ import { UpcomingList } from '@components/UpcomingList/UpcomingList';
 import { getUserPlants } from 'src/api/plants';
 
 export default function Home() {
-  const { user, token } = useAuth();
   const [plants, setPlants] = useState<Plant[]>([]);
 
   useEffect(() => {
-    getUserPlants(token).then((plants) => {
+    getUserPlants().then((plants) => {
       if (plants) setPlants(plants);
     });
-  }, [token]);
+  }, [plants]);
 
   const { urgent, upcoming } = useMemo(() => {
     const urgentList: Plant[] = [];
@@ -60,7 +57,6 @@ export default function Home() {
           wateringHistory: [...(p.wateringHistory ?? []), newEntry],
         };
       });
-      saveUserPlants(next);
       return next;
     });
   }, []);
@@ -76,12 +72,10 @@ export default function Home() {
     day: 'numeric',
   });
 
-  const firstName = user?.name?.split(' ')[0] ?? 'there';
-
   return (
     <div className="dashboard">
       <header className="dashboard__greeting">
-        <h1 className="dashboard__hello">Good morning, {firstName}</h1>
+        <h1 className="dashboard__hello">Good morning</h1>
         <p className="dashboard__date">{dateLabel}</p>
       </header>
 

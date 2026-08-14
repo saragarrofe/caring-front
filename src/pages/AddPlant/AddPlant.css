@@ -1,194 +1,299 @@
 .add-plant-page {
-  background: var(--color-bg-subtle);
-  min-height: 100vh;
+  background: #f2efe8;
+  min-height: 100dvh;
   padding-bottom: 100px;
 }
 
-.add-plant-layout {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-  padding: 16px 20px;
+.add-plant-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.add-plant-form {
-  flex: 0 0 420px;
-  max-width: 420px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.add-plant-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1a2e1a;
+  margin: 8px 0 8px;
+  line-height: 1.1;
 }
 
-.add-plant-preview {
+.add-plant-subtitle {
+  font-size: 15px;
+  color: #8a9a87;
+  margin: 0 0 24px;
+}
+
+.add-plant-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #dde6d5;
+  border-radius: 50px;
+  padding: 14px 20px;
+  margin-bottom: 28px;
+}
+
+.add-plant-search-icon {
+  font-size: 16px;
+  color: #3d6b3a;
+  flex-shrink: 0;
+}
+
+.add-plant-search-input {
   flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #1a2e1a;
 }
 
-.plant-preview-card {
-  border-radius: 16px;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
+.add-plant-search-input::placeholder {
+  color: #8a9a87;
 }
 
-.plant-preview-card__image {
+.add-plant-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a2e1a;
+  margin-bottom: 16px;
+}
+
+.add-plant-section-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2d4f2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.add-plant-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.add-plant-row-item + .add-plant-row-item {
+  border-top: 1px solid #e0dbd0;
+}
+
+.add-plant-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   width: 100%;
-  height: 220px;
-  overflow: hidden;
-  background: var(--color-bg-card-green);
+  padding: 16px 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
 }
 
-.plant-preview-card__image img {
+.add-plant-row:hover:not(:disabled) .add-plant-row__name {
+  color: #2d4f2a;
+}
+
+.add-plant-row--owned {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.add-plant-row__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #dde6d5;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #3d6b3a;
+}
+
+.add-plant-row__avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.plant-preview-card__image-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 56px;
-  color: var(--color-accent);
-}
-
-.plant-preview-card__body {
-  padding: 16px 20px;
+.add-plant-row__info {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 3px;
 }
 
-.plant-preview-card__name {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--color-text);
-  margin: 0;
+.add-plant-row__name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a2e1a;
+  transition: color 0.15s;
 }
 
-.plant-preview-card__species {
-  font-size: 14px;
-  color: var(--color-text-muted);
-  font-style: italic;
-  margin: -8px 0 0;
+.add-plant-row__species {
+  font-size: 13px;
+  color: #8a9a87;
 }
 
-.plant-preview-card__badges {
+.add-plant-row__tags {
   display: flex;
-  flex-wrap: wrap;
   gap: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
 }
 
-.plant-preview-badge--toxic {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 20px;
-  background: rgba(239, 68, 68, 0.1);
-  color: #dc2626;
-  border: 1px solid rgba(239, 68, 68, 0.2);
-}
-
-.plant-preview-card__stats {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.plant-preview-card__stats li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--color-text-muted);
-}
-
-.plant-preview-card__stats li i {
-  font-size: 15px;
-  color: var(--color-accent);
+.add-plant-row__arrow {
+  font-size: 16px;
+  color: #8a9a87;
   flex-shrink: 0;
 }
 
-@media (max-width: 640px) {
-  .add-plant-layout {
-    flex-direction: column;
-  }
-
-  .add-plant-form {
-    flex: unset;
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .add-plant-preview {
-    width: 100%;
-  }
+.add-plant-row__owned-badge {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3d6b3a;
+  background: #dde6d5;
+  padding: 3px 10px;
+  border-radius: 20px;
+  flex-shrink: 0;
 }
 
-[data-theme='dark'] .plant-preview-card {
-  background: var(--color-bg-card-dark);
-  border-color: rgba(255, 255, 255, 0.08);
+.add-plant-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
 }
 
-[data-theme='dark'] .plant-preview-card:hover {
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
-  border-color: var(--color-primary);
+.add-plant-tag--care {
+  background: #dde6d5;
+  color: #2d4f2a;
 }
 
-[data-theme='dark'] .plant-preview-card__image {
-  background: var(--color-bg-dark);
+.add-plant-tag--icon {
+  background: #e8e4db;
+  color: #5a6b57;
+  padding: 4px 8px;
 }
 
-[data-theme='dark'] .plant-preview-card__name {
-  color: var(--color-text-on-dark);
+.add-plant-empty {
+  font-size: 14px;
+  color: #8a9a87;
+  text-align: center;
+  padding: 32px 0;
 }
 
-[data-theme='dark'] .plant-preview-card__species {
-  color: var(--color-text-dark-muted);
+.add-plant-selected-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0 24px;
+  border-bottom: 1px solid #e0dbd0;
+  margin-bottom: 28px;
 }
 
-[data-theme='dark'] .plant-preview-card__stats li {
-  color: var(--color-text-dark-muted);
+.add-plant-selected-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #dde6d5;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #3d6b3a;
 }
 
-[data-theme='dark'] .plant-preview-card__stats li i {
-  color: var(--color-primary-light);
+.add-plant-selected-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-[data-theme='dark'] .plant-preview-badge--toxic {
-  background: rgba(248, 113, 113, 0.18);
-  color: #f87171;
-  border-color: rgba(248, 113, 113, 0.28);
+.add-plant-selected-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.add-plant-selected-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a2e1a;
+  margin: 0 0 2px;
+}
+
+.add-plant-selected-species {
+  font-size: 14px;
+  color: #8a9a87;
+  margin: 0 0 8px;
+}
+
+.add-plant-selected-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.add-plant-change-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1.5px solid #2d4f2a;
+  background: transparent;
+  color: #2d4f2a;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.add-plant-change-btn:hover {
+  background: rgba(45, 79, 42, 0.08);
+}
+
+.add-plant-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .add-plant-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .add-plant-label {
   font-size: 13px;
   font-weight: 700;
-  color: var(--color-text-muted);
+  color: #5a6b57;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .add-plant-input {
-  padding: 12px 16px;
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg);
-  color: var(--color-text);
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1.5px solid #d4cfc6;
+  background: #fff;
+  color: #1a2e1a;
   font-size: 15px;
   outline: none;
   transition:
@@ -197,208 +302,12 @@
 }
 
 .add-plant-input::placeholder {
-  color: var(--color-text-faint);
+  color: #b0a898;
 }
 
 .add-plant-input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(91, 140, 90, 0.15);
-}
-
-.add-plant-results {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.add-plant-result {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg);
-  cursor: pointer;
-  text-align: left;
-  transition:
-    background 0.15s,
-    border-color 0.15s;
-}
-
-.add-plant-result:hover:not(:disabled) {
-  background: var(--color-bg-card-green);
-  border-color: var(--color-primary-light);
-}
-
-.add-plant-result--owned {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.add-plant-result__avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--color-bg-card-green);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: var(--color-accent);
-}
-
-.add-plant-result__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.add-plant-result__info {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.add-plant-result__name {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-.add-plant-result__species {
-  font-size: 12px;
-  color: var(--color-text-muted);
-  font-style: italic;
-}
-
-.add-plant-result__meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-size: 11px;
-  color: var(--color-text-muted);
-  flex-shrink: 0;
-}
-
-.add-plant-result__meta i {
-  font-size: 10px;
-  color: var(--color-accent);
-}
-
-.add-plant-result__badge {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--color-primary);
-  background: var(--color-bg-card-green);
-  padding: 2px 8px;
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-
-.add-plant-empty {
-  font-size: 14px;
-  color: var(--color-text-muted);
-  text-align: center;
-  padding: 24px 0;
-}
-
-.add-plant-selected {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: var(--color-bg-card-green);
-  border: 1px solid var(--color-primary-light);
-}
-
-.add-plant-selected__avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--color-bg);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  color: var(--color-accent);
-}
-
-.add-plant-selected__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.add-plant-selected__info {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.add-plant-selected__name {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.add-plant-selected__species {
-  font-size: 13px;
-  color: var(--color-text-muted);
-  font-style: italic;
-}
-
-.add-plant-selected__change {
-  padding: 6px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--color-primary);
-  background: transparent;
-  color: var(--color-primary);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background 0.15s;
-}
-
-.add-plant-selected__change:hover {
-  background: rgba(91, 140, 90, 0.08);
-}
-
-.add-plant-summary {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 14px 16px;
-  border-radius: 12px;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-}
-
-.add-plant-summary__row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: var(--color-text-muted);
-}
-
-.add-plant-summary__row i {
-  font-size: 14px;
-  color: var(--color-accent);
+  border-color: #2d4f2a;
+  box-shadow: 0 0 0 3px rgba(45, 79, 42, 0.12);
 }
 
 .add-plant-pills {
@@ -410,31 +319,30 @@
 .add-plant-pill {
   padding: 8px 16px;
   border-radius: 20px;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg);
+  border: 1.5px solid #d4cfc6;
+  background: #fff;
   font-size: 13px;
-  color: var(--color-text-muted);
+  color: #5a6b57;
   cursor: pointer;
   transition: all 0.15s;
 }
 
 .add-plant-pill:hover:not(.add-plant-pill--active) {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: #2d4f2a;
+  color: #2d4f2a;
 }
 
 .add-plant-pill--active {
-  background: var(--color-primary);
+  background: #2d4f2a;
   color: #fff;
-  border-color: var(--color-primary);
+  border-color: #2d4f2a;
 }
 
 .add-plant-submit {
-  margin-top: 8px;
-  padding: 14px 24px;
-  border-radius: 14px;
+  padding: 16px 24px;
+  border-radius: 16px;
   border: none;
-  background: var(--color-primary);
+  background: #2d4f2a;
   color: #fff;
   font-size: 16px;
   font-weight: 700;
@@ -443,136 +351,10 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition:
-    background 0.15s,
-    transform 0.1s;
+  transition: opacity 0.15s;
+  margin-top: 8px;
 }
 
-.add-plant-submit:hover:not(:disabled) {
-  background: var(--color-primary-dark);
-  transform: translateY(-1px);
-}
-
-.add-plant-submit:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-[data-theme='dark'] .add-plant-page {
-  background: var(--color-bg-darker);
-}
-
-[data-theme='dark'] .add-plant-label {
-  color: var(--color-text-dark-muted);
-}
-
-[data-theme='dark'] .add-plant-input {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--color-text-on-dark);
-}
-
-[data-theme='dark'] .add-plant-input::placeholder {
-  color: rgba(255, 255, 255, 0.35);
-}
-
-[data-theme='dark'] .add-plant-input:focus {
-  border-color: var(--color-primary);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 0 3px rgba(91, 140, 90, 0.2);
-}
-
-[data-theme='dark'] .add-plant-result {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: var(--color-bg-card-dark);
-}
-
-[data-theme='dark'] .add-plant-result:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: var(--color-primary);
-}
-
-[data-theme='dark'] .add-plant-result__avatar {
-  background: var(--color-bg-dark);
-}
-
-[data-theme='dark'] .add-plant-result__name {
-  color: var(--color-text-on-dark);
-}
-
-[data-theme='dark'] .add-plant-result__species {
-  color: var(--color-text-dark-muted);
-}
-
-[data-theme='dark'] .add-plant-result__meta {
-  color: var(--color-text-dark-muted);
-}
-
-[data-theme='dark'] .add-plant-result__meta i {
-  color: var(--color-primary-light);
-}
-
-[data-theme='dark'] .add-plant-result__badge {
-  background: rgba(108, 208, 68, 0.1);
-  color: var(--color-primary-light);
-}
-
-[data-theme='dark'] .add-plant-selected {
-  background: rgba(108, 208, 68, 0.08);
-  border-color: rgba(108, 208, 68, 0.2);
-}
-
-[data-theme='dark'] .add-plant-selected__avatar {
-  background: var(--color-bg-dark);
-}
-
-[data-theme='dark'] .add-plant-selected__name {
-  color: var(--color-text-on-dark);
-}
-
-[data-theme='dark'] .add-plant-selected__species {
-  color: var(--color-text-dark-muted);
-}
-
-[data-theme='dark'] .add-plant-selected__change {
-  border-color: var(--color-primary-light);
-  color: var(--color-primary-light);
-}
-
-[data-theme='dark'] .add-plant-selected__change:hover {
-  background: rgba(108, 208, 68, 0.1);
-}
-
-[data-theme='dark'] .add-plant-summary {
-  background: var(--color-bg-card-dark);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-[data-theme='dark'] .add-plant-summary__row {
-  color: var(--color-text-dark-muted);
-}
-
-[data-theme='dark'] .add-plant-summary__row i {
-  color: var(--color-primary-light);
-}
-
-[data-theme='dark'] .add-plant-empty {
-  color: var(--color-text-dark-muted);
-}
-
-[data-theme='dark'] .add-plant-pill {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.7);
-}
-
-[data-theme='dark'] .add-plant-pill:hover:not(.add-plant-pill--active) {
-  border-color: var(--color-primary);
-  color: var(--color-primary-light);
-}
-
-[data-theme='dark'] .add-plant-pill--active {
-  background: var(--color-primary);
-  color: var(--color-text-on-dark);
-  border-color: var(--color-primary);
+.add-plant-submit:hover {
+  opacity: 0.88;
 }

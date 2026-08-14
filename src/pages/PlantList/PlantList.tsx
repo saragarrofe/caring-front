@@ -5,22 +5,20 @@ import { Link } from 'react-router-dom';
 import { PlantCard } from '@components/PlantCard/PlantCard';
 import { getWateringReminder } from '@utils/reminders';
 import { getUserPlants } from 'src/api/plants';
-import { useAuth } from 'src/context/AuthContext';
 import { Plant } from 'src/types/Plant';
 
 type WaterFilter = 'all' | 'needs-water' | 'on-track';
 
 export default function PlantList() {
-  const { token } = useAuth();
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<WaterFilter>('all');
   const [allPlants, setAllPlants] = useState<Plant[]>([]);
 
   useEffect(() => {
-    getUserPlants(token).then((plants) => {
+    getUserPlants().then((plants) => {
       if (plants) setAllPlants(plants);
     });
-  }, [token]);
+  }, [allPlants]);
 
   const filteredPlants = allPlants.filter((plant) => {
     const matchesSearch = plant.name.toLowerCase().includes(search.toLowerCase());

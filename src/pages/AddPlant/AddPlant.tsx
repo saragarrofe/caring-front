@@ -7,12 +7,10 @@ import { plantCatalog } from '../../mocks/plants';
 import { CatalogPlant, Plant, PlantLocation } from 'src/types/Plant';
 import { LOCATIONS } from 'src/config/locations';
 import PlantSuggestions from '@components/PlantSuggestions/PlantSuggestions';
-import { useAuth } from 'src/context/AuthContext';
 import { addUserPlant, getUserPlants } from 'src/api/plants';
 
 export default function AddPlant() {
   const navigate = useNavigate();
-  const { token } = useAuth();
 
   const [search, setSearch] = useState('');
   const [selectedPlant, setSelectedPlant] = useState<CatalogPlant | null>(null);
@@ -21,10 +19,10 @@ export default function AddPlant() {
   const [plants, setPlants] = useState<Plant[]>([]);
 
   useEffect(() => {
-    getUserPlants(token).then((plants) => {
+    getUserPlants().then((plants) => {
       if (plants) setPlants(plants);
     });
-  }, [token]);
+  }, [plants]);
 
   const ownedCatalogIds = new Set(plants.map((plant) => plant.catalogId));
 
@@ -44,12 +42,12 @@ export default function AddPlant() {
   };
 
   const handleAdd = async () => {
-    if (!selectedPlant || !token) return;
+    if (!selectedPlant) return;
 
     const today = new Date().toISOString().split('T')[0];
 
     try {
-      await addUserPlant(token, {
+      await addUserPlant({
         catalogId: selectedPlant.id,
         name: selectedPlant.name,
         nickname: nickname.trim() || undefined,
@@ -69,98 +67,126 @@ export default function AddPlant() {
 
   return (
     <div className="add-plant-page">
-      <header className="page-header">
+      <div className="add-plant-container">
         <div className="page-toolbar">
           <BackButton fallback="/my-plants" />
         </div>
-        <h1 className="page-title">Add a new plant</h1>
-      </header>
 
-      <div className="add-plant-layout">
-        <div className="add-plant-form">
-          {!selectedPlant ? (
-            <>
-              <div className="add-plant-field">
-                <label htmlFor="plant-search" className="add-plant-label">
-                  Search plant
-                </label>
-                <input
-                  id="plant-search"
-                  type="text"
-                  className="add-plant-input"
-                  placeholder="e.g. Monstera, Ficus, Basil..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  autoFocus
-                />
-              </div>
+        {!selectedPlant ? (
+          <>
+            <h1 className="add-plant-title">Add a new plant</h1>
+            <p className="add-plant-subtitle">Search by common name, scientific name or variety</p>
 
-              {results.length > 0 && (
-                <ul className="add-plant-results">
-                  {results.map((plant) => {
-                    const owned = ownedCatalogIds.has(plant.id);
-                    return (
-                      <li key={plant.id}>
-                        <button
-                          type="button"
-                          className={`add-plant-result${owned ? ' add-plant-result--owned' : ''}`}
-                          onClick={() => !owned && handleSelect(plant)}
-                          disabled={owned}
-                        >
-                          <div className="add-plant-result__avatar">
-                            {plant.imageUrl ? (
-                              <img src={plant.imageUrl} alt={plant.name} />
-                            ) : (
-                              <i className="bi bi-flower2" />
-                            )}
-                          </div>
-                          <div className="add-plant-result__info">
-                            <span className="add-plant-result__name">{plant.name}</span>
-                            <span className="add-plant-result__species">{plant.species}</span>
-                          </div>
-                          <div className="add-plant-result__meta">
-                            <span className="add-plant-result__light">
-                              <i className="bi bi-sun" /> {plant.light}
-                            </span>
-                            <span className="add-plant-result__freq">
-                              <i className="bi bi-droplet" /> Every {plant.wateringFrequency}d
-                            </span>
-                          </div>
-                          {owned && <span className="add-plant-result__badge">Owned</span>}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
+            <div className="add-plant-search-wrap">
+              <i className="bi bi-search add-plant-search-icon" />
+              <input
+                id="plant-search"
+                type="text"
+                className="add-plant-search-input"
+                placeholder="Search plants..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                autoFocus
+              />
+            </div>
 
-              {search.trim().length > 0 && results.length === 0 && (
-                <p className="add-plant-empty">No plants found matching "{search}"</p>
-              )}
-            </>
-          ) : (
-            <>
-              <div className="add-plant-selected">
-                <div className="add-plant-selected__avatar">
-                  {selectedPlant.imageUrl ? (
-                    <img src={selectedPlant.imageUrl} alt={selectedPlant.name} />
-                  ) : (
+            {search.trim().length === 0 && (
+              <>
+                <div className="add-plant-section-header">
+                  <span className="add-plant-section-icon">
                     <i className="bi bi-flower2" />
-                  )}
+                  </span>
+                  <span>Find the plant you're looking for</span>
                 </div>
-                <div className="add-plant-selected__info">
-                  <span className="add-plant-selected__name">{selectedPlant.name}</span>
-                  <span className="add-plant-selected__species">{selectedPlant.species}</span>
-                </div>
-                <button
-                  type="button"
-                  className="add-plant-selected__change"
-                  onClick={() => setSelectedPlant(null)}
-                >
-                  Change
-                </button>
-              </div>
+                <PlantSuggestions onSelect={handleSelect} excludeIds={ownedCatalogIds} />
+              </>
+            )}
 
+            {results.length > 0 && (
+              <ul className="add-plant-list">
+                {results.map((plant) => {
+                  const owned = ownedCatalogIds.has(plant.id);
+                  return (
+                    <li key={plant.id} className="add-plant-row-item">
+                      <button
+                        type="button"
+                        className={`add-plant-row${owned ? ' add-plant-row--owned' : ''}`}
+                        onClick={() => !owned && handleSelect(plant)}
+                        disabled={owned}
+                      >
+                        <div className="add-plant-row__avatar">
+                          {plant.imageUrl ? (
+                            <img src={plant.imageUrl} alt={plant.name} />
+                          ) : (
+                            <i className="bi bi-flower2" />
+                          )}
+                        </div>
+                        <div className="add-plant-row__info">
+                          <span className="add-plant-row__name">{plant.name}</span>
+                          <span className="add-plant-row__species">{plant.species}</span>
+                          <div className="add-plant-row__tags">
+                            <span className="add-plant-tag add-plant-tag--care">
+                              {plant.careLevel}
+                            </span>
+                            <span className="add-plant-tag add-plant-tag--icon">
+                              <i className="bi bi-sun" />
+                            </span>
+                            <span className="add-plant-tag add-plant-tag--icon">
+                              <i className="bi bi-droplet" />
+                            </span>
+                          </div>
+                        </div>
+                        {owned ? (
+                          <span className="add-plant-row__owned-badge">Owned</span>
+                        ) : (
+                          <i className="bi bi-chevron-right add-plant-row__arrow" />
+                        )}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+
+            {search.trim().length > 0 && results.length === 0 && (
+              <p className="add-plant-empty">No plants found matching "{search}"</p>
+            )}
+          </>
+        ) : (
+          <>
+            <div className="add-plant-selected-header">
+              <div className="add-plant-selected-img">
+                {selectedPlant.imageUrl ? (
+                  <img src={selectedPlant.imageUrl} alt={selectedPlant.name} />
+                ) : (
+                  <i className="bi bi-flower2" />
+                )}
+              </div>
+              <div className="add-plant-selected-info">
+                <h2 className="add-plant-selected-name">{selectedPlant.name}</h2>
+                <p className="add-plant-selected-species">{selectedPlant.species}</p>
+                <div className="add-plant-selected-tags">
+                  <span className="add-plant-tag add-plant-tag--care">
+                    {selectedPlant.careLevel}
+                  </span>
+                  <span className="add-plant-tag add-plant-tag--icon">
+                    <i className="bi bi-sun" />
+                  </span>
+                  <span className="add-plant-tag add-plant-tag--icon">
+                    <i className="bi bi-droplet" /> {selectedPlant.wateringFrequency}d
+                  </span>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="add-plant-change-btn"
+                onClick={() => setSelectedPlant(null)}
+              >
+                Change
+              </button>
+            </div>
+
+            <div className="add-plant-form-section">
               <div className="add-plant-field">
                 <label htmlFor="plant-nickname" className="add-plant-label">
                   Nickname (optional)
@@ -194,67 +220,8 @@ export default function AddPlant() {
               <button type="button" className="add-plant-submit" onClick={handleAdd}>
                 <i className="bi bi-plus-circle" /> Add to my plants
               </button>
-            </>
-          )}
-        </div>
-
-        {!selectedPlant && (
-          <aside className="add-plant-preview">
-            <PlantSuggestions onSelect={handleSelect} excludeIds={ownedCatalogIds} />
-          </aside>
-        )}
-        {selectedPlant && (
-          <aside className="add-plant-preview">
-            <div className="plant-preview-card">
-              <div className="plant-preview-card__image">
-                {selectedPlant.imageUrl ? (
-                  <img src={selectedPlant.imageUrl} alt={selectedPlant.name} />
-                ) : (
-                  <div className="plant-preview-card__image-placeholder">
-                    <i className="bi bi-flower2" />
-                  </div>
-                )}
-              </div>
-              <div className="plant-preview-card__body">
-                <h2 className="plant-preview-card__name">{selectedPlant.name}</h2>
-                <p className="plant-preview-card__species">{selectedPlant.species}</p>
-
-                <div className="plant-preview-card__badges">
-                  <span
-                    className={`plant-preview-badge plant-preview-badge--${selectedPlant.careLevel.toLowerCase()}`}
-                  >
-                    {selectedPlant.careLevel}
-                  </span>
-                  {selectedPlant.toxicToPets && (
-                    <span className="plant-preview-badge plant-preview-badge--toxic">
-                      <i className="bi bi-exclamation-triangle" /> Toxic to pets
-                    </span>
-                  )}
-                </div>
-
-                <ul className="plant-preview-card__stats">
-                  <li>
-                    <i className="bi bi-droplet-fill" />
-                    <span>
-                      Water every <strong>{selectedPlant.wateringFrequency} days</strong>
-                    </span>
-                  </li>
-                  <li>
-                    <i className="bi bi-sun-fill" />
-                    <span>
-                      Light: <strong>{selectedPlant.light}</strong>
-                    </span>
-                  </li>
-                  <li>
-                    <i className="bi bi-bar-chart-fill" />
-                    <span>
-                      Care level: <strong>{selectedPlant.careLevel}</strong>
-                    </span>
-                  </li>
-                </ul>
-              </div>
             </div>
-          </aside>
+          </>
         )}
       </div>
     </div>
