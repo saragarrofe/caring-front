@@ -6,8 +6,8 @@ import BackButton from '@components/BackButton/BackButton';
 import { plantCatalog } from '../../mocks/plants';
 import { CatalogPlant, Plant, PlantLocation } from 'src/types/Plant';
 import { LOCATIONS } from 'src/config/locations';
-import PlantSuggestions from '@components/PlantSuggestions/PlantSuggestions';
 import { addUserPlant, getUserPlants } from 'src/api/plants';
+import ListPlants from '@components/ListPlants/ListPlants';
 
 export default function AddPlant() {
   const navigate = useNavigate();
@@ -22,9 +22,13 @@ export default function AddPlant() {
     getUserPlants().then((plants) => {
       if (plants) setPlants(plants);
     });
-  }, [plants]);
+  }, []);
 
   const ownedCatalogIds = new Set(plants.map((plant) => plant.catalogId));
+
+  const isOwned = (plant: CatalogPlant) => {
+    return ownedCatalogIds.has(plant.id);
+  };
 
   const results =
     search.trim().length > 0
@@ -98,54 +102,12 @@ export default function AddPlant() {
                   </span>
                   <span>Find the plant you're looking for</span>
                 </div>
-                <PlantSuggestions onSelect={handleSelect} excludeIds={ownedCatalogIds} />
+                <ListPlants plants={plantCatalog} isOwned={isOwned} handleSelect={handleSelect} />
               </>
             )}
 
             {results.length > 0 && (
-              <ul className="add-plant-list">
-                {results.map((plant) => {
-                  const owned = ownedCatalogIds.has(plant.id);
-                  return (
-                    <li key={plant.id} className="add-plant-row-item">
-                      <button
-                        type="button"
-                        className={`add-plant-row${owned ? ' add-plant-row--owned' : ''}`}
-                        onClick={() => !owned && handleSelect(plant)}
-                        disabled={owned}
-                      >
-                        <div className="add-plant-row__avatar">
-                          {plant.imageUrl ? (
-                            <img src={plant.imageUrl} alt={plant.name} />
-                          ) : (
-                            <i className="bi bi-flower2" />
-                          )}
-                        </div>
-                        <div className="add-plant-row__info">
-                          <span className="add-plant-row__name">{plant.name}</span>
-                          <span className="add-plant-row__species">{plant.species}</span>
-                          <div className="add-plant-row__tags">
-                            <span className="add-plant-tag add-plant-tag--care">
-                              {plant.careLevel}
-                            </span>
-                            <span className="add-plant-tag add-plant-tag--icon">
-                              <i className="bi bi-sun" />
-                            </span>
-                            <span className="add-plant-tag add-plant-tag--icon">
-                              <i className="bi bi-droplet" />
-                            </span>
-                          </div>
-                        </div>
-                        {owned ? (
-                          <span className="add-plant-row__owned-badge">Owned</span>
-                        ) : (
-                          <i className="bi bi-chevron-right add-plant-row__arrow" />
-                        )}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
+              <ListPlants plants={results} isOwned={isOwned} handleSelect={handleSelect} />
             )}
 
             {search.trim().length > 0 && results.length === 0 && (

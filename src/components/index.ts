@@ -13,5 +13,4 @@ export * from './WateringForm/WateringForm';
 export * from './WateringHistory/WateringHistory';
 export * from './PlantUrgentCard/PlantUrgentCard';
 export * from './UpcomingList/UpcomingList';
-export { default as PlantSuggestions } from './PlantSuggestions/PlantSuggestions';
 export * from './CareLevelBadge/CareLevelBadge';
