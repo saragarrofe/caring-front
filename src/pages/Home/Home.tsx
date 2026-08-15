@@ -61,10 +61,6 @@ export default function Home() {
     });
   }, []);
 
-  const totalPlants = plants.length;
-  const overdueCount = urgent.filter((p) => getWateringReminder(p).status === 'overdue').length;
-  const dueCount = urgent.filter((p) => getWateringReminder(p).status === 'due').length;
-
   const today = new Date();
   const dateLabel = today.toLocaleDateString('en-US', {
     weekday: 'long',
@@ -78,29 +74,6 @@ export default function Home() {
         <h1 className="dashboard__hello">Good morning</h1>
         <p className="dashboard__date">{dateLabel}</p>
       </header>
-
-      <div className="dashboard__stats">
-        <div className="dashboard__stat">
-          <span className="dashboard__stat-value">{totalPlants}</span>
-          <span className="dashboard__stat-label">Total plants</span>
-        </div>
-        <div className="dashboard__stat">
-          <span
-            className={`dashboard__stat-value${overdueCount > 0 ? ' dashboard__stat-value--danger' : ''}`}
-          >
-            {overdueCount}
-          </span>
-          <span className="dashboard__stat-label">Overdue</span>
-        </div>
-        <div className="dashboard__stat">
-          <span
-            className={`dashboard__stat-value${dueCount > 0 ? ' dashboard__stat-value--warning' : ''}`}
-          >
-            {dueCount}
-          </span>
-          <span className="dashboard__stat-label">Water today</span>
-        </div>
-      </div>
 
       <section className="dashboard__section">
         <div className="dashboard__section-header">

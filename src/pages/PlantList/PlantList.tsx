@@ -18,7 +18,7 @@ export default function PlantList() {
     getUserPlants().then((plants) => {
       if (plants) setAllPlants(plants);
     });
-  }, [allPlants]);
+  }, []);
 
   const filteredPlants = allPlants.filter((plant) => {
     const matchesSearch = plant.name.toLowerCase().includes(search.toLowerCase());
