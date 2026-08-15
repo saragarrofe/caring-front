@@ -10,6 +10,14 @@
   top: 0;
   height: 100dvh;
   overflow: hidden;
+  isolation: isolate;
+}
+
+.plant-detail-image-col .plant-detail-section-label {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
 }
 
 .plant-detail-image {
