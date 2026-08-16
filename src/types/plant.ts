@@ -29,7 +29,7 @@ export type CatalogPlant = {
 
 export type Plant = {
   id: number;
-  catalogId: number;
+  catalogId?: number;
   nickname?: string;
   name: string;
   imageUrl?: string;

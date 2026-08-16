@@ -63,8 +63,8 @@ export default function PlantList() {
               onClick={() => setFilter(f)}
             >
               {f === 'all' && 'All'}
-              {f === 'needs-water' && '💧 Needs water'}
-              {f === 'on-track' && '✅ On track'}
+              {f === 'needs-water' && 'Needs water'}
+              {f === 'on-track' && 'On track'}
             </button>
           ))}
         </div>

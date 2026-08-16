@@ -78,7 +78,6 @@
   color: var(--color-text);
 }
 
-
 .plant-filters {
   display: flex;
   gap: 8px;
@@ -131,7 +130,6 @@
 [data-theme='dark'] .plant-list-page {
   background: var(--color-bg-darker);
 }
-
 
 [data-theme='dark'] .page-title {
   color: var(--color-text-on-dark);

@@ -16,7 +16,7 @@ export default function Home() {
     getUserPlants().then((plants) => {
       if (plants) setPlants(plants);
     });
-  }, [plants]);
+  }, []);
 
   const { urgent, upcoming } = useMemo(() => {
     const urgentList: Plant[] = [];
