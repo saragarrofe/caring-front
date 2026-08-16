@@ -46,3 +46,16 @@ export async function deleteUserPlant(plantId: number): Promise<void> {
 
   if (!response.ok) throw new Error('Failed to delete plant');
 }
+
+export async function waterPlant(note: string, date: string, plantId: number): Promise<void> {
+  if (!plantId) return;
+
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/plant/${plantId}/watering`, {
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    method: 'POST',
+    body: JSON.stringify({ date, note }),
+  });
+
+  if (!response.ok) throw new Error('Failed to post watering plant date');
+}

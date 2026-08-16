@@ -65,7 +65,7 @@ export default function PlantDetail() {
     return () => {
       document.title = previousTitle;
     };
-  }, [plantData?.name]);
+  }, [plantData, plantData?.name]);
 
   const handleWater = (note?: string) => {
     const today = new Date().toISOString().split('T')[0];
