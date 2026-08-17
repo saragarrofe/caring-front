@@ -2,12 +2,12 @@ import './PlantDetail.css';
 
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Plant, WateringEntry } from 'src/types/Plant';
+import { Plant } from 'src/types/Plant';
 import BackButton from '@components/BackButton/BackButton';
 import { WateringForm } from '@components/WateringForm/WateringForm';
 import { WateringHistory } from '@components/WateringHistory/WateringHistory';
 import { getWateringReminder } from '@utils/reminders';
-import { getPlantById, deleteUserPlant } from 'src/api/plants';
+import { getPlantById, deleteUserPlant, waterPlant } from 'src/api/plants';
 
 const LIGHT_ICON: Record<string, string> = {
   Low: 'bi-moon',
@@ -67,17 +67,23 @@ export default function PlantDetail() {
     };
   }, [plantData, plantData?.name]);
 
-  const handleWater = (note?: string) => {
+  const handleWater = async (note?: string) => {
+    if (!plantId) return;
     const today = new Date().toISOString().split('T')[0];
-    const newEntry: WateringEntry = { date: today, ...(note && { note }) };
-    setPlantData((prev) => {
-      if (!prev) return prev;
-      return {
-        ...prev,
-        lastWatered: today,
-        wateringHistory: [...(prev.wateringHistory ?? []), newEntry],
-      };
-    });
+    try {
+      await waterPlant(plantId, today, note);
+
+      setPlantData((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          lastWatered: today,
+          wateringHistory: [...(prev.wateringHistory ?? []), { date: today, note }],
+        };
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDelete = async () => {

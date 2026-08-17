@@ -7,7 +7,7 @@ import { getWateringReminder } from '@utils/reminders';
 import { addDays, daysUntil } from '@utils/dates';
 import { PlantUrgentCard } from '@components/PlantUrgentCard/PlantUrgentCard';
 import { UpcomingList } from '@components/UpcomingList/UpcomingList';
-import { getUserPlants } from 'src/api/plants';
+import { getUserPlants, waterPlant } from 'src/api/plants';
 
 export default function Home() {
   const [plants, setPlants] = useState<Plant[]>([]);
@@ -44,21 +44,27 @@ export default function Home() {
     return { urgent: urgentList, upcoming: upcomingList };
   }, [plants]);
 
-  const handleWater = useCallback((plantId: number) => {
+  const handleWater = useCallback(async (plantId: number) => {
+    if (!plantId) return;
     const today = new Date().toISOString().split('T')[0];
     const newEntry: WateringEntry = { date: today };
 
-    setPlants((prev) => {
-      const next = prev.map((p) => {
-        if (p.id !== plantId) return p;
-        return {
-          ...p,
-          lastWatered: today,
-          wateringHistory: [...(p.wateringHistory ?? []), newEntry],
-        };
+    try {
+      await waterPlant(plantId, today);
+      setPlants((prev) => {
+        const next = prev.map((p) => {
+          if (p.id !== plantId) return p;
+          return {
+            ...p,
+            lastWatered: today,
+            wateringHistory: [...(p.wateringHistory ?? []), newEntry],
+          };
+        });
+        return next;
       });
-      return next;
-    });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   const today = new Date();

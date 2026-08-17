@@ -47,7 +47,11 @@ export async function deleteUserPlant(plantId: number): Promise<void> {
   if (!response.ok) throw new Error('Failed to delete plant');
 }
 
-export async function waterPlant(note: string, date: string, plantId: number): Promise<void> {
+export async function waterPlant(
+  plantId: number | null,
+  date: string,
+  note?: string,
+): Promise<void> {
   if (!plantId) return;
 
   const response = await fetch(`${import.meta.env.VITE_API_URL}/plant/${plantId}/watering`, {
