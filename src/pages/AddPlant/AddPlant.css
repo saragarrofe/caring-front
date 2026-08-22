@@ -5,9 +5,7 @@
 }
 
 .add-plant-container {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 50px;
 }
 
 .add-plant-title {
@@ -357,4 +355,36 @@
 
 .add-plant-submit:hover {
   opacity: 0.88;
+}
+
+.add-plant-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.add-plant-list {
+  min-width: 0;
+}
+
+.add-plant-details {
+  position: sticky;
+  top: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 8%);
+}
+
+/* En móvil, el detalle vuelve a colocarse debajo de la lista. */
+@media (max-width: 900px) {
+  .add-plant-content {
+    grid-template-columns: 1fr;
+  }
+
+  .add-plant-details {
+    position: static;
+  }
 }

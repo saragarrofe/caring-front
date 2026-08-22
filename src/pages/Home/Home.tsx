@@ -27,7 +27,7 @@ export default function Home() {
       if (reminder.status === 'overdue' || reminder.status === 'due') {
         urgentList.push(plant);
       } else {
-        const nextDate = addDays(new Date(plant.lastWatered), plant.wateringFrequency);
+        const nextDate = addDays(new Date(plant.lastWatered), plant.wateringFrequency.intervalDays);
         const days = daysUntil(nextDate);
         if (days > 0 && days <= 5) {
           upcomingList.push(plant);
@@ -36,8 +36,8 @@ export default function Home() {
     }
 
     upcomingList.sort((a, b) => {
-      const daysA = daysUntil(addDays(new Date(a.lastWatered), a.wateringFrequency));
-      const daysB = daysUntil(addDays(new Date(b.lastWatered), b.wateringFrequency));
+      const daysA = daysUntil(addDays(new Date(a.lastWatered), a.wateringFrequency.intervalDays));
+      const daysB = daysUntil(addDays(new Date(b.lastWatered), b.wateringFrequency.intervalDays));
       return daysA - daysB;
     });
 

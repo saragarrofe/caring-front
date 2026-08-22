@@ -187,7 +187,7 @@ export default function PlantDetail() {
           )}
           <div className="plant-detail-tile">
             <i className="bi bi-droplet" />
-            <span>Every {plantData.wateringFrequency}d</span>
+            <span>{plantData.wateringFrequency.label}</span>
           </div>
           {plantData.location && (
             <div className="plant-detail-tile">

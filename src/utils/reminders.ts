@@ -30,14 +30,14 @@ export type Reminder = {
 };
 
 export function getHydrationPercent(plant: Plant): number {
-  const nextDate = addDays(new Date(plant.lastWatered), plant.wateringFrequency);
+  const nextDate = addDays(new Date(plant.lastWatered), plant.wateringFrequency.intervalDays);
   const daysLeft = daysUntil(nextDate);
-  if (daysLeft <= 0) return Math.max(0, Math.round((1 + daysLeft / plant.wateringFrequency) * 100));
-  return Math.min(100, Math.round((daysLeft / plant.wateringFrequency) * 100));
+  if (daysLeft <= 0) return Math.max(0, Math.round((1 + daysLeft / plant.wateringFrequency.intervalDays) * 100));
+  return Math.min(100, Math.round((daysLeft / plant.wateringFrequency.intervalDays) * 100));
 }
 
 export function getWateringReminder(plant: Plant): Reminder {
-  const nextWateringDate = addDays(new Date(plant.lastWatered), plant.wateringFrequency);
+  const nextWateringDate = addDays(new Date(plant.lastWatered), plant.wateringFrequency.intervalDays);
   const daysLeft = daysUntil(nextWateringDate);
   if (daysLeft < 0) {
     return {

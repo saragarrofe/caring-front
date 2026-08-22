@@ -18,7 +18,7 @@ export function UpcomingList({ plants }: UpcomingListProps) {
     <ul className="upcoming-list">
       {plants.map((plant) => {
         const hydration = getHydrationPercent(plant);
-        const nextDate = addDays(new Date(plant.lastWatered), plant.wateringFrequency);
+        const nextDate = addDays(new Date(plant.lastWatered), plant.wateringFrequency.intervalDays);
         const days = daysUntil(nextDate);
         const daysLabel = days === 1 ? 'tomorrow' : `in ${days} days`;
 
