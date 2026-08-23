@@ -161,10 +161,6 @@
 }
 
 @media (max-width: 480px) {
-  .dashboard {
-    padding: var(--page-padding-top) var(--page-padding-x) var(--page-padding-bottom);
-  }
-
   .dashboard__stats {
     gap: 8px;
   }
@@ -175,6 +171,10 @@
 
   .dashboard__stat-value {
     font-size: 20px;
+  }
+
+  .dashboard__section-title {
+    font-size: 15px;
   }
 }
 

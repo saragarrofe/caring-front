@@ -127,6 +127,26 @@
   }
 }
 
+@media (max-width: 480px) {
+  .page-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .plant-search {
+    margin-left: 0;
+    width: 100%;
+    order: 3;
+  }
+
+  .plant-search__input {
+    width: 100%;
+  }
+
+  .plant-list-add-btn {
+    margin-left: auto;
+  }
+}
+
 [data-theme='dark'] .plant-list-page {
   background: var(--color-bg-darker);
 }

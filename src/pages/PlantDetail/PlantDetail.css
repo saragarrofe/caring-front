@@ -274,3 +274,26 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+@media (max-width: 480px) {
+  .plant-detail-image-col {
+    height: 220px;
+  }
+
+  .plant-detail-main {
+    padding: 0 16px 80px;
+  }
+
+  .plant-detail-name {
+    font-size: 24px;
+  }
+
+  .plant-detail-species {
+    font-size: 15px;
+  }
+
+  .plant-detail-tab {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+}

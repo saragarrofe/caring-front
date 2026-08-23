@@ -74,8 +74,8 @@
   --space-lg: 24px;
   --space-xl: 32px;
 
-  --page-padding-x: 34px;
-  --page-padding-top: 34px;
+  --page-padding-x: clamp(16px, 5vw, 34px);
+  --page-padding-top: clamp(20px, 4vw, 34px);
   --page-padding-bottom: 80px;
 
   --radius-sm: 0.25rem;
