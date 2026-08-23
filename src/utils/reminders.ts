@@ -1,43 +1,20 @@
 import { Plant } from 'src/types/Plant';
 import { addDays, daysUntil } from './dates';
-
-export type ReminderTone = 'info' | 'warning' | 'muted' | 'success' | 'danger';
-
-export type ReminderIcon =
-  | 'droplet'
-  | 'leaf'
-  | 'arrows-repeat'
-  | 'scissors'
-  | 'sun'
-  | 'thermometer-half';
-export type ReminderKind =
-  | 'watering'
-  | 'fertilizing'
-  | 'repotting'
-  | 'pruning'
-  | 'light'
-  | 'temperature';
-
-export type ReminderStatus = 'upcoming' | 'due' | 'overdue' | 'completed';
-
-export type Reminder = {
-  kind: ReminderKind;
-  label: string;
-  tone: ReminderTone;
-  status: ReminderStatus;
-  icon: ReminderIcon;
-  date: string;
-};
+import { Reminder } from 'src/types/Reminder';
 
 export function getHydrationPercent(plant: Plant): number {
   const nextDate = addDays(new Date(plant.lastWatered), plant.wateringFrequency.intervalDays);
   const daysLeft = daysUntil(nextDate);
-  if (daysLeft <= 0) return Math.max(0, Math.round((1 + daysLeft / plant.wateringFrequency.intervalDays) * 100));
+  if (daysLeft <= 0)
+    return Math.max(0, Math.round((1 + daysLeft / plant.wateringFrequency.intervalDays) * 100));
   return Math.min(100, Math.round((daysLeft / plant.wateringFrequency.intervalDays) * 100));
 }
 
 export function getWateringReminder(plant: Plant): Reminder {
-  const nextWateringDate = addDays(new Date(plant.lastWatered), plant.wateringFrequency.intervalDays);
+  const nextWateringDate = addDays(
+    new Date(plant.lastWatered),
+    plant.wateringFrequency.intervalDays,
+  );
   const daysLeft = daysUntil(nextWateringDate);
   if (daysLeft < 0) {
     return {

@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   border-radius: 16px;
-  overflow: hidden;
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   transition:
@@ -10,6 +9,7 @@
     box-shadow 0.2s ease;
   height: 100%;
   color: var(--color-text);
+  position: relative;
 }
 
 .plant-card:hover {
@@ -27,6 +27,7 @@
   aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--color-bg-card-green);
+  border-radius: 16px 16px 0 0;
 }
 
 .plant-card__image {
@@ -180,6 +181,41 @@
 .plant-card__meta i {
   font-size: 12px;
   color: var(--color-accent);
+}
+
+.plant-card--happy {
+  border-color: rgba(95, 184, 90, 0.35);
+}
+.plant-card--thirsty {
+  border-color: rgba(212, 155, 42, 0.35);
+}
+.plant-card--wilting {
+  border-color: rgba(186, 26, 26, 0.25);
+}
+
+.plant-card__shine {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    108deg,
+    transparent 28%,
+    rgba(255, 255, 255, 0.55) 48%,
+    transparent 68%
+  );
+  background-size: 250% 100%;
+  background-position: 200% center;
+  animation: shine-sweep 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
+}
+
+@keyframes shine-sweep {
+  from {
+    background-position: 200% center;
+  }
+  to {
+    background-position: -60% center;
+  }
 }
 
 @media (max-width: 480px) {

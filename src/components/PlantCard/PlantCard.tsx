@@ -34,8 +34,6 @@ export function PlantCard({ plant }: PlantCardProps) {
   const hydration = getHydrationPercent(plant);
   const status = STATUS_CONFIG[reminder.status];
 
-  console.log('careLevel', plant.careLevel);
-
   const daysSinceWatered = -daysUntil(plant.lastWatered);
   const lastWateredLabel =
     daysSinceWatered === 0
@@ -44,10 +42,13 @@ export function PlantCard({ plant }: PlantCardProps) {
         ? 'Yesterday'
         : `${daysSinceWatered} days ago`;
 
+  const mood = hydration >= 60 ? 'happy' : hydration >= 25 ? 'thirsty' : 'wilting';
+  const justWatered = daysSinceWatered === 0;
+
   return (
     <Link
       to={`/my-plants/${plant.id}`}
-      className="plant-card text-decoration-none"
+      className={`plant-card plant-card--${mood}${justWatered ? ' plant-card--just-watered' : ''} text-decoration-none`}
       aria-label={`${plant.name} — ${status.label}`}
     >
       <div className="plant-card__image-wrap">
@@ -63,6 +64,7 @@ export function PlantCard({ plant }: PlantCardProps) {
             <i className="bi bi-flower2" />
           </div>
         )}
+        {justWatered && <div className="plant-card__shine" aria-hidden="true" />}
         <span className={`plant-card__status plant-card__status--${status.class}`}>
           <i className={`bi ${status.icon}`} />
           {status.label}
