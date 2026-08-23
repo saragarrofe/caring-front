@@ -142,13 +142,6 @@ export default function AddPlant() {
                       </span>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    className="add-plant-change-btn"
-                    onClick={() => setSelectedPlant(null)}
-                  >
-                    Change
-                  </button>
                 </div>
 
                 <div className="add-plant-form-section">

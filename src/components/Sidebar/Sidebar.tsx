@@ -18,24 +18,20 @@ export function Sidebar() {
       </NavLink>
 
       <div className="sidebar__nav">
-        <NavLink to="/home" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+        <NavLink
+          to="/home"
+          className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}
+        >
           <i className="bi bi-house" aria-hidden="true" />
           <span>Dashboard</span>
         </NavLink>
 
-        <NavLink to="/my-plants" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+        <NavLink
+          to="/my-plants"
+          className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}
+        >
           <i className="bi bi-grid-fill" aria-hidden="true" />
           <span>My Plants</span>
-        </NavLink>
-
-        <NavLink to="/schedule" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-          <i className="bi bi-calendar3" aria-hidden="true" />
-          <span>Schedule</span>
-        </NavLink>
-
-        <NavLink to="/discover" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-          <i className="bi bi-book" aria-hidden="true" />
-          <span>Discover</span>
         </NavLink>
       </div>
     </nav>

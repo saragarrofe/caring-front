@@ -4,6 +4,7 @@ import { apiLogin, apiLogout, getMe } from 'src/api/auth';
 export type User = {
   id: number;
   email: string;
+  name?: string;
 };
 
 type AuthContextValue = {
