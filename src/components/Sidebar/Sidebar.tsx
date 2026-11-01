@@ -1,39 +1,23 @@
-import '@components/Sidebar/Sidebar.css';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+
+const items = [
+  { to: '/', label: 'Mi jardín', icon: '' },
+  { to: '/coleccion', label: 'Colección', icon: '🃏' },
+  { to: '/explora', label: 'El botánico', icon: '' },
+] as const;
 
 export function Sidebar() {
-  const { user } = useAuth();
-
   return (
-    <nav className="sidebar d-none d-md-flex" role="navigation" aria-label="Sidebar navigation">
-      <NavLink to="/profile" className="sidebar__header">
-        <div className="sidebar__avatar">
-          <i className="bi bi-person-fill" aria-hidden="true" />
-        </div>
-        <div>
-          <div className="sidebar__username">{user?.name ?? 'Guest'}</div>
-          <div className="sidebar__profile-link">View profile</div>
-        </div>
-      </NavLink>
-
-      <div className="sidebar__nav">
+    <nav className="fixed bottom-4 left-1/2 z-40 flex -translate-x-1/2 gap-1 rounded-full bg-card/90 p-1.5 shadow-soft backdrop-blur">
+      {items.map((i) => (
         <NavLink
-          to="/home"
-          className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}
+          key={i.to}
+          to={i.to}
+          className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-all hover:text-foreground data-[status=active]:bg-primary data-[status=active]:text-primary-foreground"
         >
-          <i className="bi bi-house" aria-hidden="true" />
-          <span>Dashboard</span>
+          <span>{i.label}</span>
         </NavLink>
-
-        <NavLink
-          to="/my-plants"
-          className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}
-        >
-          <i className="bi bi-grid-fill" aria-hidden="true" />
-          <span>My Plants</span>
-        </NavLink>
-      </div>
+      ))}
     </nav>
   );
 }

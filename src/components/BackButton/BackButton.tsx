@@ -1,6 +1,5 @@
-import './BackButton.css';
-
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
 type BackButtonProps = {
   fallback?: string;
@@ -31,12 +30,12 @@ export default function BackButton({
   return (
     <button
       type="button"
-      className={`btn-icon ${className}`}
+      className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border-0 bg-transparent text-[var(--color-text)] [[data-theme='dark']_&]:text-[var(--color-text-on-dark)] ${className}`}
       aria-label={ariaLabel}
       onClick={handleClick}
       disabled={disabledIfNoBack && !canGoBack}
     >
-      <i className="bi bi-arrow-left" />
+      <ArrowLeft size={20} />
     </button>
   );
 }

@@ -23,7 +23,7 @@ export function WateringForm({ onWater }: WateringFormProps) {
   if (!showForm) {
     return (
       <button
-        className="btn btn-success w-100 mb-4"
+        className="mb-6 w-full rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-opacity hover:opacity-90"
         onClick={() => setShowForm(true)}
       >
         💧 Water now
@@ -32,19 +32,25 @@ export function WateringForm({ onWater }: WateringFormProps) {
   }
 
   return (
-    <div className="water-form mb-4">
+    <div className="water-form mb-6">
       <input
         type="text"
-        className="form-control mb-2"
+        className="mb-2 w-full rounded-md border border-border bg-background px-3 py-2 text-sm"
         placeholder="Optional note (e.g. added fertilizer)"
         value={note}
         onChange={(e) => setNote(e.target.value)}
       />
-      <div className="d-flex gap-2">
-        <button className="btn btn-success flex-grow-1" onClick={handleConfirm}>
+      <div className="flex gap-2">
+        <button
+          className="flex-1 rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-opacity hover:opacity-90"
+          onClick={handleConfirm}
+        >
           Confirm watering
         </button>
-        <button className="btn btn-outline-secondary" onClick={handleCancel}>
+        <button
+          className="rounded-lg border border-border px-4 py-2 font-medium text-foreground transition-colors hover:bg-muted"
+          onClick={handleCancel}
+        >
           Cancel
         </button>
       </div>

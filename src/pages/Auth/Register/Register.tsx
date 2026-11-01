@@ -1,4 +1,3 @@
-import './../Auth.css';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { RegisterErrors } from 'src/types/LogIn';
@@ -55,27 +54,34 @@ export default function Register() {
   const { name, email, password, confirmPassword } = values;
   const isDisabled = !name || !email || !password || !confirmPassword || isSubmitting;
 
+  const inputWrapBase =
+    'relative flex items-center rounded-[12px] border border-[var(--color-border)] bg-[var(--color-bg)] py-[12px] pr-[14px] pl-[44px] shadow-[var(--shadow)]';
+
   return (
-    <main className="auth">
+    <main className="grid min-h-[100svh] grid-rows-[auto_1fr_auto] bg-[var(--color-bg)]">
       <div
-        className="auth-hero"
+        className="h-[220px] max-[360px]:h-[190px] bg-[var(--color-bg-hero)] bg-cover bg-center bg-no-repeat [clip-path:ellipse(120%_70%_at_50%_0%)]"
         style={{
           backgroundImage: "url('/assets/hero-plants.jpg')",
         }} // TODO: change
         aria-hidden
       />
 
-      <section className="auth-card">
-        <h1 className="auth-title">Create Account</h1>
-        <p className="auth-sub">Join Caring and start your plant care journey</p>
+      <section className="mx-auto w-[min(92%,420px)] text-center">
+        <h1 className="mt-[12px] mb-[4px] text-[28px] font-bold text-[var(--color-primary)]">
+          Create Account
+        </h1>
+        <p className="mt-0 mb-[20px] text-[var(--color-text)] opacity-85">
+          Join Caring and start your plant care journey
+        </p>
 
         <form onSubmit={handleSubmit} noValidate>
-          <div className="mb-16">
-            <label htmlFor="name" className="form-label sr-only">
+          <div className="mb-[16px]">
+            <label htmlFor="name" className="sr-only">
               Name
             </label>
-            <div className={`input ${errors.name ? 'is-invalid' : ''}`}>
-              <span className="input-icon" aria-hidden>
+            <div className={`${inputWrapBase} ${errors.name ? 'border-[var(--color-danger)]' : ''}`}>
+              <span className="absolute left-[14px] text-[var(--color-text-faint)]" aria-hidden>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
                   <path
@@ -95,21 +101,24 @@ export default function Register() {
                 onChange={handleChange}
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? 'name-error' : undefined}
+                className="w-full border-0 text-[16px] text-[var(--color-text)] outline-0"
               />
             </div>
             {errors.name && (
-              <div id="name-error" className="invalid">
+              <div id="name-error" className="mt-[6px] text-[12px] text-[var(--color-danger)]">
                 {errors.name}
               </div>
             )}
           </div>
 
-          <div className="mb-16">
-            <label htmlFor="email" className="form-label sr-only">
+          <div className="mb-[16px]">
+            <label htmlFor="email" className="sr-only">
               Email
             </label>
-            <div className={`input ${errors.email ? 'is-invalid' : ''}`}>
-              <span className="input-icon" aria-hidden>
+            <div
+              className={`${inputWrapBase} ${errors.email ? 'border-[var(--color-danger)]' : ''}`}
+            >
+              <span className="absolute left-[14px] text-[var(--color-text-faint)]" aria-hidden>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path d="M4 6h16v12H4z" stroke="currentColor" strokeWidth="1.5" />
                   <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="1.5" fill="none" />
@@ -124,21 +133,24 @@ export default function Register() {
                 onChange={handleChange}
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? 'email-error' : undefined}
+                className="w-full border-0 text-[16px] text-[var(--color-text)] outline-0"
               />
             </div>
             {errors.email && (
-              <div id="email-error" className="invalid">
+              <div id="email-error" className="mt-[6px] text-[12px] text-[var(--color-danger)]">
                 {errors.email}
               </div>
             )}
           </div>
 
-          <div className="mb-16">
-            <label htmlFor="password" className="form-label sr-only">
+          <div className="mb-[16px]">
+            <label htmlFor="password" className="sr-only">
               Password
             </label>
-            <div className={`input ${errors.password ? 'is-invalid' : ''}`}>
-              <span className="input-icon" aria-hidden>
+            <div
+              className={`${inputWrapBase} ${errors.password ? 'border-[var(--color-danger)]' : ''}`}
+            >
+              <span className="absolute left-[14px] text-[var(--color-text-faint)]" aria-hidden>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <rect
                     x="4"
@@ -162,21 +174,24 @@ export default function Register() {
                 minLength={6}
                 aria-invalid={!!errors.password}
                 aria-describedby={errors.password ? 'password-error' : undefined}
+                className="w-full border-0 text-[16px] text-[var(--color-text)] outline-0"
               />
             </div>
             {errors.password && (
-              <div id="password-error" className="invalid">
+              <div id="password-error" className="mt-[6px] text-[12px] text-[var(--color-danger)]">
                 {errors.password}
               </div>
             )}
           </div>
 
-          <div className="mb-16">
-            <label htmlFor="confirmPassword" className="form-label sr-only">
+          <div className="mb-[16px]">
+            <label htmlFor="confirmPassword" className="sr-only">
               Confirm password
             </label>
-            <div className={`input ${errors.confirmPassword ? 'is-invalid' : ''}`}>
-              <span className="input-icon" aria-hidden>
+            <div
+              className={`${inputWrapBase} ${errors.confirmPassword ? 'border-[var(--color-danger)]' : ''}`}
+            >
+              <span className="absolute left-[14px] text-[var(--color-text-faint)]" aria-hidden>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <rect
                     x="4"
@@ -199,23 +214,31 @@ export default function Register() {
                 onChange={handleChange}
                 aria-invalid={!!errors.confirmPassword}
                 aria-describedby={errors.confirmPassword ? 'confirmPassword-error' : undefined}
+                className="w-full border-0 text-[16px] text-[var(--color-text)] outline-0"
               />
             </div>
             {errors.confirmPassword && (
-              <div id="confirmPassword-error" className="invalid">
+              <div
+                id="confirmPassword-error"
+                className="mt-[6px] text-[12px] text-[var(--color-danger)]"
+              >
                 {errors.confirmPassword}
               </div>
             )}
           </div>
 
-          <button type="submit" className="btn-primary" disabled={isDisabled}>
+          <button
+            type="submit"
+            className="h-[56px] w-full rounded-full border-0 bg-[var(--color-primary)] text-[18px] font-semibold text-[var(--color-bg)] shadow-[var(--shadow)] transition-[transform,filter] duration-150 ease-in disabled:opacity-60 not-disabled:hover:brightness-[0.98] not-disabled:active:translate-y-px"
+            disabled={isDisabled}
+          >
             {isSubmitting ? 'Creating...' : 'Create account'}
           </button>
         </form>
 
-        <p className="auth-footer">
+        <p className="mt-[18px] mb-[24px] text-[var(--color-text-muted)]">
           Already have an account?{' '}
-          <Link to="/login" className="link-accent">
+          <Link to="/login" className="text-[var(--color-primary)] no-underline hover:underline">
             Log In
           </Link>
         </p>

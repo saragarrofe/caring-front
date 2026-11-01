@@ -8,7 +8,6 @@ export * from './Navbar/Navbar';
 export * from './PlantCard/PlantCard';
 export * from './Profile/ProfileActions';
 export * from './Profile/ProfileHeader';
-export * from './Reminder/Reminder';
 export * from './WateringForm/WateringForm';
 export * from './WateringHistory/WateringHistory';
 export * from './PlantUrgentCard/PlantUrgentCard';

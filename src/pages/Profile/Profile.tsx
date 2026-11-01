@@ -25,7 +25,7 @@ export default function Profile() {
   };
 
   return (
-    <main className="container py-3">
+    <main className="mx-auto w-full max-w-2xl px-4 py-4">
       <ProfileHeader name={user.name} avatarUrl={user.avatarUrl} />
       <ProfileActions
         notificationsEnabled={notificationsEnabled}

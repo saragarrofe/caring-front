@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './Navbar.css';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { Navbar, Nav, Container, Form, FormControl } from 'react-bootstrap';
+import { User } from 'lucide-react';
 
 export function NavbarComponent() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,40 +15,47 @@ export function NavbarComponent() {
   };
 
   return (
-    <Navbar expand="lg" className="navbar d-none d-md-flex">
-      <Container>
-
-        <Navbar.Brand as={NavLink} to="/" end>
+    <nav className="hidden bg-[var(--color-bg-dark)] [[data-theme='dark']_&]:border-b [[data-theme='dark']_&]:border-white/[0.06] [[data-theme='dark']_&]:bg-[var(--color-bg-darker)] md:block">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <NavLink to="/" end>
           <img src="logo.png" alt="Logo" />
-        </Navbar.Brand>
+        </NavLink>
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link as={NavLink} className="nav-link" to="/discover">
-              Discover
-            </Nav.Link>
+        <div className="ml-auto flex items-center gap-2">
+          <NavLink
+            className={({ isActive }) =>
+              `mr-4 text-[22px] text-[var(--color-bg)] no-underline hover:underline ${isActive ? 'font-semibold' : ''}`
+            }
+            to="/discover"
+          >
+            Discover
+          </NavLink>
 
-            <Nav.Link as={NavLink} className="nav-link" to="/my-plants">
-              My plants
-            </Nav.Link>
+          <NavLink
+            className={({ isActive }) =>
+              `mr-4 text-[22px] text-[var(--color-bg)] no-underline hover:underline ${isActive ? 'font-semibold' : ''}`
+            }
+            to="/my-plants"
+          >
+            My plants
+          </NavLink>
 
-            <Form className="d-flex" onSubmit={handleSearch}>
-              <FormControl
-                type="search"
-                placeholder="Search plants..."
-                className="me-2"
-                aria-label="Search"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </Form>
-            <Nav.Link as={Link} to="/login" className="nav-link">
-              <i className="bi bi-person" style={{ fontSize: '1.5rem', color: 'white' }}></i>
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          <form className="flex" onSubmit={handleSearch}>
+            <input
+              type="search"
+              placeholder="Search plants..."
+              className="mr-2 rounded-md border border-border bg-background px-3 py-1.5 text-sm"
+              aria-label="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </form>
+
+          <Link to="/login" className="mr-4 text-[22px] text-[var(--color-bg)] no-underline hover:underline">
+            <User size={24} color="white" />
+          </Link>
+        </div>
+      </div>
+    </nav>
   );
 }

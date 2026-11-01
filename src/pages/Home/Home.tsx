@@ -1,7 +1,6 @@
-import './Home.css';
-
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { AlertTriangle, ChevronRight, CalendarDays } from 'lucide-react';
 import { Plant, WateringEntry } from 'src/types/Plant';
 import { getWateringReminder } from '@utils/reminders';
 import { addDays, daysUntil } from '@utils/dates';
@@ -75,44 +74,55 @@ export default function Home() {
   });
 
   return (
-    <div className="dashboard">
-      <header className="dashboard__greeting">
-        <h1 className="dashboard__hello">Good morning</h1>
-        <p className="dashboard__date">{dateLabel}</p>
+    <div className="px-[clamp(16px,5vw,34px)] pt-[clamp(20px,4vw,34px)] pb-20">
+      <header className="mb-6">
+        <h1 className="m-0 text-[clamp(22px,4vw,28px)] font-extrabold tracking-[-0.02em] text-[var(--color-text)]">
+          Good morning
+        </h1>
+        <p className="mt-1 mb-0 text-sm text-[var(--color-text-muted)]">{dateLabel}</p>
       </header>
 
-      <section className="dashboard__section">
-        <div className="dashboard__section-header">
-          <h2 className="dashboard__section-title">
-            <i className="bi bi-exclamation-triangle" />
+      <section className="mb-7">
+        <div className="mb-[14px] flex items-center justify-between">
+          <h2 className="m-0 flex items-center gap-2 text-[17px] font-bold text-[var(--color-text)]">
+            <AlertTriangle size={18} className="text-[var(--color-primary)]" />
             Needs attention
           </h2>
-          <Link to="/my-plants" className="dashboard__section-link">
-            View all <i className="bi bi-chevron-right" />
+          <Link
+            to="/my-plants"
+            className="flex items-center gap-1 text-[13px] font-semibold text-[var(--color-primary)] no-underline hover:text-[var(--color-primary-dark)]"
+          >
+            View all <ChevronRight size={16} />
           </Link>
         </div>
 
         {urgent.length > 0 ? (
-          <div className="dashboard__urgent-scroll">
+          <div className="flex snap-x snap-mandatory gap-[14px] overflow-x-auto pb-2">
             {urgent.map((plant) => (
-              <PlantUrgentCard key={plant.id} plant={plant} onWater={handleWater} />
+              <div key={plant.id} className="snap-start">
+                <PlantUrgentCard plant={plant} onWater={handleWater} />
+              </div>
             ))}
           </div>
         ) : (
-          <div className="dashboard__all-good">
-            <span className="dashboard__all-good-icon">&#127793;</span>
-            <div className="dashboard__all-good-text">
-              <p className="dashboard__all-good-title">All plants are happy!</p>
-              <p className="dashboard__all-good-sub">No watering needed right now.</p>
+          <div className="flex items-center gap-3 rounded-[14px] border border-[var(--color-border-light)] bg-[var(--color-primary-bg)] p-5">
+            <span className="text-[28px] leading-none">&#127793;</span>
+            <div className="flex flex-col gap-0.5">
+              <p className="m-0 text-[15px] font-bold text-[var(--color-text)]">
+                All plants are happy!
+              </p>
+              <p className="m-0 text-[13px] text-[var(--color-text-muted)]">
+                No watering needed right now.
+              </p>
             </div>
           </div>
         )}
       </section>
 
-      <section className="dashboard__section">
-        <div className="dashboard__section-header">
-          <h2 className="dashboard__section-title">
-            <i className="bi bi-calendar-event" />
+      <section className="mb-7">
+        <div className="mb-[14px] flex items-center justify-between">
+          <h2 className="m-0 flex items-center gap-2 text-[17px] font-bold text-[var(--color-text)]">
+            <CalendarDays size={18} className="text-[var(--color-primary)]" />
             Upcoming this week
           </h2>
         </div>

@@ -1,5 +1,3 @@
-import './../Auth.css';
-
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from 'src/context/AuthContext';
@@ -49,21 +47,31 @@ export default function Login() {
 
   const isDisabled = !email || !password || isSubmitting;
 
-  return (
-    <main className="auth">
-      <div className="auth-hero" aria-hidden />
+  const inputWrapBase =
+    'relative flex items-center rounded-[12px] border border-[var(--color-border)] bg-[var(--color-bg)] py-[12px] pr-[14px] pl-[44px] shadow-[var(--shadow)]';
 
-      <section className="auth-card">
-        <h1 className="auth-title">Welcome back!</h1>
-        <p className="auth-sub">Log in to your account</p>
+  return (
+    <main className="grid min-h-[100svh] grid-rows-[auto_1fr_auto] bg-[var(--color-bg)]">
+      <div
+        className="h-[220px] max-[360px]:h-[190px] bg-[var(--color-bg-hero)] bg-cover bg-center bg-no-repeat [clip-path:ellipse(120%_70%_at_50%_0%)]"
+        aria-hidden
+      />
+
+      <section className="mx-auto w-[min(92%,420px)] text-center">
+        <h1 className="mt-[12px] mb-[4px] text-[28px] font-bold text-[var(--color-primary)]">
+          Welcome back!
+        </h1>
+        <p className="mt-0 mb-[20px] text-[var(--color-text)] opacity-85">Log in to your account</p>
 
         <form onSubmit={handleSubmit} noValidate>
-          <div className="mb-16">
-            <label htmlFor="email" className="form-label sr-only">
+          <div className="mb-[16px]">
+            <label htmlFor="email" className="sr-only">
               Email
             </label>
-            <div className={`input ${errors.email ? 'is-invalid' : ''}`}>
-              <span className="input-icon" aria-hidden>
+            <div
+              className={`${inputWrapBase} ${errors.email ? 'border-[var(--color-danger)]' : ''}`}
+            >
+              <span className="absolute left-[14px] text-[var(--color-text-faint)]" aria-hidden>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path d="M4 6h16v12H4z" stroke="currentColor" strokeWidth="1.5" />
                   <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="1.5" fill="none" />
@@ -77,21 +85,24 @@ export default function Login() {
                 onChange={handleOnChangeEmail}
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? 'email-error' : undefined}
+                className="w-full border-0 text-[16px] text-[var(--color-text)] outline-0"
               />
             </div>
             {errors.email && (
-              <div id="email-error" className="invalid">
+              <div id="email-error" className="mt-[6px] text-[12px] text-[var(--color-danger)]">
                 {errors.email}
               </div>
             )}
           </div>
 
-          <div className="mb-8">
-            <label htmlFor="password" className="form-label sr-only">
+          <div className="mb-[8px]">
+            <label htmlFor="password" className="sr-only">
               Password
             </label>
-            <div className={`input ${errors.password ? 'is-invalid' : ''}`}>
-              <span className="input-icon" aria-hidden>
+            <div
+              className={`${inputWrapBase} ${errors.password ? 'border-[var(--color-danger)]' : ''}`}
+            >
+              <span className="absolute left-[14px] text-[var(--color-text-faint)]" aria-hidden>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <rect
                     x="4"
@@ -114,41 +125,55 @@ export default function Login() {
                 minLength={6}
                 aria-invalid={!!errors.password}
                 aria-describedby={errors.password ? 'password-error' : undefined}
+                className="w-full border-0 text-[16px] text-[var(--color-text)] outline-0"
               />
             </div>
             {errors.password && (
-              <div id="password-error" className="invalid">
+              <div id="password-error" className="mt-[6px] text-[12px] text-[var(--color-danger)]">
                 {errors.password}
               </div>
             )}
           </div>
 
-          <div className="row-between mb-16">
-            <label className="remember">
+          <div className="mb-[16px] flex items-center justify-between gap-[12px]">
+            <label className="inline-flex cursor-pointer items-center gap-[10px] text-[var(--color-text-muted)] select-none">
               <input
                 type="checkbox"
                 checked={remember}
                 onChange={(e) => setRemember(e.target.checked)}
+                className="peer hidden"
               />
-              <span className="check" aria-hidden />
+              <span
+                className="relative inline-block h-[18px] w-[18px] rounded-full border-2 border-[var(--color-primary)] peer-checked:bg-[var(--color-primary)] peer-checked:after:absolute peer-checked:after:inset-0 peer-checked:after:bg-[var(--color-bg)] peer-checked:after:content-[''] peer-checked:after:[mask:url('data:image/svg+xml;utf8,<svg_xmlns=%22http://www.w3.org/2000/svg%22_width=%2218%22_height=%2218%22><path_d=%22M4_9.5_8_13l6-8%22_stroke=%22white%22_stroke-width=%222%22_fill=%22none%22_stroke-linecap=%22round%22_stroke-linejoin=%22round%22/></svg>')_center/12px_12px_no-repeat]"
+                aria-hidden
+              />
               <span>Remember me</span>
             </label>
 
-            <Link className="link-muted" to="/forgot-password">
+            <Link
+              className="text-[var(--color-text-muted)] no-underline hover:underline"
+              to="/forgot-password"
+            >
               Forget Password?
             </Link>
           </div>
 
-          {errors.form && <div className="invalid mb-8">{errors.form}</div>}
+          {errors.form && (
+            <div className="mb-[8px] text-[12px] text-[var(--color-danger)]">{errors.form}</div>
+          )}
 
-          <button type="submit" className="btn-primary" disabled={isDisabled}>
+          <button
+            type="submit"
+            className="h-[56px] w-full rounded-full border-0 bg-[var(--color-primary)] text-[18px] font-semibold text-[var(--color-bg)] shadow-[var(--shadow)] transition-[transform,filter] duration-150 ease-in disabled:opacity-60 not-disabled:hover:brightness-[0.98] not-disabled:active:translate-y-px"
+            disabled={isDisabled}
+          >
             {isSubmitting ? 'Logging in…' : 'Log In'}
           </button>
         </form>
 
-        <p className="auth-footer">
+        <p className="mt-[18px] mb-[24px] text-[var(--color-text-muted)]">
           Don’t have an account?{' '}
-          <Link to="/register" className="link-accent">
+          <Link to="/register" className="text-[var(--color-primary)] no-underline hover:underline">
             Sign Up
           </Link>
         </p>

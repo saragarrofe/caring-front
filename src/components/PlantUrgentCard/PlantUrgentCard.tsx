@@ -1,6 +1,5 @@
-import './PlantUrgentCard.css';
-
 import { Link } from 'react-router-dom';
+import { AlertCircle, Droplet, Flower2 } from 'lucide-react';
 import { Plant } from 'src/types/Plant';
 import { getWateringReminder } from '@utils/reminders';
 import { daysUntil } from '@utils/dates';
@@ -24,51 +23,61 @@ export function PlantUrgentCard({ plant, onWater }: PlantUrgentCardProps) {
   const isDanger = reminder.status === 'overdue';
 
   return (
-    <div className="urgent-card">
+    <div className="group flex min-w-[220px] max-w-[240px] shrink-0 flex-col overflow-hidden rounded-[16px] border border-[var(--color-border)] bg-[var(--color-bg)] transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-[3px] hover:shadow-[var(--shadow-lg)]">
       <Link
         to={`/my-plants/${plant.id}`}
-        className="urgent-card__link"
+        className="flex flex-col text-inherit no-underline"
         aria-label={`${plant.name} — ${reminder.label}`}
       >
-        <div className="urgent-card__image-wrap">
+        <div className="aspect-[16/10] overflow-hidden bg-[var(--color-bg-card-green)]">
           {plant.imageUrl ? (
             <img
               src={plant.imageUrl}
               alt={plant.name}
-              className="urgent-card__image"
+              className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
               loading="lazy"
             />
           ) : (
-            <div className="urgent-card__image-placeholder">
-              <i className="bi bi-flower2" />
+            <div className="flex h-full w-full items-center justify-center text-[var(--color-accent)]">
+              <Flower2 size={32} />
             </div>
           )}
         </div>
 
-        <div className="urgent-card__info">
-          <h3 className="urgent-card__name">{plant.name}</h3>
-          <p className="urgent-card__species">{plant.species}</p>
+        <div className="flex flex-col gap-[4px] px-[14px] pt-[12px] pb-[8px]">
+          <h3 className="m-0 overflow-hidden text-ellipsis whitespace-nowrap text-[15px] font-bold text-[var(--color-text)]">
+            {plant.name}
+          </h3>
+          <p className="m-0 text-[12px] italic text-[var(--color-text-muted)]">{plant.species}</p>
           <span
-            className={`urgent-card__badge urgent-card__badge--${isDanger ? 'danger' : 'warning'}`}
+            className={`mt-[4px] inline-flex w-fit items-center gap-[4px] rounded-[20px] px-[8px] py-[3px] text-[11px] font-semibold ${
+              isDanger
+                ? 'border border-[rgba(239,83,80,0.2)] bg-[rgba(239,83,80,0.12)] text-[var(--color-danger-dark)]'
+                : 'border border-[rgba(178,106,0,0.2)] bg-[rgba(178,106,0,0.12)] text-[var(--color-warning)]'
+            }`}
           >
-            <i className={`bi ${isDanger ? 'bi-exclamation-circle-fill' : 'bi-droplet-fill'}`} />
+            {isDanger ? (
+              <AlertCircle size={11} />
+            ) : (
+              <Droplet size={11} fill="currentColor" />
+            )}
             {reminder.label}
           </span>
-          <span className="urgent-card__meta">
-            <i className="bi bi-droplet" /> {lastWateredLabel}
+          <span className="mt-[2px] inline-flex items-center gap-[4px] text-[11px] text-[var(--color-text-subtle)]">
+            <Droplet size={12} className="text-[var(--color-accent)]" /> {lastWateredLabel}
           </span>
         </div>
       </Link>
 
       <button
-        className="urgent-card__water-btn"
+        className="mx-[14px] mt-[8px] mb-[14px] flex cursor-pointer items-center justify-center gap-[6px] rounded-[10px] border-none bg-[var(--color-primary)] p-[10px] text-[13px] font-semibold text-[var(--color-bg)] transition-[background,transform] duration-150 hover:-translate-y-[1px] hover:bg-[var(--color-primary-dark)] active:translate-y-0"
         onClick={(e) => {
           e.stopPropagation();
           onWater(plant.id);
         }}
         aria-label={`Water ${plant.name}`}
       >
-        <i className="bi bi-droplet-fill" />
+        <Droplet size={14} fill="currentColor" />
         Water now
       </button>
     </div>
