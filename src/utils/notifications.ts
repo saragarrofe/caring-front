@@ -1,6 +1,6 @@
-import { Plant } from 'src/types/Plant';
+import type { Plant } from '@/types/Plant';
 import { getWateringReminder } from './reminders';
-import { Notification } from 'src/types/Notification';
+import type { Notification } from '@/types/Notification';
 
 export function generateNotifications(plants: Plant[]): Notification[] {
   const notifications: Notification[] = [];

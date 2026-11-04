@@ -1,10 +1,28 @@
+import { cn } from '@/lib/utils';
+import { cva } from 'class-variance-authority';
 import { NavLink } from 'react-router-dom';
 
 const items = [
-  { to: '/', label: 'Mi jardín', icon: '' },
-  { to: '/coleccion', label: 'Colección', icon: '🃏' },
+  { to: '/home', label: 'Mi jardín', icon: '' },
+  { to: '/my-plants', label: 'Colección', icon: '🃏' },
   { to: '/explora', label: 'El botánico', icon: '' },
+  { to: '/profile', label: 'Perfil', icon: '' },
 ] as const;
+
+const sidebarLinkVariants = cva(
+  'flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all active:scale-95',
+  {
+    variants: {
+      status: {
+        active: 'bg-primary text-primary-foreground shadow-sm font-semibold',
+        inactive: 'text-muted-foreground hover:bg-muted/50 hover:text-foreground',
+      },
+    },
+    defaultVariants: {
+      status: 'inactive',
+    },
+  },
+);
 
 export function Sidebar() {
   return (
@@ -13,9 +31,11 @@ export function Sidebar() {
         <NavLink
           key={i.to}
           to={i.to}
-          className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-all hover:text-foreground data-[status=active]:bg-primary data-[status=active]:text-primary-foreground"
+          className={({ isActive }) =>
+            cn(sidebarLinkVariants({ status: isActive ? 'active' : 'inactive' }))
+          }
         >
-          <span>{i.label}</span>
+          <span className="active:text-green-500">{i.label}</span>
         </NavLink>
       ))}
     </nav>
