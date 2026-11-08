@@ -2,7 +2,7 @@
 
 /* Light Theme */
 :root {
-  font-family: 'Plus Jakarta Sans', system-ui, Helvetica, Arial, sans-serif;
+  font-family: 'Inter Tight', system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light;
@@ -62,14 +62,6 @@
   --shadow: 0 8px 24px rgba(40, 68, 40, 0.08);
   --shadow-lg: 0 10px 32px rgba(40, 68, 40, 0.1);
 
-  --font-display: 700 32px/40px 'Plus Jakarta Sans', sans-serif;
-  --font-headline-md: 600 24px/32px 'Plus Jakarta Sans', sans-serif;
-  --font-headline-sm: 600 20px/28px 'Plus Jakarta Sans', sans-serif;
-  --font-body-lg: 400 16px/24px 'Plus Jakarta Sans', sans-serif;
-  --font-body-sm: 400 14px/20px 'Plus Jakarta Sans', sans-serif;
-  --font-label-lg: 600 14px/20px 'Plus Jakarta Sans', sans-serif;
-  --font-label-md: 500 12px/16px 'Plus Jakarta Sans', sans-serif;
-
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -80,51 +72,12 @@
   --page-padding-top: clamp(20px, 4vw, 34px);
   --page-padding-bottom: 80px;
 
-  --radius-sm: 0.25rem;
-  --radius: 0.625rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-full: 9999px;
-
   --color-accent-hover: #91b18d;
   --color-accent-soft: #aecfa9;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
 }
 
 body,
 #root {
-  background: var(--color-bg-card-light);
   min-height: 100dvh;
 }
 
@@ -195,23 +148,16 @@ body,
   --shadow-lg: 0 10px 32px rgba(0, 0, 0, 0.5);
 }
 
-[data-theme='dark'] body,
-[data-theme='dark'] #root {
-  background: var(--color-bg-darker);
-}
-
 @source "../src";
 @import 'tw-animate-css';
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/inter";
-@import "@fontsource-variable/manrope";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark, .dark *, [data-theme='dark'], [data-theme='dark'] *));
 
 @theme inline {
   --font-display: 'Fraunces', Georgia, serif;
-  --font-sans: 'Inter Variable', sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter Tight', system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -244,7 +190,7 @@ body,
   --color-moss: var(--moss);
   --color-ink: var(--ink);
   --shadow-soft: var(--shadow-soft);
-  --font-heading: 'Manrope Variable', sans-serif;
+  --font-heading: 'Fraunces', Georgia, serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -292,6 +238,21 @@ body,
   --shadow-soft: 0 1px 0 oklch(0.3 0.03 150 / 0.08), 0 10px 30px -18px oklch(0.3 0.05 150 / 0.4);
   --sky: linear-gradient(180deg, oklch(0.93 0.015 120) 0%, oklch(0.955 0.012 95) 80%);
   --sill: linear-gradient(180deg, oklch(0.4 0.03 60), oklch(0.32 0.03 60));
+
+  /* Botanical sidebar + chart tokens (desaturated, matching the editorial palette) */
+  --sidebar: oklch(0.94 0.018 100);
+  --sidebar-foreground: oklch(0.28 0.05 150);
+  --sidebar-primary: oklch(0.3 0.05 160);
+  --sidebar-primary-foreground: oklch(0.97 0.02 90);
+  --sidebar-accent: oklch(0.85 0.05 80);
+  --sidebar-accent-foreground: oklch(0.3 0.06 60);
+  --sidebar-border: oklch(0.88 0.03 100);
+  --sidebar-ring: oklch(0.55 0.1 155);
+  --chart-1: oklch(0.5 0.06 145);
+  --chart-2: oklch(0.6 0.05 230);
+  --chart-3: oklch(0.7 0.08 75);
+  --chart-4: oklch(0.62 0.07 45);
+  --chart-5: oklch(0.7 0.06 20);
 }
 
 @layer base {
@@ -303,16 +264,42 @@ body,
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     @apply bg-background text-foreground;
   }
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
   html {
     @apply font-sans;
   }
+}
+
+/* Micro-label: small caps with wide tracking — reserved for tiny eyebrow labels. */
+@utility micro-label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.6875rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-variant-caps: all-small-caps;
+}
+
+/* Note: Fraunces italic for labels, captions and details with personality. */
+@utility note {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-style: italic;
+  font-weight: 400;
 }
 
 @utility bg-sky {
@@ -370,6 +357,18 @@ body,
     opacity: 0;
   }
 }
+@keyframes grow-in {
+  from {
+    transform: scaleY(0.6) translateY(-8px);
+    transform-origin: top center;
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1) translateY(0);
+    transform-origin: top center;
+    opacity: 1;
+  }
+}
 
 @utility animate-sway {
   animation: sway 7s ease-in-out infinite;
@@ -385,37 +384,55 @@ body,
 @utility animate-float-up {
   animation: float-up 1.4s ease-out forwards;
 }
+@utility animate-grow-in {
+  animation: grow-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transform-origin: top center;
+}
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+/* Night theme — green-ink dark. Same token structure, botanical values only.
+   Applies to both the shadcn `.dark` class and the app's [data-theme='dark'] attribute. */
+.dark,
+[data-theme='dark'] {
+  --background: oklch(0.2 0.015 150);
+  --foreground: oklch(0.92 0.02 95);
+  --ink: oklch(0.9 0.02 95);
+  --card: oklch(0.24 0.02 150);
+  --card-foreground: oklch(0.92 0.02 95);
+  --popover: oklch(0.24 0.02 150);
+  --popover-foreground: oklch(0.92 0.02 95);
+  --primary: oklch(0.75 0.06 155);
+  --primary-foreground: oklch(0.22 0.03 150);
+  --secondary: oklch(0.32 0.03 150);
+  --secondary-foreground: oklch(0.92 0.02 95);
+  --muted: oklch(0.28 0.02 150);
+  --muted-foreground: oklch(0.68 0.03 140);
+  --accent: oklch(0.5 0.05 80);
+  --accent-foreground: oklch(0.94 0.02 90);
+  --destructive: oklch(0.6 0.13 30);
+  --destructive-foreground: oklch(0.95 0.01 90);
+  --border: oklch(0.35 0.02 150);
+  --input: oklch(0.35 0.02 150);
+  --ring: oklch(0.6 0.08 155);
+  --water: oklch(0.65 0.05 230);
+  --sun: oklch(0.72 0.07 75);
+  --clay: oklch(0.65 0.06 45);
+  --clay-dark: oklch(0.55 0.05 42);
+  --blossom: oklch(0.72 0.05 20);
+  --moss: oklch(0.6 0.05 145);
+  --shadow-soft: 0 1px 0 oklch(0.6 0.02 150 / 0.06), 0 10px 30px -18px oklch(0 0 0 / 0.6);
+  --sky: linear-gradient(180deg, oklch(0.24 0.02 150) 0%, oklch(0.2 0.015 150) 80%);
+  --sill: linear-gradient(180deg, oklch(0.3 0.025 60), oklch(0.24 0.02 60));
+  --sidebar: oklch(0.22 0.018 150);
+  --sidebar-foreground: oklch(0.92 0.02 95);
+  --sidebar-primary: oklch(0.75 0.06 155);
+  --sidebar-primary-foreground: oklch(0.22 0.03 150);
+  --sidebar-accent: oklch(0.5 0.05 80);
+  --sidebar-accent-foreground: oklch(0.94 0.02 90);
+  --sidebar-border: oklch(0.35 0.02 150);
+  --sidebar-ring: oklch(0.6 0.08 155);
+  --chart-1: oklch(0.6 0.05 145);
+  --chart-2: oklch(0.65 0.05 230);
+  --chart-3: oklch(0.72 0.07 75);
+  --chart-4: oklch(0.65 0.06 45);
+  --chart-5: oklch(0.72 0.05 20);
 }
