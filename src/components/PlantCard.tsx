@@ -3,7 +3,7 @@ import { AlertCircle, CheckCircle2, Droplet, Flower2, MapPin } from 'lucide-reac
 import { getWateringReminder, getHydrationPercent } from '@utils/reminders';
 import { daysUntil } from '@utils/dates';
 import { Plant } from 'src/types/Plant';
-import { CareLevelBadge } from '@components/CareLevelBadge/CareLevelBadge';
+import { CareLevelBadge } from '@/components/CareLevelBadge';
 
 type PlantCardProps = {
   plant: Plant;

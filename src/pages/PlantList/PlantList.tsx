@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Plus } from 'lucide-react';
-import { PlantCard } from '@components/PlantCard/PlantCard';
+import { PlantCard } from '@/components/PlantCard';
 import { getWateringReminder } from '@utils/reminders';
 import { getUserPlants } from 'src/api/plants';
 import { Plant } from 'src/types/Plant';
@@ -69,8 +69,8 @@ export default function PlantList() {
               key={f}
               className={`flex-shrink-0 cursor-pointer rounded-[20px] border px-[14px] py-[6px] text-[13px] transition-all duration-200 ${
                 filter === f
-                  ? 'border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-bg)] [[data-theme=\'dark\']_&]:border-[var(--color-primary)] [[data-theme=\'dark\']_&]:bg-[var(--color-primary)] [[data-theme=\'dark\']_&]:text-[var(--color-text-on-dark)]'
-                  : 'border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-muted)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] [[data-theme=\'dark\']_&]:border-[rgba(255,255,255,0.12)] [[data-theme=\'dark\']_&]:bg-[rgba(255,255,255,0.06)] [[data-theme=\'dark\']_&]:text-[rgba(255,255,255,0.7)] [[data-theme=\'dark\']_&]:hover:border-[var(--color-primary)] [[data-theme=\'dark\']_&]:hover:text-[var(--color-primary-light)]'
+                  ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-bg)] [[data-theme='dark']_&]:border-[var(--color-primary)] [[data-theme='dark']_&]:bg-[var(--color-primary)] [[data-theme='dark']_&]:text-[var(--color-text-on-dark)]"
+                  : "border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-muted)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] [[data-theme='dark']_&]:border-[rgba(255,255,255,0.12)] [[data-theme='dark']_&]:bg-[rgba(255,255,255,0.06)] [[data-theme='dark']_&]:text-[rgba(255,255,255,0.7)] [[data-theme='dark']_&]:hover:border-[var(--color-primary)] [[data-theme='dark']_&]:hover:text-[var(--color-primary-light)]"
               }`}
               onClick={() => setFilter(f)}
             >

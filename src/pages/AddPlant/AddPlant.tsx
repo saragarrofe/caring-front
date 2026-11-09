@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Flower2, Sun, Droplet, PlusCircle } from 'lucide-react';
-import BackButton from '@components/BackButton/BackButton';
+import BackButton from '@/components/BackButton';
 import { plantCatalog } from '../../mocks/plants';
 import { CatalogPlant, Plant, PlantLocation } from 'src/types/Plant';
 import { LOCATIONS } from 'src/config/locations';
 import { addUserPlant, getUserPlants } from 'src/api/plants';
-import ListPlants from '@components/ListPlants/ListPlants';
+import ListPlants from '@/components/ListPlants';
 
 export default function AddPlant() {
   const navigate = useNavigate();

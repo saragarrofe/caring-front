@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { PageTitle } from '@components/PageTitle/PageTitle';
+import { PageTitle } from '@/components/PageTitle';
 
 export default function NotFound() {
   return (

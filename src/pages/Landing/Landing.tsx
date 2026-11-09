@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from 'src/context/AuthContext';
 import { DashboardPreview } from '@components/index';
-import Features from '@components/Features/Features';
-import HowItWorks from '@components/HowItWorks/HowItWorks';
+import Features from '@/components/Features';
+import HowItWorks from '@/components/HowItWorks';
 
 type NavLink = '' | 'features' | 'how-it-works' | 'preview';
 
@@ -111,8 +111,8 @@ export default function Landing() {
         </h1>
 
         <p className="landing-subtitle m-0 max-w-[520px] text-[18px] leading-[1.65] text-[var(--color-text-muted)]">
-          Stop the guesswork. Keep your plants alive and flourishing with smart
-          watering reminders, expert care guides, and a personalized health dashboard.
+          Stop the guesswork. Keep your plants alive and flourishing with smart watering reminders,
+          expert care guides, and a personalized health dashboard.
         </p>
 
         <div className="mt-[8px] flex flex-wrap justify-center gap-[12px]">

@@ -15,7 +15,7 @@ import MyPlantDetail from '@pages/PlantDetail/PlantDetail';
 import Profile from '@pages/Profile/Profile';
 import AddPlant from '@pages/AddPlant/AddPlant';
 import NotFound from '@pages/NotFound/NotFound';
-import { Sidebar } from '@components/Sidebar/Sidebar';
+import { Sidebar } from '@/components/Sidebar';
 
 const NO_NAV = ['/', '/welcome', '/login', '/register', '/forgot-password'];
 

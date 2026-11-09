@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Flower2, Droplet, ChevronRight } from 'lucide-react';
-import { Plant } from 'src/types/Plant';
 import { getHydrationPercent } from '@utils/reminders';
 import { addDays, daysUntil } from '@utils/dates';
+import { Plant } from '@types/Plant';
 
 type UpcomingListProps = {
   plants: Plant[];
@@ -33,7 +33,11 @@ export function UpcomingList({ plants }: UpcomingListProps) {
             >
               <div className="flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center overflow-hidden rounded-[10px] bg-[var(--color-bg-card-green)] text-[18px] text-[var(--color-accent)] [[data-theme='dark']_&]:bg-[var(--color-bg-dark)]">
                 {plant.imageUrl ? (
-                  <img src={plant.imageUrl} alt={plant.name} className="h-full w-full object-cover" />
+                  <img
+                    src={plant.imageUrl}
+                    alt={plant.name}
+                    className="h-full w-full object-cover"
+                  />
                 ) : (
                   <Flower2 size={18} />
                 )}

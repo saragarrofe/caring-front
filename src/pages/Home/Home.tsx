@@ -4,8 +4,8 @@ import { AlertTriangle, ChevronRight, CalendarDays } from 'lucide-react';
 import { Plant, WateringEntry } from 'src/types/Plant';
 import { getWateringReminder } from '@utils/reminders';
 import { addDays, daysUntil } from '@utils/dates';
-import { PlantUrgentCard } from '@components/PlantUrgentCard/PlantUrgentCard';
-import { UpcomingList } from '@components/UpcomingList/UpcomingList';
+import { PlantUrgentCard } from '@/components/PlantUrgentCard';
+import { UpcomingList } from '@/components/UpcomingList';
 import { getUserPlants, waterPlant } from 'src/api/plants';
 
 export default function Home() {
